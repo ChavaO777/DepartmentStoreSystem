@@ -1,0 +1,26 @@
+Entidades:
+
+Cosas:
+
+- Compañía
+- Sucursal
+- Departamento
+- Categoría
+- Producto
+
+Personas:
+
+- Empleado
+- Dependiente
+- Cliente
+- Proveedor
+
+Contabilidad:
+
+- Ingreso (productos)
+- Egreso (productos)
+- Gastos (dinero; compra a proveedores)
+- Cotización
+- Venta
+- Factura
+- Modo de Pago
