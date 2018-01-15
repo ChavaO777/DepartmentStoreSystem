@@ -1,0 +1,2 @@
+1. Hay tipos de productos que tienen características muy particulares, por ejemplo, la ropa tiene talla y ocasión, mientras que un aparato electrónico no tiene esas características. 
+¿Cómo guardar esas características muy particulares? Considerando que tenemos una tabla Productos, tabla en donde están todos esos productos.
