@@ -1,0 +1,253 @@
+// mysqlCommands_CreateDB_Liverpool.txt
+
+CREATE TABLE company (id VARCHAR(10) NOT NULL PRIMARY KEY, 
+name VARCHAR(20));
+
+CREATE TABLE supplier (rfc VARCHAR(16) NOT NULL PRIMARY KEY,
+type VARCHAR(30),
+address VARCHAR(100),
+name VARCHAR(30));
+
+CREATE TABLE expenditure (id VARCHAR(10) NOT NULL PRIMARY KEY,
+date_time DATETIME,
+amount DOUBLE);
+
+CREATE TABLE branch (
+    id VARCHAR(10) NOT NULL,
+    director VARCHAR(10),
+    company VARCHAR(10),
+    lat DOUBLE,
+    lng DOUBLE,
+    PRIMARY KEY (id),
+    FOREIGN KEY (company) REFERENCES company(id)
+);
+
+CREATE TABLE department (
+    id VARCHAR(10) NOT NULL,
+    name VARCHAR(30),
+    manager VARCHAR(10),
+    branch VARCHAR(10),
+    PRIMARY KEY (id),
+    FOREIGN KEY (branch) REFERENCES branch(id)
+);
+
+CREATE TABLE category (
+    id VARCHAR(10) NOT NULL,
+    name VARCHAR(30),
+    department VARCHAR(10),
+    PRIMARY KEY (id),
+    FOREIGN KEY (department) REFERENCES department(id)
+);v
+
+CREATE TABLE product (
+	id VARCHAR(10) NOT NULL,
+	sku INT,
+	mi_req_sku INT,
+	active BOOLEAN,
+	price DOUBLE,
+	name VARCHAR(30),
+	category VARCHAR(10),
+	PRIMARY KEY (id),
+	FOREIGN KEY (category) REFERENCES category(id)
+);
+
+CREATE TABLE warehouse_delivery (
+	id VARCHAR(10) NOT NULL,
+	date_time DATETIME,
+	branch VARCHAR(10),
+	PRIMARY KEY (id),
+	FOREIGN KEY (branch) REFERENCES branch(id)
+);
+
+
+CREATE TABLE purchase_order (
+	id VARCHAR(10) NOT NULL,
+	payment_details VARCHAR(100),
+	date_time DATETIME,
+	shipment_details VARCHAR(100),
+	supplier VARCHAR(16),
+	warehouse_delivery VARCHAR(10),
+	PRIMARY KEY (id),
+	FOREIGN KEY (warehouse_delivery) REFERENCES warehouse_delivery(id),
+	FOREIGN KEY (supplier) REFERENCES supplier(rfc)
+);
+
+
+CREATE TABLE purchase_order_product (
+	purchase_order VARCHAR(10),
+	product VARCHAR(10),
+	quantity INT,
+	price DOUBLE,	
+	FOREIGN KEY (purchase_order) REFERENCES purchase_order(id),
+	FOREIGN KEY (product) REFERENCES product(id)
+);
+
+
+CREATE TABLE supplier_price_history (
+	id VARCHAR(10) NOT NULL,
+	date_time DATETIME,
+	new_price DOUBLE,
+	product VARCHAR(10),
+	supplier VARCHAR(16),
+	PRIMARY KEY(id),
+	FOREIGN KEY(product) REFERENCES product(id),
+	FOREIGN KEY(supplier) REFERENCES supplier(rfc)
+);
+
+CREATE TABLE invoice (
+	id VARCHAR(10) NOT NULL,
+	supplier VARCHAR(16),
+	purchase_order VARCHAR(10),
+	date_time DATETIME,
+	expenditure VARCHAR(10),
+	PRIMARY KEY(id),
+	FOREIGN KEY(supplier) REFERENCES supplier(rfc),
+	FOREIGN KEY(purchase_order) REFERENCES purchase_order(id),
+	FOREIGN KEY(expenditure) REFERENCES expenditure(id)
+);
+
+
+CREATE TABLE discount (
+	id VARCHAR(10) NOT NULL,
+	product VARCHAR(10),
+	start_date DATETIME,
+	end_date DATETIME,
+	PRIMARY KEY(id),
+	FOREIGN KEY(product) REFERENCES product(id)
+);
+
+
+CREATE TABLE product_price_history (
+	id VARCHAR(10) NOT NULL,
+	date_time DATETIME,
+	new_price DOUBLE,
+	product VARCHAR(10),
+	PRIMARY KEY(id),
+	FOREIGN KEY(product) REFERENCES product(id)
+);
+
+
+CREATE TABLE mode_of_payment (
+	id VARCHAR(10) NOT NULL,
+	name VARCHAR(10),
+	PRIMARY KEY(id)
+);
+
+
+CREATE TABLE special_offer (
+	id VARCHAR(10) NOT NULL,
+	discount VARCHAR(10),
+	months_without_interest INT,
+	electronic_purse DOUBLE,
+	PRIMARY KEY(id)
+);
+
+
+CREATE TABLE customer (
+	id VARCHAR(10) NOT NULL,
+	name VARCHAR(30),
+	last_name VARCHAR(60),
+	birthdate DATE,
+	address VARCHAR(60),
+	active BOOLEAN,
+	electronic_purse DOUBLE,
+	PRIMARY KEY(id)
+);
+
+
+CREATE TABLE employee (
+	payroll_number VARCHAR(10) NOT NULL,
+	name VARCHAR(30),
+	last_name VARCHAR(60),
+	branch VARCHAR(10),
+	birthdate DATE,
+	address VARCHAR(60),
+	start_date DATE,
+	type VARCHAR(30),
+	monthly_salary DOUBLE,
+	rest_day INT,
+	active BOOLEAN,
+	PRIMARY KEY(payroll_number)
+);
+
+
+CREATE TABLE sale (
+	id VARCHAR(10) NOT NULL,
+	customer VARCHAR(10),
+	date_time DATETIME,
+	special_offer VARCHAR(10),
+	mode_of_payment VARCHAR(10),
+	delivery_date DATETIME,
+	PRIMARY KEY(id),
+	FOREIGN KEY(customer) REFERENCES customer(id),
+	FOREIGN KEY(special_offer) REFERENCES special_offer(id),
+	FOREIGN KEY(mode_of_payment) REFERENCES mode_of_payment(id)
+);
+
+
+CREATE TABLE sale_product (
+	sale VARCHAR(10),
+	product VARCHAR(10),
+	quantity INT,
+	FOREIGN KEY(sale) REFERENCES sale(id),
+	FOREIGN KEY(product) REFERENCES product(id)
+);
+
+
+CREATE TABLE employee_registration (
+	id VARCHAR(10) NOT NULL,
+	date_time DATETIME,
+	employee VARCHAR(10),
+	PRIMARY KEY(id),
+	FOREIGN KEY(employee) REFERENCES employee(payroll_number)
+);
+
+
+CREATE TABLE dependent (
+	id VARCHAR(10) NOT NULL,
+	name VARCHAR(30),
+	last_name VARCHAR(60),
+	employee VARCHAR(10),
+	birthdate DATE,
+	PRIMARY KEY(id),
+	FOREIGN KEY(employee) REFERENCES employee(payroll_number)
+);
+
+
+CREATE TABLE shopping_cart (
+	id VARCHAR(10) NOT NULL,
+	customer VARCHAR(10),
+	sale VARCHAR(10),
+	PRIMARY KEY(id),
+	FOREIGN KEY(customer) REFERENCES customer(id),
+	FOREIGN KEY(sale) REFERENCES sale(id)
+);
+
+
+CREATE TABLE shopping_cart_product (
+	shopping_cart VARCHAR(10),
+	product VARCHAR(10),
+	quantity INT,
+	FOREIGN KEY(shopping_cart) REFERENCES shopping_cart(id),
+	FOREIGN KEY(product) REFERENCES product(id)
+);
+
+
+CREATE TABLE gift_registry (
+	id VARCHAR(10) NOT NULL,
+	customer VARCHAR(10), 
+	start_date DATETIME,
+	end_date DATETIME,
+	PRIMARY KEY (id),
+	FOREIGN KEY(customer) REFERENCES customer(id)
+);
+
+
+CREATE TABLE gift_registry_product (
+
+	gift_registry VARCHAR(10),
+	product VARCHAR(10),
+	quantity INT,
+	FOREIGN KEY (gift_registry) REFERENCES gift_registry(id),
+	FOREIGN KEY (product) REFERENCES product(id)
+);
