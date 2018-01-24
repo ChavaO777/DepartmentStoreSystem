@@ -28,6 +28,7 @@ CREATE TABLE `branch` (
   `company` varchar(10) DEFAULT NULL,
   `lat` double DEFAULT NULL,
   `lng` double DEFAULT NULL,
+  `name` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `company` (`company`),
   KEY `director` (`director`),
@@ -42,7 +43,7 @@ CREATE TABLE `branch` (
 
 LOCK TABLES `branch` WRITE;
 /*!40000 ALTER TABLE `branch` DISABLE KEYS */;
-INSERT INTO `branch` VALUES ('B0710','E01359275','L107321',19.0321,-98.2344);
+INSERT INTO `branch` VALUES ('B0710','E94017401','L107321',19.0321,-98.2344,'Angelópolis'),('B1210','E091273917','L107321',19.0917,-98.2263,'Galerías Serdán'),('B2412','E838094372','L107321',19.0698,-98.176,'Parque Puebla');
 /*!40000 ALTER TABLE `branch` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -237,7 +238,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES ('E01359275','Guadalupe','Ortiz','B0710','1971-04-19','Calle 26 #97 Reserva territorial Atlixcáyotl','2002-09-12','Cashier',9720.39,3,1);
+INSERT INTO `employee` VALUES ('E01359275','Guadalupe','Ortiz','B0710','1971-04-19','Calle 26 Sur 97 Reserva territorial Atlixcáyotl','2002-09-12','Cashier',9720.39,3,1),('E091221895','Alejandro','Vázquez','B1210','1992-09-23','Rincón de las Magnolias 73 Rincón Arboledas','2012-02-19','Cashier',9820.92,4,1),('E091273917','Pablo','Pazos','B1210','1976-07-05','Calle Tlahuapan 78 La Paz','2003-02-21','Director',113280.71,5,1),('E164920462','Miguel','Cedano','B0710','1965-01-12','Calle Almendral 256 Villa Magna','1990-02-18','Director',110947.73,2,0),('E184028592','Juan Pablo','Luna','B0710','1982-03-13','Calle 16 36 San José Vista Hermosa','2004-09-11','Cashier',9739.43,1,0),('E184729472','Emilio','Melendez','B1210','1992-07-12','Avenida 11 Poniente 1743 Barrio de Santiago','2014-03-12','Salesperson',8162.47,2,0),('E208471947','Judith','Medina','B1210','1987-12-16','Avenida 15 Poniente 2912 Belisario Domínguez','2013-05-23','Cashier',9917.25,4,0),('E212720461','Romina','Ballarte','B2412','1993-06-26','Sierra Otomí 8802 Maravillas','2013-05-14','Salesperson',8620.43,3,1),('E382018592','Guillermo','Loeza','B2412','1985-07-13','Rivera el Atoyac 27 Rivera el Atoyac','2000-11-08','Manager',35982.74,1,0),('E429810372','Julia','Oropeza','B2412','1990-11-29','Sierra de los Pirineos 8802 Maravillas','2010-03-05','Salesperson',8219.85,4,0),('E539175027','Ángel','Díaz','B2412','1965-10-24','Calle Ruiz Cortines 77 Independencia','2000-11-24','Director',120942.76,0,0),('E639163025','Jorge','Zavaleta','B2412','1990-10-28','Xonaca 2874 Puebla','2010-10-05','Cashier',10763.86,0,1),('E712074810','Pedro','Jordán','B1210','1972-05-18','Calle 29 Sur 1748 La Paz','2000-08-19','Manager',25819.74,0,0),('E720183629','Roberto','Muñoz','B1210','1982-06-27','Calle Moras 76 Residencial San Martinito','2006-03-16','Salesperson',7390.2,2,1),('E81639219','Adriana','Velez','B0710','1968-10-17','Calle Castaños 3942 Animas','2002-10-12','Salesperson',4502.75,1,0),('E831927310','Eduardo','Jaramillo','B0710','1985-01-30','Avenida Escocia 121 Las Hadas','2004-05-12','Manager',60143.3,3,1),('E837201649','Mónica','Yañez','B0710','1981-06-23','Calle 43B Sur 4284 Estrellas del Sur','1998-03-07','Manager',48174.72,6,0),('E838094372','Reyna','Patraca','B2412','1973-04-02','San Pedro 35 Residencial Santa Fe','2008-10-24','Director',127942.96,4,1),('E857301930','Beatriz','Quiroz','B0710','1993-12-02','Claustro Herradura 47 Real de Santa Clara','2014-02-19','Salesperson',6802.97,5,1),('E862918310','Fernanda','Castillo','B2412','1985-07-14','Arboledas de Guadalupe 87 Puebla','2007-12-06','Manager',42862.14,3,1),('E90263752','Martín','Alvizar','B1210','1964-06-30','Calle Mimiapan 16 La Paz','1992-04-09','Director',93180.62,5,0),('E917483017','Manuel','Juárez','B2412','1995-05-30','Calle V. Carranza 7176 Tepeyac','2014-09-14','Cashier',11320.32,1,0),('E94017401','Martha','Palomares','B0710','1966-04-12','Boulevard Victoria 432 Lomas de Angelópolis','2000-08-16','Director',130831.48,6,1),('E982743910','Jesús','Martínez','B1210','1985-02-20','Paseo Sierra Andina 74 Lomas de Angelópolis','2008-05-28','Manager',38920.82,1,1);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -746,4 +747,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-23 15:34:59
+-- Dump completed on 2018-01-24 12:30:43
