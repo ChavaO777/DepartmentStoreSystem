@@ -1,0 +1,123 @@
+// Query to get the categories of a given branch
+
+SELECT category.id, category.name, department.name
+FROM category
+INNER JOIN department ON category.department = department.id
+WHERE department.branch = "B0710"; 
+
+
+// Query to get the employees of a given branch
+
+SELECT e.payroll_number, e.name, e.last_name, e.birthdate
+FROM employee e
+WHERE e.branch = "B1210";
+
+
+// Query to show products in a branch
+
+SELECT p.id, p.name, p.sku, d.name, 
+FROM product p
+JOIN category c
+ON p.category = c.id
+JOIN department d
+ON c.department = d.id
+JOIN branch b
+ON d.branch = "B0710"
+GROUP BY p.id
+ORDER BY d.name;
+
+
+//Query to get the oldest employee
+
+SELECT e.payroll_number, e.name, e.last_name, e.birthdate
+FROM employee e
+WHERE e.branch = "B0710" AND e.birthdate = (SELECT MIN(e1.birthdate) FROM employee e1 WHERE e1.branch = "B0710")
+GROUP BY e.payroll_number;
+
+
+//Query to get the youngest employee
+
+SELECT e.payroll_number, e.name, e.last_name, e.birthdate
+FROM employee e
+WHERE e.branch = "B0710" AND e.birthdate = (SELECT MAX(e1.birthdate) FROM employee e1 WHERE e1.branch = "B0710")
+GROUP BY e.payroll_number;
+
+
+//Query to get the employee with the highest salary in a branch
+
+SELECT e.payroll_number, e.name, e.last_name, e.birthdate, e.monthly_salary
+FROM employee e
+WHERE e.branch = "B0710" AND e.monthly_salary = (SELECT MAX(e1.monthly_salary) FROM employee e1 WHERE e1.branch = "B0710")
+GROUP BY e.payroll_number;
+
+
+//Query to get the employee with the lowest salary in a branch
+
+SELECT e.payroll_number, e.name, e.last_name, e.birthdate, e.monthly_salary
+FROM employee e
+WHERE e.branch = "B0710" AND e.monthly_salary = (SELECT MIN(e1.monthly_salary) FROM employee e1 WHERE e1.branch = "B0710")
+GROUP BY e.payroll_number;
+
+
+//Query to get the most expensive product in a branch
+
+SELECT p.id, p.name, p.sku, p.category, p.price
+FROM product p
+WHERE p.price = (SELECT MAX(p1.price) FROM product p1 JOIN category c
+                                                        ON p1.category = c.id
+                                                        JOIN department d
+                                                        ON c.department = d.id
+                                                        JOIN branch b
+                                                        ON d.branch = "B0710");
+
+
+
+//Query to get the most expensive product in a branch
+
+SELECT p.id, p.name, p.sku, p.category, p.price
+FROM product p
+WHERE p.price = (SELECT MIN(p1.price) FROM product p1 JOIN category c
+                                                        ON p1.category = c.id
+                                                        JOIN department d
+                                                        ON c.department = d.id
+                                                        JOIN branch b
+                                                        ON d.branch = "B0710");
+
+
+
+//Query to get the products below a given price p
+
+SELECT p.id, p.name, p.sku, p.category, p.price
+FROM product p
+JOIN category c
+ON p.category = c.id
+JOIN department d
+ON c.department = d.id
+JOIN branch b
+ON d.branch = "B0710"
+GROUP BY p.id
+WHERE p.price < 200.0;
+
+//Query to get the employees that are still in the company building of a branch
+
+WRONG!!!!!!!!!!!!!!!!!!!!
+
+SELECT e.payroll_number, e.name, e.last_name, e.birthdate
+FROM employee e
+WHERE e.payroll_number = (  SELECT e1.payroll_number, COUNT(er.date_time) as 'total_registrations'
+                            FROM employee e1, employee_registration er
+                            WHERE e1.payroll_number = er.employee AND e1.branch = "B0710"
+                            GROUP BY e1.payroll_number) and total_registrations%2 = 1;
+
+
+//Query to get the total amount of the payroll of a branch
+
+WRONG!!!!!!!!!!!!!!!!!!!!
+
+SELECT SUM(e.monthly_salary)
+FROM employee e
+WHERE e.branch = "B0710";  
+
+
+//Query to compute the amount of years that the longest-working employee has been working
+
