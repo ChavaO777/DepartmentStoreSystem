@@ -121,3 +121,15 @@ WHERE e.branch = "B0710";
 
 //Query to compute the amount of years that the longest-working employee has been working
 
+
+
+//Query to get the status of a product in all branches given p.name
+SELECT p.id, p.name, p.sku, p.price, d.name, b.name
+FROM product p
+JOIN category c
+ON p.category = c.id
+JOIN department d
+ON c.department = d.id
+JOIN branch b
+ON d.branch = b.id
+WHERE p.name = "Tenis lisos";
