@@ -70,7 +70,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES ('C038102','Instrumentos musicales','D01846'),('C048103','Accesorios','D82917'),('C120482','Instrumentos musicales','D83726'),('C123413','Ropa','D73817'),('C123419','Zapatos','D73817'),('C123749','Bolsas','D18472'),('C123901','Bebés','D84629'),('C123910','Aparatos de ejercicio y motos','D82631'),('C123912','Niñas','D84629'),('C123940','Libros','D73917'),('C123942','Damas','D94728'),('C123948','Entretenimiento','D83726'),('C124721','Por edad','D18362'),('C128492','Electrónica','D83726'),('C129402','Por categoría','D18362'),('C129419','Electrónica','D46295'),('C129472','Entretenimiento','D46295'),('C129482','Series','D73917'),('C138204','Muebles para bebé','D83716'),('C139302','Muebles','D18620'),('C139482','Infantiles','D94728'),('C139582','Niños','D84629'),('C1462934','Zapatos','D73017'),('C174630','Viajes Liverpool','D82026'),('C183621','Accesorios','D73817'),('C184201','Vinos','D99274'),('C184729','Preventas','D18263'),('C184928','Equipos por compañía','D92736'),('C186302','Consolas','D18263'),('C192012','Ropa','D82917'),('C192047','Ropa','D84620'),('C192371','Accesorios','D18472'),('C192710','Joyería','D81274'),('C192749','Arte y decoración','D83716'),('C192839','Calzado deportivo','D82631'),('C193620','Bienestar y salud','D18273'),('C193710','Viajes en corte Inglés','D73812'),('C193719','Colchones','D18620'),('C193720','Cómputo','D46295'),('C1937263','Ropa','D73017'),('C193729','Ropa','D18472'),('C193821','Línea blanca','D94726'),('C193850','Viajes Liverpool','D73812'),('C194720','Niños','D73529'),('C194722','Juegos','D18263'),('C194729','Cuidado personal','D18273'),('C208405','La selección de la cava','D99274'),('C248201','Música','D73917'),('C248261','Electrodomésticos','D94726'),('C281620','Lentes','D81274'),('C291740','Computadoras','D01846'),('C291821','Películas','D73917'),('C294791','Muebles','D83716'),('C294910','Libros de texto','D73917'),('C357201','Bolsas','D73017'),('C361927','Casa','D94628'),('C361972','Electrodomésticos','D94628'),('C391023','Cervezas','D99274'),('C392740','Aparatos de ejercicios y motos','D79104'),('C402810','Zapatos','D84620'),('C402831','Accesorios','D84620'),('C471630','Cocina','D94628'),('C480521','Muebles para bebés','D18620'),('C482012','Calzado deportivo','D79104'),('C482048','Artículos de viaje','D73812'),('C492048','Bolsas','D84620'),('C492740','Por marca','D18362'),('C493820','Zapatos','D82917'),('C573610','Deportivos','D91635'),('C573640','Viajes en corte Inglés','D82026'),('C583018','Ropa','D73017'),('C583051','Caballeros','D94728'),('C631992','Bebés','D73529'),('C639201','Entretenimiento','D01846'),('C658293','Electrónica','D01846'),('C658302','Caballeros','D91635'),('C739102','Zapatos','D73017'),('C756202','Infantiles','D91635'),('C756391','Damas','D91635'),('C816452','Perfumería y cosméticos','D18273'),('C830128','Colchones','D18620'),('C837461','Top ventas','D18263'),('C849261','Licores y destilados','D99274'),('C856391','Niñas','D73529'),('C857103','Complementos','D99274'),('C857301','Accesorios de viaje','D82026'),('C857392','Disciplinas y accesorios','D79104'),('C891048','Relojes','D81274'),('C912491','Instrumentos musicales','D46295'),('C917462','Zapatos','D18472'),('C918472','Deportivos','D94728'),('C928102','Equipos','D92736'),('C938102','Accesorios','D73017'),('C940284','Accesorios','D92736'),('C947291','Cómputo','D83726'),('C973018','Disciplinas y accesorios','D82631');
+INSERT INTO `category` VALUES ('C038102','Instrumentos musicales','D01846'),('C120482','Instrumentos musicales','D83726'),('C123413','Ropa','D73817'),('C123419','Zapatos','D73817'),('C123749','Bolsas','D18472'),('C123901','Bebés','D84629'),('C123910','Aparatos de ejercicio','D82631'),('C123940','Libros','D73917'),('C123948','Entretenimiento','D83726'),('C124721','Por edad','D18362'),('C128492','Electrónica','D83726'),('C129419','Electrónica','D46295'),('C129472','Entretenimiento','D46295'),('C129482','Series','D73917'),('C138204','Muebles para bebé','D83716'),('C139302','Muebles','D18620'),('C139582','Niños','D84629'),('C1462934','Zapatos','D73017'),('C174630','Viajes Liverpool','D82026'),('C183621','Accesorios','D73817'),('C184729','Preventas','D18263'),('C186302','Consolas','D18263'),('C192012','Ropa','D82917'),('C192047','Ropa','D84620'),('C192371','Accesorios','D18472'),('C192749','Arte y decoración','D83716'),('C193620','Bienestar y salud','D18273'),('C193719','Colchones','D18620'),('C193720','Cómputo','D46295'),('C193729','Ropa','D18472'),('C193821','Línea blanca','D94726'),('C193850','Viajes Liverpool','D73812'),('C194720','Niños','D73529'),('C194722','Juegos','D18263'),('C194729','Cuidado personal','D18273'),('C248261','Electrodomésticos','D94726'),('C281620','Lentes','D81274'),('C294791','Muebles','D83716'),('C357201','Bolsas','D73017'),('C361972','Electrodomésticos','D94628'),('C402810','Zapatos','D84620'),('C493820','Zapatos','D82917'),('C631992','Bebés','D73529'),('C639201','Entretenimiento','D01846'),('C816452','Perfumería y cosméticos','D18273'),('C837461','Top ventas','D18263'),('C856391','Niñas','D73529'),('C891048','Relojes','D81274'),('C917462','Zapatos','D18472'),('C928102','Equipos','D92736'),('C938102','Accesorios','D73017'),('C947291','Cómputo','D83726'),('C973018','Disciplinas y accesorios','D82631');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,7 +153,7 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES ('D01846','Electrónicos','E471846204','B2412'),('D18263','Videojuegos','E739857105','B0710'),('D18273','Salud y belleza','E385016395','B0710'),('D18362','Juguetes','E548261937','B2412'),('D18472','Ella','E158205739','B0710'),('D18620','Muebles','E739152846','B2412'),('D46295','Electrónicos','E782936182','B1210'),('D73017','Ella','E119749368','B2412'),('D73529','Niños y bebés','E183629172','B2412'),('D73812','Viajes','E835730183','B1210'),('D73817','Él','E173629472','B0710'),('D73917','Libros, películas y música','E746381947','B1210'),('D79104','Deportes','E862918310','B2412'),('D81274','Relojes, lentes y joyería','E316382057','B1210'),('D82026','Viajes','E718263090','B2412'),('D82631','Deportes','E582948291','B1210'),('D82917','Él','E184927481','B1210'),('D83716','Muebles','E917583904','B0710'),('D83726','Electrónicos','E831927310','B0710'),('D84620','Ella','E184920472','B1210'),('D84629','Niños y bebés','E192750849','B0710'),('D91635','Zapatos','E819362819','B2412'),('D92736','Celulares','E528174926','B1210'),('D94628','Hogar y cocina','E818462047','B2412'),('D94726','Línea blanca','E892746103','B0710'),('D94728','Zapatos','E218472981','B0710'),('D99274','Vinos y licores','E982743910','B1210');
+INSERT INTO `department` VALUES ('D01846','Electrónicos','E471846204','B2412'),('D18263','Videojuegos','E739857105','B0710'),('D18273','Salud y belleza','E385016395','B0710'),('D18362','Juguetes','E548261937','B2412'),('D18472','Ella','E158205739','B0710'),('D18620','Muebles','E739152846','B2412'),('D46295','Electrónicos','E782936182','B1210'),('D73017','Ella','E119749368','B2412'),('D73529','Niños y bebés','E183629172','B2412'),('D73812','Viajes','E835730183','B1210'),('D73817','Él','E173629472','B0710'),('D73917','Libros','E746381947','B1210'),('D81274','Relojes y lentes','E316382057','B1210'),('D82026','Viajes','E718263090','B2412'),('D82631','Deportes','E582948291','B1210'),('D82917','Él','E184927481','B1210'),('D83716','Muebles','E917583904','B0710'),('D83726','Electrónicos','E831927310','B0710'),('D84620','Ella','E184920472','B1210'),('D84629','Niños y bebés','E192750849','B0710'),('D92736','Celulares','E528174926','B1210'),('D94628','Hogar y cocina','E818462047','B2412'),('D94726','Línea blanca','E892746103','B0710');
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,6 +210,7 @@ CREATE TABLE `discount` (
 
 LOCK TABLES `discount` WRITE;
 /*!40000 ALTER TABLE `discount` DISABLE KEYS */;
+INSERT INTO `discount` VALUES ('1001','1013481930','2018-01-25 12:52:36','2018-01-25 12:52:43'),('1002','1013481930','2018-01-25 12:56:05','2018-02-01 12:56:05'),('1124','1094175158','2018-01-25 18:25:54','2018-02-01 18:25:54'),('1238','1095829573','2018-01-25 18:25:26','2018-02-01 18:25:26'),('1593','1084928572','2018-01-25 18:26:46','2018-02-14 18:26:46'),('1951','1094150151','2018-01-25 18:26:22','2018-02-07 18:26:22');
 /*!40000 ALTER TABLE `discount` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -350,6 +351,7 @@ CREATE TABLE `gift_registry_product` (
 
 LOCK TABLES `gift_registry_product` WRITE;
 /*!40000 ALTER TABLE `gift_registry_product` DISABLE KEYS */;
+INSERT INTO `gift_registry_product` VALUES ('GR147182','1095829573',1),('GR147182','1085713401',5),('GR147182','1094175158',2),('GR147182','1074381650',3),('GR147182','1048395810',1),('GR147182','1013481930',1),('GR258271','1059234012',1),('GR258271','1058403940',2),('GR258271','1065748301',4);
 /*!40000 ALTER TABLE `gift_registry_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -382,6 +384,7 @@ CREATE TABLE `invoice` (
 
 LOCK TABLES `invoice` WRITE;
 /*!40000 ALTER TABLE `invoice` DISABLE KEYS */;
+INSERT INTO `invoice` VALUES ('INV15491','RE1324190FA8491','PO4391','2018-01-13 20:25:30','EXP629581'),('INV41098','JAF8391409C1341','PO5491','2018-01-20 20:27:00','EXP377733'),('INV54901','JOF123489A8134B','PO5492','2018-01-04 20:26:16','EXP628521');
 /*!40000 ALTER TABLE `invoice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -405,7 +408,7 @@ CREATE TABLE `mode_of_payment` (
 
 LOCK TABLES `mode_of_payment` WRITE;
 /*!40000 ALTER TABLE `mode_of_payment` DISABLE KEYS */;
-INSERT INTO `mode_of_payment` VALUES ('MOP138191','AMEX'),('MOP141781','Santander'),('MOP148129','Banamex'),('MOP148192','Scotiabank'),('MOP358234','HSBC'),('MOP418192','Banorte'),('MOP493149','Bancomer');
+INSERT INTO `mode_of_payment` VALUES ('MOP138191','AMEX'),('MOP141781','Santander'),('MOP148129','Banamex'),('MOP148192','Scotiabank'),('MOP31482','Efectivo'),('MOP358234','HSBC'),('MOP418192','Banorte'),('MOP493149','Bancomer');
 /*!40000 ALTER TABLE `mode_of_payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -436,7 +439,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES ('1012481934',0,30,0,490,'Set Capitán América','C816452'),('1013481492',240,30,0,1690,'Body Liso','C193729'),('1013481930',80,10,1,168,'Crema para tatuajes','C194729'),('1013812491',320,60,1,999,'Vestido con diseño gráfico','C193729'),('1014819201',300,90,1,399,'Aretes Additions','C192371'),('1023535920',270,60,1,760,'Base Lancome Teint Idole','C816452'),('1023573043',140,20,1,2200,'Perfume Women Above All','C816452'),('1023582590',210,70,0,1299,'Bolsa Satchel','C123749'),('1023592045',54,20,0,699,'Pantalón con diseño gráfico','C193729'),('1023598204',0,30,0,499,'Báscula digital','C193620'),('1025829325',190,50,1,199,'Diadema para cabello','C194729'),('1025829450',0,50,0,299,'Cojín relajante','C193620'),('1032582351',68,30,1,2299,'Tenis lisos','C917462'),('1034583954',350,70,1,199,'Antifaz para dormir','C193620'),('1034829381',120,20,1,1399,'Wii U The Legend of Zelda','C837461'),('1035829354',80,30,1,249,'Bolsa wristlet lisa','C123749'),('1035829520',360,15,1,399,'Pulsera Lombrozo gris acero','C183621'),('1048235920',190,50,1,599,'Bolsa crossbody lisa','C123749'),('1048345927',310,50,1,490,'Eyeshadow Palette Neutral','C816452'),('1048374028',250,50,1,199,'Masajeador Capilar','C193620'),('1048392058',56,15,1,599,'Camisa casual a rayas','C123413'),('1049390935',130,25,1,599,'PS4 Madden NFL 17','C837461'),('1050047756',115,25,1,1399,'PS4 God Of War','C184729'),('1050047799',0,25,0,1299,'PS4 Days Gone','C184729'),('1052962648',60,15,1,1399,'Xbox One S Control Inalámbrico','C837461'),('1054832049',89,20,1,3299,'Tenis de piel','C123419'),('1058402849',48,20,1,3399,'Zapatos Rockport','C917462'),('1058403940',250,35,1,2079.2,'Lente solar para dama','C192371'),('1058492302',43,25,0,2999,'Chamarra lisa','C123413'),('1058492732',60,25,1,399,'Playera cuello redondo','C123413'),('1058493741',120,30,1,699,'Pantufla Polo Ralph Rauren','C123419'),('1062424890',0,3,0,6999.99,'Consola Xbox One Minecraft','C186302'),('1063000881',0,15,0,1149,'PS4 WRC 7','C194722'),('1063905557',200,30,1,1399,'Xbox One Monster Hunter World','C184729'),('1064044652',55,5,1,9249,'Consola PS4 Slim 1 TB','C186302'),('1064534919',40,10,1,5999,'Consola Nintendo 3DS SNES','C186302'),('1065700049',120,25,1,1099,'PS4 Shadow of the Colossus','C194722'),('1066131706',110,15,1,999,'PSVR The Inpatient','C184729'),('1066504987',95,15,1,899,'Xbox One Metal Gear Survive','C194722');
+INSERT INTO `product` VALUES ('1012481934',0,30,0,490,'Set Capitán América','C816452'),('1012485171',17,15,0,13799,'iPad 9.7 Pulgadas 128GB','C947291'),('1012491234',150,60,1,899,'Lente para Dji Phantom','C128492'),('1012948264',32,10,1,679.15,'Adaptador USB-C a HDMI','C193720'),('1013458131',250,80,1,349,'Cinturón liso','C139582'),('1013481492',240,30,0,1690,'Body Liso','C193729'),('1013481930',80,10,1,168,'Crema para tatuajes','C194729'),('101354812',150,30,1,249,'Playera Star Wars','C139582'),('1013812491',320,60,1,999,'Vestido con diseño gráfico','C193729'),('1013912430',23,10,1,35999,'Gamer HP Omen AMD','C947291'),('1014185391',18,5,1,2039.15,'Alcatel A3 Plus','C928102'),('1014335712',38,10,1,12999,'Samsung Galaxy A8','C928102'),('1014345298',85,25,1,3399,'Zapatos Rockport','C402810'),('1014358439',57,20,1,2299,'Tenis lisos','C402810'),('1014359853',87,30,1,999,'Vestido con diseño gráfico','C192047'),('1014367459',132,50,0,699,'Pantalón con diseño gráfico','C192047'),('1014398619',49,20,1,1690,'Body Liso','C192047'),('1014819201',300,90,1,399,'Aretes Additions','C192371'),('1015173910',30,15,1,348,'Inferno','C123940'),('1023457134',110,30,1,186.75,'Ernesto y Celestina','C123948'),('1023535920',270,60,1,760,'Base Lancome Teint Idole','C816452'),('1023573043',140,20,1,2200,'Perfume Women Above All','C816452'),('1023582590',210,70,0,1299,'Bolsa Satchel','C123749'),('1023592045',54,20,0,699,'Pantalón con diseño gráfico','C193729'),('1023598204',0,30,0,499,'Báscula digital','C193620'),('1025829325',190,50,1,199,'Diadema para cabello','C194729'),('1025829450',0,50,0,299,'Cojín relajante','C193620'),('1031517395',50,10,0,1721.3,'Pretty little lies','C129482'),('1032582351',68,30,1,2299,'Tenis lisos','C917462'),('1034571234',8,10,0,679.15,'Adaptador USB-C a HDMI','C947291'),('1034581031',140,50,0,135.2,'30 de Febrero Ha-Ash','C123948'),('1034583954',350,70,1,199,'Antifaz para dormir','C193620'),('1034829381',120,20,1,1399,'Wii U The Legend of Zelda','C837461'),('1035135731',20,10,0,799.2,'Guantes replique fútbol','C973018'),('1035139481',68,15,1,4029.35,'Platillo Zildjian','C120482'),('1035198678',14,2,1,2443,'Hotel Cozumel and Resort','C193850'),('1035829354',80,30,1,249,'Bolsa wristlet lisa','C123749'),('1035829520',360,15,1,399,'Pulsera Lombrozo gris acero','C183621'),('1037591660',17,10,0,4886.65,'Reloj negro para caballero','C891048'),('1039481234',30,5,1,4549.35,'Guitalla Electroacústica','C120482'),('103948192',40,5,1,10499.25,'Carriola Britax B-Aquile','C138204'),('1041511248',23,30,1,14381.24,'Máquina de espresso','C361972'),('1041511849',123,50,1,11899.15,'Batidora profesional','C361972'),('1041514819',230,60,1,1954.15,'Máquina de palomitas','C361972'),('1041514851',28,10,1,4236,'Hotel Villa Premiere','C174630'),('1041571348',41,5,0,2762,'Hotel Oceano Palace Beach','C174630'),('1041579374',123,30,1,2443,'Hotel Cozumel and Resort','C174630'),('104295739',78,30,1,239.6,'Camisa a cuadros','C139582'),('104459314',120,20,1,314.3,'Pijama de algodón','C139582'),('1048151575',182,60,1,250,'Lente solar para dama','C938102'),('1048151583',95,30,1,349,'Cinturón liso','C194720'),('1048194738',18,12,1,2499,'Lente solar para dama','C281620'),('1048235920',190,50,1,599,'Bolsa crossbody lisa','C123749'),('1048274027',17,10,0,11899.15,'Batidora profesional','C248261'),('1048294629',54,10,1,899,'Lente para Dji Phantom','C129419'),('1048311581',245,25,0,190,'Bolsa crossbody lisa','C357201'),('1048312857',15,20,1,3399,'Zapatos Rockport','C1462934'),('1048315171',210,50,1,399,'Aretes Additions','C938102'),('1048315352',123,20,0,249,'Bolsa wristlet lisa','C357201'),('1048315720',91,30,1,1299,'Bolsa Satchel','C357201'),('1048345201',17,5,0,9599.25,'Colchón individual Therapedic','C193719'),('1048345682',7,2,1,19816.05,'Box y colchón king size Luxor','C193719'),('1048345927',310,50,1,490,'Eyeshadow Palette Neutral','C816452'),('1048347407',28,10,1,2299,'Tenis lisos','C1462934'),('1048371239',68,10,1,251.37,'Serie de luces Narrative','C192749'),('1048374028',250,50,1,199,'Masajeador Capilar','C193620'),('104839128',25,15,1,2024.25,'Puff Basic Turquesa','C138204'),('1048391391',89,25,0,135.2,'30 de Febrero Ha-Ash','C639201'),('1048391591',94,40,0,299,'Bambineto Sigoto Distroller','C124721'),('1048391950',122,70,1,2849,'Coche a control remoto','C124721'),('1048392058',56,15,1,599,'Camisa casual a rayas','C123413'),('1048395281',92,30,1,149.25,'El Graduado Blue-Ray','C639201'),('1048395810',75,10,1,186.75,'Ernesto y Celestina','C639201'),('1048395839',128,50,1,499,'Muñeca Wonder Woman DC','C124721'),('1048397591',48,10,1,7244.37,'Cómoda Billy Alondra','C139302'),('1048398647',24,10,1,15999.99,'Colchón Inova Col Sognare','C193719'),('1048399989',27,15,1,10076.38,'Reclinable Mecedora La Z','C139302'),('1048514821',59,20,1,419.3,'Chaleco liso','C856391'),('1048592124',158,40,1,399,'Vestido Caramel de algodón','C856391'),('1048592740',48,10,1,599,'Pants a rayas','C856391'),('1049390935',130,25,1,599,'PS4 Madden NFL 17','C837461'),('1049534581',86,20,1,649,'Cobija con diseño gráfico','C631992'),('1049535417',123,40,1,639.2,'Sudadera GAP con logotipo','C631992'),('1049581358',120,50,1,249,'Playera Star Wars','C194720'),('1049581841',124,30,0,314.3,'Pijama de algodón','C194720'),('1049586878',96,20,0,239.6,'Camisa a cuadros','C194720'),('1050047756',115,25,1,1399,'PS4 God Of War','C184729'),('1050047799',0,25,0,1299,'PS4 Days Gone','C184729'),('1051518145',30,20,1,223,'Modern Family','C129482'),('1052962648',60,15,1,1399,'Xbox One S Control Inalámbrico','C837461'),('1053485701',26,15,0,5396.65,'Reloj oxford para caballero','C891048'),('1054832049',89,20,1,3299,'Tenis de piel','C123419'),('1056491731',10,5,1,659,'Once upon a time','C129482'),('1057291237',230,50,1,649,'Cobija con diseño gráfico','C123901'),('1057353532',34,15,1,4549.35,'1039481234','C038102'),('1057385931',45,10,1,4029.35,'Platillo Zildjian','C038102'),('1057391231',19,15,0,1189.3,'Cava Metalart Chica','C192749'),('1057391391',28,10,1,3199,'Armazón unisex','C281620'),('1058234012',57,10,1,7244.37,'Cómoda Billy Alondra','C294791'),('1058341023',84,20,1,149.25,'El Graduado Blue-Ray','C123948'),('105839273',32,10,0,2939.3,'Colecho Prinsel Napper Beige','C138204'),('1058402849',48,20,1,3399,'Zapatos Rockport','C917462'),('1058403940',250,35,1,2079.2,'Lente solar para dama','C192371'),('1058492302',43,25,0,2999,'Chamarra lisa','C123413'),('1058492732',60,25,1,399,'Playera cuello redondo','C123413'),('1058493741',120,30,1,699,'Pantufla Polo Ralph Rauren','C123419'),('1059234012',35,20,1,10076.38,'Reclinable Mecedora La Z','C294791'),('1062424890',0,3,0,6999.99,'Consola Xbox One Minecraft','C186302'),('1063000881',0,15,0,1149,'PS4 WRC 7','C194722'),('1063829175',10,4,1,22499.25,'Caminadora Nordictrack','C123910'),('1063905557',200,30,1,1399,'Xbox One Monster Hunter World','C184729'),('1064044652',55,5,1,9249,'Consola PS4 Slim 1 TB','C186302'),('1064534919',40,10,1,5999,'Consola Nintendo 3DS SNES','C186302'),('1065700049',120,25,1,1099,'PS4 Shadow of the Colossus','C194722'),('1065748301',17,3,1,2762,'Hotel Oceano Palace Beach','C193850'),('1066131706',110,15,1,999,'PSVR The Inpatient','C184729'),('1066504987',95,15,1,899,'Xbox One Metal Gear Survive','C194722'),('1073810572',27,5,1,11474.24,'Campana Electrolux de acero','C193821'),('1073948519',25,5,1,1759.2,'Entrenador de agilidad','C973018'),('1073956201',48,15,0,37332.4,'Pantalla Sony 65 Pulgadas','C129419'),('1074381650',20,5,1,325,'La maldición de los Grace','C123940'),('1074839571',6,2,1,14299.35,'Caminadora Proform 800i','C123910'),('1074928495',20,14,1,1954.15,'Máquina de palomitas','C248261'),('1074930561',64,15,0,146.3,'Lámpara circular para techo','C192749'),('1078391469',35,10,1,186.75,'Ernesto y Celestina','C129472'),('1079461839',49,15,1,135.2,'30 de Febrero Ha-Ash','C129472'),('1083195730',39,15,1,13799,'iPad 9.7 Pulgadas 128GB','C193720'),('1083920164',29,10,1,2399,'Armazón para dama','C281620'),('1084013582',130,20,1,37332.4,'Pantalla Sony 65 Pulgadas','C128492'),('1084513501',19,10,0,149.25,'El Graduado Blue-Ray','C129472'),('1084917482',38,10,1,1295,'El libro de los héroes','C123940'),('1084928572',5,10,1,4236,'Hotel Villa Premiere','C193850'),('1085713401',58,20,1,639.2,'Sudadera GAP con logotipo','C123901'),('1085920572',6,12,0,14381.24,'Máquina de espresso','C248261'),('1094150151',19,9,1,18359.15,'Lavadora 23Kg color Plata','C193821'),('1094153961',85,25,0,3299,'Tenis de piel','C493820'),('1094165876',57,17,0,3299,'Pantufla Polo Ralph Rauren','C493820'),('1094175158',47,10,1,399,'Playera cuello redondo','C192012'),('1094758345',37,20,1,2999,'Chamarra lisa','C192012'),('1094760125',45,15,1,599,'Camisa casual a rayas','C192012'),('1095829573',68,20,1,35999,'Gamer HP Omen AMD','C193720');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -464,6 +467,7 @@ CREATE TABLE `product_price_history` (
 
 LOCK TABLES `product_price_history` WRITE;
 /*!40000 ALTER TABLE `product_price_history` DISABLE KEYS */;
+INSERT INTO `product_price_history` VALUES ('PH13482','2017-09-19 18:44:42',34762,'1095829573'),('PH14819','2017-12-07 18:45:09',218.64,'1094760125'),('PH14829','2018-01-02 18:45:57',1649.92,'1084928572'),('PH34581','2018-01-08 18:47:01',429.83,'1094175158'),('PH52829','2017-08-30 18:46:27',13709.8,'1085920572');
 /*!40000 ALTER TABLE `product_price_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -479,7 +483,7 @@ CREATE TABLE `purchase_order` (
   `payment_details` varchar(100) DEFAULT NULL,
   `date_time` datetime DEFAULT NULL,
   `shipment_details` varchar(100) DEFAULT NULL,
-  `supplier` varchar(10) DEFAULT NULL,
+  `supplier` varchar(16) DEFAULT NULL,
   `warehouse_delivery` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `warehouse_delivery` (`warehouse_delivery`),
@@ -495,6 +499,7 @@ CREATE TABLE `purchase_order` (
 
 LOCK TABLES `purchase_order` WRITE;
 /*!40000 ALTER TABLE `purchase_order` DISABLE KEYS */;
+INSERT INTO `purchase_order` VALUES ('PO4391','Pago después de entrega','2018-01-16 20:18:11','Terrestre','RE1324190FA8491','WD8041'),('PO5491','Pago después de entrega','2018-01-10 20:20:57','Aéreo','JOF123489A8134B','WD6590'),('PO5492','Pago antes de entrega','2017-12-25 20:21:55','Terrestre','JAF8391409C1341','WD5931');
 /*!40000 ALTER TABLE `purchase_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -556,6 +561,7 @@ CREATE TABLE `sale` (
 
 LOCK TABLES `sale` WRITE;
 /*!40000 ALTER TABLE `sale` DISABLE KEYS */;
+INSERT INTO `sale` VALUES ('SALE1482','CUS39123','2017-03-11 19:09:37','SO58391','MOP493149',NULL),('SALE1489','CUS39123','2017-12-06 19:14:09','SO14819','MOP148129','2017-12-11 19:14:09'),('SALE4192','CUS13940','2018-01-13 19:27:22','SO53910','MOP493149','2018-01-18 19:27:22'),('SALE4194','CUS57301','2017-03-03 19:08:43','SO58391','MOP493149','2017-03-07 19:08:43'),('SALE4891','CUS18390','2018-01-16 19:24:54','SO58391','MOP418192','2018-01-20 19:24:54'),('SALE5491','CUS58201','2016-11-22 19:05:33','SO58391','MOP493149',NULL),('SALE9145','CUS13940','2017-07-27 19:11:33','SO54821','MOP418192','2017-07-29 19:11:33'),('SALE9582','CUS18390','2017-04-19 19:10:21','SO54821','MOP358234',NULL);
 /*!40000 ALTER TABLE `sale` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -583,6 +589,7 @@ CREATE TABLE `sale_product` (
 
 LOCK TABLES `sale_product` WRITE;
 /*!40000 ALTER TABLE `sale_product` DISABLE KEYS */;
+INSERT INTO `sale_product` VALUES ('SALE5491','1073948519',2),('SALE5491','1034571234',1),('SALE4194','1073948519',3),('SALE9145','1035135731',1),('SALE9145','1014185391',3),('SALE1489','1048514821',6),('SALE1489','1037591660',2),('SALE9582','1013912430',2),('SALE9582','1037591660',1),('SALE1482','1041511248',1),('SALE1482','1057391391',3);
 /*!40000 ALTER TABLE `sale_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -611,6 +618,7 @@ CREATE TABLE `shopping_cart` (
 
 LOCK TABLES `shopping_cart` WRITE;
 /*!40000 ALTER TABLE `shopping_cart` DISABLE KEYS */;
+INSERT INTO `shopping_cart` VALUES ('SC14829','CUS13940','SALE4192'),('SC14892','CUS18390','SALE4891');
 /*!40000 ALTER TABLE `shopping_cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -638,6 +646,7 @@ CREATE TABLE `shopping_cart_product` (
 
 LOCK TABLES `shopping_cart_product` WRITE;
 /*!40000 ALTER TABLE `shopping_cart_product` DISABLE KEYS */;
+INSERT INTO `shopping_cart_product` VALUES ('SC14892','1073948519',2),('SC14892','1035135731',1),('SC14892','1034571234',1),('SC14829','1041514819',1),('SC14829','1094758345',1),('SC14829','1041514851',1);
 /*!40000 ALTER TABLE `shopping_cart_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -663,6 +672,7 @@ CREATE TABLE `special_offer` (
 
 LOCK TABLES `special_offer` WRITE;
 /*!40000 ALTER TABLE `special_offer` DISABLE KEYS */;
+INSERT INTO `special_offer` VALUES ('SO12348','1001',3,150),('SO14819','1124',24,0),('SO35911','1002',12,1000),('SO53910','1593',3,0),('SO54821','1001',9,0),('SO58391','1001',6,0);
 /*!40000 ALTER TABLE `special_offer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -688,6 +698,7 @@ CREATE TABLE `supplier` (
 
 LOCK TABLES `supplier` WRITE;
 /*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
+INSERT INTO `supplier` VALUES ('GAA834C13812481','Ropa dama','Calle Margarita 2342 Guadalajara','Ropa mujer Co'),('IIC1348914C1940','Juguetes','Calle Tepic 4910 Zacatlán','Juguetes Mágicos Co'),('JAF8391409C1341','Zapatos','Calle Jacaranda 3419 Puebla','Zapateros Co'),('JOF123489A8134B','Accesorios','Calle Mármol 674 San Martín Texmelucan','Accesorios Co'),('RE1324190FA8491','Ropa hombre','Calle Durazno 492 Veracruz','Ropa varonil Co');
 /*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -718,6 +729,7 @@ CREATE TABLE `supplier_price_history` (
 
 LOCK TABLES `supplier_price_history` WRITE;
 /*!40000 ALTER TABLE `supplier_price_history` DISABLE KEYS */;
+INSERT INTO `supplier_price_history` VALUES ('SPH1549','2018-01-01 19:57:52',29842.12,'1095829573','RE1324190FA8491'),('SPH5490','2017-12-25 19:58:42',259.49,'1094760125','IIC1348914C1940'),('SPH5491','2018-01-09 19:59:30',1549.21,'1094758345','JAF8391409C1341');
 /*!40000 ALTER TABLE `supplier_price_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -744,6 +756,7 @@ CREATE TABLE `warehouse_delivery` (
 
 LOCK TABLES `warehouse_delivery` WRITE;
 /*!40000 ALTER TABLE `warehouse_delivery` DISABLE KEYS */;
+INSERT INTO `warehouse_delivery` VALUES ('WD1549','2018-01-09 20:05:30','B0710'),('WD5465','2018-01-24 20:06:13','B1210'),('WD5490','2018-01-02 20:05:48','B0710'),('WD5659','2018-01-21 20:05:59','B0710'),('WD5931','2018-01-19 20:07:13','B2412'),('WD6590','2018-01-12 20:06:49','B2412'),('WD6592','2017-12-24 20:06:25','B1210'),('WD8041','2018-01-11 20:07:30','B2412');
 /*!40000 ALTER TABLE `warehouse_delivery` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -756,4 +769,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-25  2:48:21
+-- Dump completed on 2018-01-25 20:27:32

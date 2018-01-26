@@ -1,0 +1,6 @@
+//Queries ideas:
+
+1. Enséñame existencia de determinado producto en branches
+2. Cliente más gastalón
+3. Ventas en un periodo
+4. Mostrar el producto más elegido por los clientes para las mesas de regalos
