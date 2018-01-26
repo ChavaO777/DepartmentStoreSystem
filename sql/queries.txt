@@ -72,7 +72,7 @@ WHERE p.price = (SELECT MAX(p1.price) FROM product p1 JOIN category c
 
 
 
-//Query to get the most expensive product in a branch
+//Query to get the cheapest product in a branch
 
 SELECT p.id, p.name, p.sku, p.category, p.price
 FROM product p
@@ -85,7 +85,7 @@ WHERE p.price = (SELECT MIN(p1.price) FROM product p1 JOIN category c
 
 
 
-//Query to get the products below a given price p
+//Query to get the products below a given price p in a given branch b
 
 SELECT p.id, p.name, p.sku, p.category, p.price
 FROM product p
