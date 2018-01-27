@@ -135,10 +135,11 @@ ON d.branch = b.id
 WHERE p.name = "Tenis lisos";
 
 //Query to get the sum of products purchased by every customer
-SELECT sale.customer, SUM(sale_product.quantity) as 'Number of products'
+SELECT sale.customer, SUM(sale_product.quantity) as 'products'
 FROM sale, sale_product
 WHERE sale_product.sale = sale.id
-GROUP BY sale.customer;
+GROUP BY sale.customer
+ORDER BY products DESC LIMIT 1;
 
 //Query para obtener el producto más comprado de todas las branches
 SELECT product.id, product.name, product.price, sale_product.quantity, branch.name FROM sale_product, product JOIN category ON product.category = category.id JOIN department ON category.department = department.id JOIN branch ON department.branch = branch.id WHERE sale_product.product = product.id AND sale_product.quantity = (SELECT MAX(s.quantity) FROM sale_product s);
