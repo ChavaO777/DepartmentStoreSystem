@@ -98,32 +98,9 @@ ON d.branch = "B0710"
 GROUP BY p.id
 WHERE p.price < 200.0;
 
-//Query to get the employees that are still in the company building of a branch
-
-WRONG!!!!!!!!!!!!!!!!!!!!
-
-SELECT e.payroll_number, e.name, e.last_name, e.birthdate
-FROM employee e
-WHERE e.payroll_number = (  SELECT e1.payroll_number, COUNT(er.date_time) as 'total_registrations'
-                            FROM employee e1, employee_registration er
-                            WHERE e1.payroll_number = er.employee AND e1.branch = "B0710"
-                            GROUP BY e1.payroll_number) and total_registrations%2 = 1;
-
-
-//Query to get the total amount of the payroll of a branch
-
-WRONG!!!!!!!!!!!!!!!!!!!!
-
-SELECT SUM(e.monthly_salary)
-FROM employee e
-WHERE e.branch = "B0710";  
-
-
-//Query to compute the amount of years that the longest-working employee has been working
-
-
 
 //Query to get the status of a product in all branches given p.name
+
 SELECT p.id, p.name, p.sku, p.price, d.name, b.name
 FROM product p
 JOIN category c
@@ -134,14 +111,18 @@ JOIN branch b
 ON d.branch = b.id
 WHERE p.name = "Tenis lisos";
 
-//Query to get the sum of products purchased by every customer
+
+
+//Query to get the customer who has purchased more products.
+
 SELECT sale.customer, SUM(sale_product.quantity) as 'products'
 FROM sale, sale_product
 WHERE sale_product.sale = sale.id
 GROUP BY sale.customer
 ORDER BY products DESC LIMIT 1;
 
-//Query para obtener el producto más comprado de todas las branches
+
+
+//Query to get the most purchased product.
+
 SELECT product.id, product.name, product.price, sale_product.quantity, branch.name FROM sale_product, product JOIN category ON product.category = category.id JOIN department ON category.department = department.id JOIN branch ON department.branch = branch.id WHERE sale_product.product = product.id AND sale_product.quantity = (SELECT MAX(s.quantity) FROM sale_product s);
-
-
