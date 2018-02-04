@@ -153,30 +153,31 @@
         <hr class="star-light mb-5">
 
         <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Nombre producto</th>
-                  <th>Precio unitario</th>
-                  <th>Stock</th>
-                </tr>
-              </thead>
-            </table>
-          </div>
-
-          <?php 
-            include 'database.php';
-            $pdo = Database::connect();
-            $sql = 'SELECT id, name FROM product';
-            foreach ($pdo->query($sql) as $row) {
-            echo '<tr>';                  
-                echo '<td>'. $row['id'] . '</td>';
-                echo '<td>'. $row['name'] . '</td>';
-              echo '</tr>';
-            }
-            Database::disconnect();
-          ?>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre producto</th>
+                <th>Precio unitario</th>
+                <th>Stock</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php 
+                include 'database.php';
+                $pdo = Database::connect();
+                $sql = 'SELECT id, name FROM product';
+                foreach ($pdo->query($sql) as $row) {
+                echo '<tr>';                  
+                    echo '<td>'. $row['id'] . '</td>';
+                    echo '<td>'. $row['name'] . '</td>';
+                  echo '</tr>';
+                }
+                Database::disconnect();
+              ?>
+            </tbody>
+          </table>
+        </div>
     </section>
 
     <!-- ventas Section -->
