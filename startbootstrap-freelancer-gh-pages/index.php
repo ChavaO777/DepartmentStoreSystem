@@ -167,7 +167,7 @@
               <?php 
                 include 'database.php';
                 $pdo = Database::connect();
-                $sql = 'SELECT p.id, p.name, p.sku, d.name';  
+                $sql = 'SELECT p.id, p.name, d.name, p.price, p.sku';  
                 $sql .= 'FROM product p';
                 $sql .= 'JOIN category c';
                 $sql .= 'ON p.category = c.id';
