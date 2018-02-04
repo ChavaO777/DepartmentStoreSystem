@@ -52,7 +52,7 @@
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#comprar">Comprar</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#buscar">buscar</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#inventario">inventario</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#ventas">ventas</a>
@@ -123,10 +123,10 @@
             <h4 class="text-uppercase mb-4">Precio:</h4>
             <h5 class="text-secondary text-uppercase mb-4" id="priceLabel">0.00</h5>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4" align="center">
             <h4 class="text-uppercase mb-4">Cantidad:</h4>
-            <h5 class="text-secondary text-uppercase" id="quantityLabel">0
-            <button type="submit" class="btn btn-primary text-center" id="sendMessageButton" style="height: 30px">+</button></h5>
+            <h5 class="text-secondary text-uppercase" id="quantityLabel"><input style="width: 80px" type="text" name="name" value="1">
+            <button class="plus-btn btn btn-primary text-center" type="button" name="button" style="height: 30px">+</button></h5>
           </div>
           <div class="table-responsive">
             <table class="table">
@@ -146,22 +146,56 @@
   </section>
 
 
-    <!-- buscar Section -->
-    <section class="bg-primary text-white mb-0" id="buscar">
+    <!-- inventario Section -->
+    <section class="bg-primary text-white mb-0" id="inventario">
       <div class="container">
-        <h2 class="text-center text-uppercase text-white">buscar</h2>
+        <h2 class="text-center text-uppercase text-white">inventario</h2>
         <hr class="star-light mb-5">
 
-        <div class="form-group floating-label-form-group controls mb-0 pb-2">
-          <label>Producto</label>
-          <input class="form-control" id="searchProduct" type="text" placeholder="Producto" required="required" data-validation-required-message="Ingresa el id o nombre del producto.">
-          <p class="help-block text-danger"></p>
-        </div>
+        <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre producto</th>
+                  <th>Precio unitario</th>
+                  <th>Stock</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
 
-        <div class="form-group"><center>
-          <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Consultar</button>
-        </div></center>
-      </div>
+          <?php
+                $con=mysqli_connect("localhost","root","fararoni","Liverpool");
+                // Check connection
+                if (mysqli_connect_errno())
+                {
+                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                }
+
+                $result = mysqli_query($con,"SELECT * FROM Persons");
+
+                echo "<table border='1'>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre producto</th>
+                  <th>Precio unitario</th>
+                  <th>Stock</th>
+                </tr>";
+
+                while($row = mysqli_fetch_array($result))
+                {
+                echo "<tr>";
+                echo "<td>" . $row['product.id'] . "</td>";
+                echo "<td>" . $row['product.name'] . "</td>";
+                echo "<td>" . $row['product.price'] . "</td>";
+                echo "<td>" . $row['product.sku'] . "</td>";
+                echo "</tr>";
+                }
+                echo "</table>";
+
+                mysqli_close($con);
+                ?>
     </section>
 
     <!-- ventas Section -->
@@ -218,10 +252,31 @@
 
     <!-- ventas Form JavaScript -->
     <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/ventas_me.js"></script>
+    <script src="js/contact_me.js"></script>
 
     <!-- Custom scripts for this template -->
     <script src="js/freelancer.min.js"></script>
+
+    <script type="text/javascript">
+      $('.plus-btn').on('click', function(e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $input = $this.closest('div').find('input');
+        var value = parseInt($input.val());
+
+        if (value < 100) {
+          value = value + 1;
+        } else {
+          value =100;
+        }
+
+        $input.val(value);
+      });
+
+      $('.like-btn').on('click', function() {
+        $(this).toggleClass('is-active');
+      });
+    </script>
 
   </body>
 
