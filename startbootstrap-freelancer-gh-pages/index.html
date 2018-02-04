@@ -165,37 +165,18 @@
             </table>
           </div>
 
-          <?php
-                $con=mysqli_connect("localhost","root","fararoni","Liverpool");
-                // Check connection
-                if (mysqli_connect_errno())
-                {
-                echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                }
-
-                $result = mysqli_query($con,"SELECT * FROM Persons");
-
-                echo "<table border='1'>
-                <tr>
-                  <th>ID</th>
-                  <th>Nombre producto</th>
-                  <th>Precio unitario</th>
-                  <th>Stock</th>
-                </tr>";
-
-                while($row = mysqli_fetch_array($result))
-                {
-                echo "<tr>";
-                echo "<td>" . $row['product.id'] . "</td>";
-                echo "<td>" . $row['product.name'] . "</td>";
-                echo "<td>" . $row['product.price'] . "</td>";
-                echo "<td>" . $row['product.sku'] . "</td>";
-                echo "</tr>";
-                }
-                echo "</table>";
-
-                mysqli_close($con);
-                ?>
+          <?php 
+            include 'database.php';
+            $pdo = Database::connect();
+            $sql = 'SELECT id, name FROM product';
+            foreach ($pdo->query($sql) as $row) {
+            echo '<tr>';                  
+                echo '<td>'. $row['id'] . '</td>';
+                echo '<td>'. $row['name'] . '</td>';
+              echo '</tr>';
+            }
+            Database::disconnect();
+          ?>
     </section>
 
     <!-- ventas Section -->
