@@ -180,11 +180,11 @@
                 //         ORDER BY d.name;";
                 foreach ($pdo->query($sql) as $row) {
                   echo '<tr>';                  
-                    echo '<td>'. $row['p.id'] . '</td>';
-                    echo '<td>'. $row['p.name'] . '</td>';
+                    echo '<td>'. $row['id'] . '</td>';
+                    echo '<td>'. $row['name'] . '</td>';
                     // echo '<td>'. $row['d.name'] . '</td>';
-                    echo '<td>'. $row['p.price'] . '</td>';
-                    echo '<td>'. $row['p.sku'] . '</td>';
+                    echo '<td>'. $row['price'] . '</td>';
+                    echo '<td>'. $row['sku'] . '</td>';
                   echo '</tr>';
                 }
                 Database::disconnect();
