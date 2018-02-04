@@ -176,7 +176,7 @@
                         JOIN branch b
                         ON d.branch = 'B0710'
                         GROUP BY p.id
-                        ORDER BY d.name";
+                        ORDER BY d.name;";
                 foreach ($pdo->query($sql) as $row) {
                   echo '<tr>';                  
                     echo '<td>'. $row['p.id'] . '</td>';
