@@ -1,0 +1,3 @@
+To copy the folder with the HTML
+
+sudo cp -a home/salvador/Desktop/DepartmentStoreSystem/startbootstrap-freelancer-gh-pages/. var/www/html/
