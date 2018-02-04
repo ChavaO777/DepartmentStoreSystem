@@ -15,7 +15,7 @@ WHERE e.branch = "B1210";
 
 // Query to show products in a branch
 
-SELECT p.id, p.name, p.sku, d.name, 
+SELECT p.id, p.name, p.sku, d.name 
 FROM product p
 JOIN category c
 ON p.category = c.id

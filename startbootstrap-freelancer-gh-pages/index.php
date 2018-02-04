@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
   <head>
 
@@ -158,6 +158,7 @@
               <tr>
                 <th>ID</th>
                 <th>Nombre producto</th>
+                <th>Departamento</th>
                 <th>Precio unitario</th>
                 <th>Stock</th>
               </tr>
@@ -166,11 +167,23 @@
               <?php 
                 include 'database.php';
                 $pdo = Database::connect();
-                $sql = 'SELECT id, name FROM product;';
+                $sql = 'SELECT p.id, p.name, p.sku, d.name';  
+                $sql .= 'FROM product p';
+                $sql .= 'JOIN category c';
+                $sql .= 'ON p.category = c.id';
+                $sql .= 'JOIN department d';
+                $sql .= 'ON c.department = d.id';
+                $sql .= 'JOIN branch b';
+                $sql .= 'ON d.branch = "B0710"';
+                $sql .= 'GROUP BY p.id';
+                $sql .= 'ORDER BY d.name;';
                 foreach ($pdo->query($sql) as $row) {
-                echo '<tr>';                  
-                    echo '<td>'. $row['id'] . '</td>';
-                    echo '<td>'. $row['name'] . '</td>';
+                  echo '<tr>';                  
+                    echo '<td>'. $row['p.id'] . '</td>';
+                    echo '<td>'. $row['p.name'] . '</td>';
+                    echo '<td>'. $row['d.name'] . '</td>';
+                    echo '<td>'. $row['p.price'] . '</td>';
+                    echo '<td>'. $row['p.sku'] . '</td>';
                   echo '</tr>';
                 }
                 Database::disconnect();
