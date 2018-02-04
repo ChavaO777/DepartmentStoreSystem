@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.20, for Linux (x86_64)
 --
--- Host: localhost    Database: Liverpool
+-- Host: localhost    Database: liverpool
 -- ------------------------------------------------------
 -- Server version	5.7.20-0ubuntu0.16.04.1
 
@@ -106,7 +106,7 @@ DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `customer` (
-  `id` varchar(10) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) DEFAULT NULL,
   `last_name` varchar(60) DEFAULT NULL,
   `birthdate` date DEFAULT NULL,
@@ -123,7 +123,6 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES ('CUS13940','Santiago','Valverde','1990-10-02','Calle Cantabria 32 Real De Morillotla',1,0.94),('CUS18390','Rodrigo','Momox','1987-02-12','Calle Amalucan 329 La Paz',1,0),('CUS39123','Emilia','Ortuña','1992-04-12','Calle San Marcos 983 La Concepción',0,18.96),('CUS57301','Juliana','Razo','1971-12-21','Avenida San Ignacio 1434 Jardines de San Manuel',1,143.21),('CUS58201','Fernando','Ortiz','1994-12-03','Calle San José 1314 Hacienda del Camino Real',0,1239.31);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -308,7 +307,7 @@ DROP TABLE IF EXISTS `gift_registry`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `gift_registry` (
   `id` varchar(10) NOT NULL,
-  `customer` varchar(10) DEFAULT NULL,
+  `customer` int(11) DEFAULT NULL,
   `start_date` datetime DEFAULT NULL,
   `end_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -323,7 +322,6 @@ CREATE TABLE `gift_registry` (
 
 LOCK TABLES `gift_registry` WRITE;
 /*!40000 ALTER TABLE `gift_registry` DISABLE KEYS */;
-INSERT INTO `gift_registry` VALUES ('GR147182','CUS13940','2014-09-20 00:00:00','2014-10-20 00:00:00'),('GR158153','CUS13940','2016-02-17 09:00:00','2016-04-01 00:00:00'),('GR258271','CUS58201','2017-12-15 00:00:00','2018-01-01 00:00:00'),('GR358392','CUS39123','2015-05-28 12:00:00','2015-06-30 00:00:00');
 /*!40000 ALTER TABLE `gift_registry` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -351,7 +349,6 @@ CREATE TABLE `gift_registry_product` (
 
 LOCK TABLES `gift_registry_product` WRITE;
 /*!40000 ALTER TABLE `gift_registry_product` DISABLE KEYS */;
-INSERT INTO `gift_registry_product` VALUES ('GR147182','1095829573',1),('GR147182','1085713401',5),('GR147182','1094175158',2),('GR147182','1074381650',3),('GR147182','1048395810',1),('GR147182','1013481930',1),('GR258271','1059234012',1),('GR258271','1058403940',2),('GR258271','1065748301',4);
 /*!40000 ALTER TABLE `gift_registry_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -539,8 +536,8 @@ DROP TABLE IF EXISTS `sale`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sale` (
-  `id` varchar(10) NOT NULL,
-  `customer` varchar(10) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer` int(11) DEFAULT NULL,
   `date_time` datetime DEFAULT NULL,
   `special_offer` varchar(10) DEFAULT NULL,
   `mode_of_payment` varchar(10) DEFAULT NULL,
@@ -561,7 +558,6 @@ CREATE TABLE `sale` (
 
 LOCK TABLES `sale` WRITE;
 /*!40000 ALTER TABLE `sale` DISABLE KEYS */;
-INSERT INTO `sale` VALUES ('SALE1482','CUS39123','2017-03-11 19:09:37','SO58391','MOP493149',NULL),('SALE1489','CUS39123','2017-12-06 19:14:09','SO14819','MOP148129','2017-12-11 19:14:09'),('SALE4192','CUS13940','2018-01-13 19:27:22','SO53910','MOP493149','2018-01-18 19:27:22'),('SALE4194','CUS57301','2017-03-03 19:08:43','SO58391','MOP493149','2017-03-07 19:08:43'),('SALE4891','CUS18390','2018-01-16 19:24:54','SO58391','MOP418192','2018-01-20 19:24:54'),('SALE5491','CUS58201','2016-11-22 19:05:33','SO58391','MOP493149',NULL),('SALE9145','CUS13940','2017-07-27 19:11:33','SO54821','MOP418192','2017-07-29 19:11:33'),('SALE9582','CUS18390','2017-04-19 19:10:21','SO54821','MOP358234',NULL);
 /*!40000 ALTER TABLE `sale` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -573,7 +569,7 @@ DROP TABLE IF EXISTS `sale_product`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sale_product` (
-  `sale` varchar(10) DEFAULT NULL,
+  `sale` int(11) DEFAULT NULL,
   `product` varchar(10) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   KEY `sale` (`sale`),
@@ -589,7 +585,6 @@ CREATE TABLE `sale_product` (
 
 LOCK TABLES `sale_product` WRITE;
 /*!40000 ALTER TABLE `sale_product` DISABLE KEYS */;
-INSERT INTO `sale_product` VALUES ('SALE5491','1073948519',2),('SALE5491','1034571234',1),('SALE4194','1073948519',3),('SALE9145','1035135731',1),('SALE9145','1014185391',3),('SALE1489','1048514821',6),('SALE1489','1037591660',2),('SALE9582','1013912430',2),('SALE9582','1037591660',1),('SALE1482','1041511248',1),('SALE1482','1057391391',3);
 /*!40000 ALTER TABLE `sale_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -602,8 +597,8 @@ DROP TABLE IF EXISTS `shopping_cart`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `shopping_cart` (
   `id` varchar(10) NOT NULL,
-  `customer` varchar(10) DEFAULT NULL,
-  `sale` varchar(10) DEFAULT NULL,
+  `customer` int(11) DEFAULT NULL,
+  `sale` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `customer` (`customer`),
   KEY `sale` (`sale`),
@@ -618,7 +613,6 @@ CREATE TABLE `shopping_cart` (
 
 LOCK TABLES `shopping_cart` WRITE;
 /*!40000 ALTER TABLE `shopping_cart` DISABLE KEYS */;
-INSERT INTO `shopping_cart` VALUES ('SC14829','CUS13940','SALE4192'),('SC14892','CUS18390','SALE4891');
 /*!40000 ALTER TABLE `shopping_cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -646,7 +640,6 @@ CREATE TABLE `shopping_cart_product` (
 
 LOCK TABLES `shopping_cart_product` WRITE;
 /*!40000 ALTER TABLE `shopping_cart_product` DISABLE KEYS */;
-INSERT INTO `shopping_cart_product` VALUES ('SC14892','1073948519',2),('SC14892','1035135731',1),('SC14892','1034571234',1),('SC14829','1041514819',1),('SC14829','1094758345',1),('SC14829','1041514851',1);
 /*!40000 ALTER TABLE `shopping_cart_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -769,4 +762,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-26 20:14:23
+-- Dump completed on 2018-02-03 20:17:46

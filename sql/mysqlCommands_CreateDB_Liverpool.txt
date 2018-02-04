@@ -144,7 +144,7 @@ CREATE TABLE special_offer (
 
 
 CREATE TABLE customer (
-	id VARCHAR(10) NOT NULL,
+	id INT NOT NULL AUTO_INCREMENT,
 	name VARCHAR(30),
 	last_name VARCHAR(60),
 	birthdate DATE,
@@ -172,8 +172,8 @@ CREATE TABLE employee (
 
 
 CREATE TABLE sale (
-	id VARCHAR(10) NOT NULL,
-	customer VARCHAR(10),
+	id INT NOT NULL AUTO_INCREMENT,
+	customer INT,
 	date_time DATETIME,
 	special_offer VARCHAR(10),
 	mode_of_payment VARCHAR(10),
@@ -186,7 +186,7 @@ CREATE TABLE sale (
 
 
 CREATE TABLE sale_product (
-	sale VARCHAR(10),
+	sale INT,
 	product VARCHAR(10),
 	quantity INT,
 	FOREIGN KEY(sale) REFERENCES sale(id),
@@ -216,13 +216,12 @@ CREATE TABLE dependent (
 
 CREATE TABLE shopping_cart (
 	id VARCHAR(10) NOT NULL,
-	customer VARCHAR(10),
-	sale VARCHAR(10),
+	customer INT,
+	sale INT,
 	PRIMARY KEY(id),
 	FOREIGN KEY(customer) REFERENCES customer(id),
 	FOREIGN KEY(sale) REFERENCES sale(id)
 );
-
 
 CREATE TABLE shopping_cart_product (
 	shopping_cart VARCHAR(10),
@@ -235,7 +234,7 @@ CREATE TABLE shopping_cart_product (
 
 CREATE TABLE gift_registry (
 	id VARCHAR(10) NOT NULL,
-	customer VARCHAR(10), 
+	customer INT, 
 	start_date DATETIME,
 	end_date DATETIME,
 	PRIMARY KEY (id),
