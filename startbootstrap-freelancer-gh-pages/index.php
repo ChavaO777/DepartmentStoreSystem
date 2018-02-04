@@ -167,16 +167,16 @@
               <?php 
                 include 'database.php';
                 $pdo = Database::connect();
-                $sql = "SELECT p.id, p.name, d.name, p.price, p.sku";  
-                $sql .= 'FROM product p';
-                $sql .= 'JOIN category c';
-                $sql .= 'ON p.category = c.id';
-                $sql .= 'JOIN department d';
-                $sql .= 'ON c.department = d.id';
-                $sql .= 'JOIN branch b';
-                $sql .= 'ON d.branch = "B0710"';
-                $sql .= 'GROUP BY p.id';
-                $sql .= 'ORDER BY d.name';
+                $sql = "SELECT p.id, p.name, d.name, p.price, p.sku   
+                        FROM product p
+                        JOIN category c
+                        ON p.category = c.id
+                        JOIN department d
+                        ON c.department = d.id
+                        JOIN branch b
+                        ON d.branch = 'B0710'
+                        GROUP BY p.id
+                        ORDER BY d.name";
                 foreach ($pdo->query($sql) as $row) {
                   echo '<tr>';                  
                     echo '<td>'. $row['p.id'] . '</td>';
