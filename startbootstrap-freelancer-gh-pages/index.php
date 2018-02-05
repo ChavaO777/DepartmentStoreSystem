@@ -93,20 +93,20 @@
             <tbody>
               <?php 
                 
-                require_once('database.php');
+                //require_once('database.php');
                 
-                $pdo1 = Database::connect();
-                $sql = "SELECT p.id as 'product_id', p.name as 'product_name', p.price as 'product_price', d.name as 'department_name' FROM product p JOIN category c ON p.categor = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' GROUP BY p.id ORDER BY d.name";
-                foreach ($pdo1->query($sql) as $row) {
-                  echo '<tr>';                  
-                    echo '<td>'. $row['product_id'] . '</td>';
-                    echo '<td>'. $row['product_name'] . '</td>';
-                    echo '<td>'. $row['department_name'] . '</td>';
-                    echo '<td>'. $row['product_price'] . '</td>';
-                    echo '<td>' 1 '</td>';
-                  echo '</tr>';
+                //$pdo1 = Database::connect();
+                //$sql = "SELECT p.id as 'product_id', p.name as 'product_name', p.price as 'product_price', d.name as 'department_name' FROM product p JOIN category c ON p.categor = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' GROUP BY p.id ORDER BY d.name";
+                //foreach ($pdo1->query($sql) as $row) {
+                  //echo '<tr>';                  
+                    //echo '<td>'. $row['product_id'] . '</td>';
+                    //echo '<td>'. $row['product_name'] . '</td>';
+                    //echo '<td>'. $row['department_name'] . '</td>';
+                    //echo '<td>'. $row['product_price'] . '</td>';
+                    //echo '<td>' 1 '</td>';
+                  //echo '</tr>';
                 }
-                Database::disconnect();
+                //Database::disconnect();
               ?>
             </tbody>
           </table>
