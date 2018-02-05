@@ -45,7 +45,7 @@
             <footer class="footer text-center">
                 <div class="container">
                     <h4 class="text-uppercase mb-4">Nombre:</h4>
-                    <input class="form-control" id="name" type="text" placeholder="Dan" required="required" data-validation-required-message="Please enter your name.">
+                    <input class="form-control" id="name" type="text" placeholder="Escriba su nombre completo" required="required" data-validation-required-message="Please enter your name.">
                     <p class="help-block text-danger"></p>
                 </div>
             </footer>
