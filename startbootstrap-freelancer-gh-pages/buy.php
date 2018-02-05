@@ -89,7 +89,7 @@
                 <tbody>
                 <?php
                     function getProductsToBuy() {
-                        if (isset($_GET["product_idw1"]) && isset($_GET["product_amount"])) {
+                        if (isset($_GET["product_id"]) && isset($_GET["product_amount"])) {
                             echo '<tr>';
                                 echo '<td>'. $_GET["product_id"] . '</td>';
                                 echo '<td>'. $_GET["product_amount"] . '</td>';
