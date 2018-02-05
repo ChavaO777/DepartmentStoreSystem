@@ -34,18 +34,13 @@
             <!-- Título "Liverpool" en la parte superior izquierda -->
             <a class="navbar-brand js-scroll-trigger" href="#page-top">Liverpool</a>
         </nav>
-<<<<<<< HEAD
         <section class="comprar" id="comprar">
-=======
 
         <section class="comprar" id="customer_info">
->>>>>>> Changes on front-end in buy.php
             <div class="container">
                 <h2 class="text-center text-uppercase text-secondary mb-0">Ingresar datos del cliente</h2>
                 <hr class="star-dark mb-5">
             </div>
-<<<<<<< HEAD
-=======
 
             <footer class="footer text-center">
                 <div class="container">
@@ -54,7 +49,6 @@
                     <p class="help-block text-danger"></p>
                 </div>
             </footer>
->>>>>>> Changes on front-end in buy.php
         </section>
     </body>
 </html>
