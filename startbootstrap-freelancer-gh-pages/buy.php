@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -34,5 +35,21 @@
             <!-- Título "Liverpool" en la parte superior izquierda -->
             <a class="navbar-brand js-scroll-trigger" href="#page-top">Liverpool</a>
         </nav>
+=======
+<html>
+    <head>
+        <title>Prueba de PHP</title>
+    </head>
+    <body>
+        <?php 
+
+            parse_str($_SERVER["QUERY_STRING"], $query_array);
+            // echo $_SERVER['QUERY_STRING']; 
+
+            foreach($query_array as $key => $value) {
+                echo 'product_id = ' . $key . '; amount = ' . $value;
+            }
+        ?>
+>>>>>>> 6b59412b322c7df78e0be5ed9bbcd97615d1c380
     </body>
 </html>
