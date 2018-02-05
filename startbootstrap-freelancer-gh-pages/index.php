@@ -105,8 +105,9 @@
                 }
                 Database::disconnect();
               ?>
-              <tr>H</tr>
             </tbody>
+            <td>H</td>
+            <tr>H</tr>
           </table>
         </div>
     </section> 
