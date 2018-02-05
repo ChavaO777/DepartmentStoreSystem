@@ -123,7 +123,7 @@
               <tr>
                 <th>ID</th>
                 <th>Nombre producto</th>
-                <!-- <th>Departamento</th> -->
+                <th>Departamento</th>
                 <th>Precio unitario</th>
                 <th>Stock</th>
               </tr>
@@ -134,13 +134,14 @@
                 require_once('database.php');
                 
                 $pdo1 = Database::connect();
-                $sql = "SELECT p.id, p.name, p.price, p.sku FROM product p JOIN category c ON p.category = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' GROUP BY p.id ORDER BY d.name";
+                $sql = "SELECT p.id as 'product_id', p.name as 'product_name', d.name as 'department_name', p.price as 'product_price', p.sku as 'product_sku' FROM product p JOIN category c ON p.category = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' GROUP BY p.id ORDER BY d.name";
                 foreach ($pdo1->query($sql) as $row) {
                   echo '<tr>';                  
-                    echo '<td>'. $row['id'] . '</td>';
-                    echo '<td>'. $row['name'] . '</td>';
-                    echo '<td>'. $row['price'] . '</td>';
-                    echo '<td>'. $row['sku'] . '</td>';
+                    echo '<td>'. $row['product_id'] . '</td>';
+                    echo '<td>'. $row['product_name'] . '</td>';
+                    echo '<td>'. $row['department_name'] . '</td>';
+                    echo '<td>'. $row['product_price'] . '</td>';
+                    echo '<td>'. $row['product_sku'] . '</td>';
                   echo '</tr>';
                 }
                 Database::disconnect();
