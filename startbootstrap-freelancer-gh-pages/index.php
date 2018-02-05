@@ -101,17 +101,18 @@
                     echo '<td>' . $row['product_name'] . '</td>';
                     echo '<td>' . $row['department_name'] . '</td>';
                     echo '<td> $' . $row['product_price'] . '</td>';
-                    echo '<td><input id="' . $row['product_id'] . '"type="number" placeholder="0" text-center style="width: 50px" min="0" autocomplete="off"></td>';
+                    echo '<td><input id="' . $row['product_id'] . '" class="product-amount" type="number" placeholder="0" text-center style="width: 50px" min="0" autocomplete="off"></td>';
                   echo '</tr>';
                 }
                 Database::disconnect();
               ?>
             </tbody>
           </table>
+          
         </div>
         <div class="form-group">
           <center>
-            <button type="submit" class="btn btn-primary btn-xl" id="confirm">Comprar</button>
+            <button onclick="getProductsToBuy()" type="submit" class="btn btn-primary btn-xl" id="confirm">Comprar</button>
           </center>
         </div>
     </section> 
@@ -232,6 +233,8 @@
     <!-- ventas Form JavaScript -->
     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/contact_me.js"></script>
+
+    <script src="js/sale.js"></script>
 
     <!-- Custom scripts for this template -->
     <script src="js/freelancer.min.js"></script>
