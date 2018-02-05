@@ -168,7 +168,7 @@
                 include 'database.php';
                 $pdo = Database::connect();
                 // $sql = "SELECT * from product";
-                $sql = "SELECT p.id, p.name, d.name, p.price, p.sku FROM product p JOIN category c ON p.category = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' GROUP BY p.id ORDER BY d.name";
+                $sql = "SELECT p.id, p.name, p.price, p.sku FROM product p JOIN category c ON p.category = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' GROUP BY p.id ORDER BY d.name";
                 foreach ($pdo->query($sql) as $row) {
                   echo '<tr>';                  
                     echo '<td>'. $row['id'] . '</td>';
