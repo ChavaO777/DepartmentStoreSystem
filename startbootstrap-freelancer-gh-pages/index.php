@@ -109,7 +109,9 @@
             </tbody>
           </table>
         </div>
-        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#comprar">Comprar</a>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Send</button>
+        </div>
     </section> 
 
 
