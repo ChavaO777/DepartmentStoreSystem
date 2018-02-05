@@ -166,7 +166,7 @@
             <tbody>
               <?php 
                 
-                require_once(classes.php);
+                require_once(database.php);
                 
                 $pdo1 = Database::connect();
                 $sql = "SELECT p.id, p.name, p.price, p.sku FROM product p JOIN category c ON p.category = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' GROUP BY p.id ORDER BY d.name";
@@ -208,7 +208,7 @@
         <tbody>
           <?php 
             
-            require_once(classes.php);
+            require_once(database.php);
 
             $pdo2 = Database::connect();
             $sql = "SELECT s.id as 'sale_id', s.date_time as 'date_time', c.name as 'customer_name', c.last_name as 'customer_lastname' , SUM(sp.quantity*product.price) as 'sale_total_amount' FROM sale_product sp LEFT JOIN product ON sp.product = product.id LEFT JOIN sale s ON sp.sale = s.id LEFT JOIN customer c ON s.customer = c.id GROUP BY sp.sale";
