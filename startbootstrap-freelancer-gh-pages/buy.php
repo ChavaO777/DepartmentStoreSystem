@@ -81,11 +81,23 @@
             <table class="table">
                 <thead>
                     <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Importe</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Importe</th>
                     </tr>
                 </thead>
+                <tbody>
+                <?php
+                    function getProductsToBuy() {
+                        if (isset($_GET["product_idw1"]) && isset($_GET["product_amount"])) {
+                            echo '<tr>';
+                                echo '<td>'. $_GET["product_id"] . '</td>';
+                                echo '<td>'. $_GET["product_amount"] . '</td>';
+                            echo '</tr>';
+                        }
+                    }
+                ?>
+                </tbody>
             </table>
 
             <div class="form-group">
