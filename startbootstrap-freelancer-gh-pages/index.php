@@ -79,7 +79,7 @@
           <hr class="star-dark mb-5">
         </div>
 
-        <div class="table-responsive">
+        <!--<div class="table-responsive">
           <table class="table">
             <thead>
               <tr>
@@ -111,7 +111,7 @@
             </tbody>
           </table>
         </div>
-    <!--
+    
     <footer class="text-center">
       <div class="container">
         <div class="row">
