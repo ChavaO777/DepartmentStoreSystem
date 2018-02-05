@@ -217,7 +217,7 @@
                   echo '<td>'. $row['sale_id'] . '</td>';
                   echo '<td>'. $row['date_time'] . '</td>';
                   echo '<td>'. $row['customer_name'] . ' ' . $row['customer_lastname'] . '</td>';
-                  echo '<td>'. $row['sale_total_amount'] . '</td>';
+                  echo '<td>$'. $row['sale_total_amount'] . '</td>';
                 echo '</tr>';
               }
               Database::disconnect();
