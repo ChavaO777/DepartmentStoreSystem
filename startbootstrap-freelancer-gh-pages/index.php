@@ -78,39 +78,6 @@
           <h2 class="text-center text-uppercase text-secondary mb-0">comprar</h2>
           <hr class="star-dark mb-5">
         </div>
-
-        <!--<div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nombre producto</th>
-                <th>Departamento</th>
-                <th>Precio unitario</th>
-                <th>Cantidad</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php 
-                
-                //require_once('database.php');
-                
-                //$pdo1 = Database::connect();
-                //$sql = "SELECT p.id as 'product_id', p.name as 'product_name', p.price as 'product_price', d.name as 'department_name' FROM product p JOIN category c ON p.categor = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' GROUP BY p.id ORDER BY d.name";
-                //foreach ($pdo1->query($sql) as $row) {
-                  //echo '<tr>';                  
-                    //echo '<td>'. $row['product_id'] . '</td>';
-                    //echo '<td>'. $row['product_name'] . '</td>';
-                    //echo '<td>'. $row['department_name'] . '</td>';
-                    //echo '<td>'. $row['product_price'] . '</td>';
-                    //echo '<td>' 1 '</td>';
-                  //echo '</tr>';
-                }
-                //Database::disconnect();
-              ?>
-            </tbody>
-          </table>
-        </div>
     
     <footer class="text-center">
       <div class="container">
@@ -175,7 +142,7 @@
           </div>
         </div>
       </div>
-    </footer> -->
+    </footer>
   </section> 
 
 
