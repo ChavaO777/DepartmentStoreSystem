@@ -95,7 +95,7 @@
                 require_once('database.php');
                 
                 $pdo0 = Database::connect();
-                $sql = "SELECT p.id as 'product_id', p.name as 'product_name', d.name as 'department_name', p.price as 'product_price' FROM product p JOIN category c ON p.category = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' GROUP BY p.id ORDER BY d.name";
+                $sql = "SELECT p.id as 'product_id', p.name as 'product_name', d.name as 'department_name', p.price as 'product_price', p.sku as 'product_sku' FROM product p JOIN category c ON p.category = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' GROUP BY p.id ORDER BY d.name";
                 foreach ($pdo0->query($sql) as $row) {
                   echo '<tr>';
                     echo '<td>' . $row['product_name'] . '</td>';
