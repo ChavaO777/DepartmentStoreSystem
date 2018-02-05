@@ -118,8 +118,8 @@
         <hr class="star-light mb-5">
 
         <div class="table-responsive">
-          <table class="table">
-            <thead>
+          <table class="table text-center">
+            <thead class = "text-uppercase">
               <tr>
                 <th>ID</th>
                 <th>Nombre producto</th>
