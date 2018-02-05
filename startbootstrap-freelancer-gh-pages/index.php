@@ -3,9 +3,6 @@
 
   <head>
 
-    <?php
-      require_once(database.php);
-    ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Liverpool database">
@@ -168,7 +165,9 @@
             </thead>
             <tbody>
               <?php 
-                // include 'database.php';
+                
+                require_once(classes.php);
+                
                 $pdo1 = Database::connect();
                 $sql = "SELECT p.id, p.name, p.price, p.sku FROM product p JOIN category c ON p.category = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' GROUP BY p.id ORDER BY d.name";
                 foreach ($pdo1->query($sql) as $row) {
@@ -208,7 +207,9 @@
         </table>
         <tbody>
           <?php 
-            // include 'database.php';
+            
+            require_once(classes.php);
+
             $pdo2 = Database::connect();
             $sql = "SELECT s.id as 'sale_id', s.date_time as 'date_time', c.name as 'customer_name', c.last_name as 'customer_lastname' , SUM(sp.quantity*product.price) as 'sale_total_amount' FROM sale_product sp LEFT JOIN product ON sp.product = product.id LEFT JOIN sale s ON sp.sale = s.id LEFT JOIN customer c ON s.customer = c.id GROUP BY sp.sale";
             
