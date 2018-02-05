@@ -171,11 +171,11 @@
                 $sql = "SELECT p.id, p.name, d.name, p.price, p.sku FROM product p JOIN category c ON p.category = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' GROUP BY p.id ORDER BY d.name";
                 foreach ($pdo->query($sql) as $row) {
                   echo '<tr>';                  
-                    echo '<td>'. $row['id'] . '</td>';
-                    echo '<td>'. $row['name'] . '</td>';
+                    echo '<td>'. $row['p.id'] . '</td>';
+                    echo '<td>'. $row['p.name'] . '</td>';
                     echo '<td>'. $row['d.name'] . '</td>';
-                    echo '<td>'. $row['price'] . '</td>';
-                    echo '<td>'. $row['sku'] . '</td>';
+                    echo '<td>'. $row['p.price'] . '</td>';
+                    echo '<td>'. $row['p.sku'] . '</td>';
                   echo '</tr>';
                 }
                 Database::disconnect();
