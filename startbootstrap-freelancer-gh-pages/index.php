@@ -100,14 +100,12 @@
                   echo '<tr>';
                     echo '<td>'. $row['product_name'] . '</td>';
                     echo '<td>'. $row['department_name'] . '</td>';
-                    echo '<td>'. $row['product_price'] . '</td>';
+                    echo '<td>1</td>';
                   echo '</tr>';
                 }
                 Database::disconnect();
               ?>
             </tbody>
-            <td>H</td>
-            <tr>H</tr>
           </table>
         </div>
     </section> 
