@@ -17,7 +17,7 @@ function getProductsToBuy(){
             if(counter > 0)
                 buy_URL += "&";
 
-            buy_URL += product_id + "=" + product_id;
+            buy_URL += product_id + "=" + product_amount;
             counter += 1;
         }
     });
