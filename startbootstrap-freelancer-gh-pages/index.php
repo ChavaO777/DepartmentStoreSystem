@@ -95,13 +95,13 @@
                 require_once('database.php');
                 
                 $pdo0 = Database::connect();
-                $sql = "SELECT p.id as 'product_id', p.name as 'product_name', d.name as 'department_name', p.price as 'product_price' FROM product p JOIN category c ON p.category = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' GROUP BY p.id ORDER BY d.name";
+                $sql = "SELECT p.id as 'product_id', p.name as 'product_name', d.name as 'department_name', p.price as 'product_price', p.sku as 'product_sku' FROM product p JOIN category c ON p.category = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' GROUP BY p.id ORDER BY d.name";
                 foreach ($pdo0->query($sql) as $row) {
                   echo '<tr>';
                     echo '<td>' . $row['product_name'] . '</td>';
                     echo '<td>' . $row['department_name'] . '</td>';
                     echo '<td> $' . $row['product_price'] . '</td>';
-                    echo '<td><input id="' . $row['product_id'] . '" class="product-amount" type="number" placeholder="0" text-center style="width: 50px" min="0" autocomplete="off"></td>';
+                    echo '<td><input id="' . $row['product_id'] . '" class="product-amount" type="number" placeholder="0" text-center style="width: 50px" min="0" autocomplete="off" max="' . $row['product_sku'] . '"></td>';
                   echo '</tr>';
                 }
                 Database::disconnect();
@@ -211,7 +211,7 @@
 
     <div class="copyright py-4 text-center text-white">
       <div class="container">
-        <small>Copyright &copy; Your Website 2018</small>
+        <small>Copyright &copy; Salvador Orozco & Aranzza Abascal 2018</small>
       </div>
     </div>
 
@@ -238,6 +238,7 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/freelancer.min.js"></script>
+}
 
   </body>
 
