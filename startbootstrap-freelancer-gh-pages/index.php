@@ -101,7 +101,7 @@
                     echo '<td>'. $row['product_name'] . '</td>';
                     echo '<td>'. $row['department_name'] . '</td>';
                     echo '<td> $'. $row['product_price'] . '</td>';
-                    echo '<td><input type="number" placeholder="0" text-center style="width: 50px" min="0" autocomplete="0"></td>';
+                    echo '<td><input type="number" placeholder="0" text-center style="width: 50px" min="0" autocomplete='off'></td>';
                   echo '</tr>';
                 }
                 Database::disconnect();
