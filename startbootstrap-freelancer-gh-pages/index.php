@@ -100,7 +100,8 @@
                   echo '<tr>';
                     echo '<td>'. $row['product_name'] . '</td>';
                     echo '<td>'. $row['department_name'] . '</td>';
-                    echo '<td>1</td>';
+                    echo '<td>'. $row['product_price'] . '</td>';
+                    echo '<td><input type="text"></td>';
                   echo '</tr>';
                 }
                 Database::disconnect();
