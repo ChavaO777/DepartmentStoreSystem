@@ -22,7 +22,8 @@ function getProductsToBuy(){
         }
     });
 
-    window.location.href = buy_URL;
+    if(counter > 0)
+        window.location.href = buy_URL;
     // console.log(JSON.stringify(productsToBuy));
 }
     
