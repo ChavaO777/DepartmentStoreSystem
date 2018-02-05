@@ -40,10 +40,9 @@
                 <h1 class="text-uppercase mb-0">Confirmar compra</h1>
             </div>
         </header>
-
-        <footer class="footer text-center">
+        <section class="comprar" id="customerInformation">
             <div class="container">
-                <h2 class="text-center text-uppercase text-secondary mb-0">comprar</h2>
+                <h2 class="text-center text-uppercase text-secondary mb-0">Información del cliente</h2>
                 <hr class="star-dark mb-5">
             </div>
             <div class="container">
@@ -56,8 +55,9 @@
                 <input class="text-center" id="lastname" type="text" placeholder="Pérez" required="required" data-validation-required-message="Please enter your lastname." style="width: 150px">
                 <p class="help-block text-danger"></p>
             </div>
-        </footer>
 
+        </section>
+        
         <section class="comprar" id="selectedProducts">
             <div class="container">
                 <h2 class="text-center text-uppercase text-secondary mb-0">Productos seleccionados</h2>
