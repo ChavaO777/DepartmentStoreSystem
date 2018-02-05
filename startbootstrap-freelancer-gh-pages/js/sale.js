@@ -8,7 +8,7 @@ function getProductsToBuy(){
         var product_id = $(this).attr('id');
         var product_amount = $(this).val();
 
-        if(!isNaN(product_amount))
+        if(product_amount.length > 0 && !isNaN(product_amount))
             productsToBuy.push({id : product_id, amount : product_amount});
     });
 
