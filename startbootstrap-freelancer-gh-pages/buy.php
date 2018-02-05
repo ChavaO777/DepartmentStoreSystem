@@ -35,20 +35,28 @@
             <a class="navbar-brand js-scroll-trigger" href="#page-top">Liverpool</a>
         </nav>
 
-
         <section class="comprar" id="customerInformation">
             <div class="container">
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
                 <h2 class="text-center text-uppercase text-secondary mb-0">Información del cliente</h2>
                 <hr class="star-dark mb-5">
             </div>
-            <div class="container">
+            <div class="container text-center">
                 <h4 class="text-uppercase mb-4">Nombre:</h4>
+                <center>
                 <input class="text-center" id="name" type="text" placeholder="Dan" required="required" data-validation-required-message="Please enter your name." style="width: 150px">
+                </center>
                 <p class="help-block text-danger"></p>
             </div>
-            <div class="container">
+            <div class="container text-center">
                 <h4 class="text-uppercase mb-4">Apellido:</h4>
+                <center>
                 <input class="text-center" id="lastname" type="text" placeholder="Pérez" required="required" data-validation-required-message="Please enter your lastname." style="width: 150px">
+                </center>
                 <p class="help-block text-danger"></p>
             </div>
 
