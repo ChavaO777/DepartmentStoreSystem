@@ -49,6 +49,10 @@
                     <p class="help-block text-danger"></p>
                 </div>
             </footer>
+
+            <br>
+            <br>
+
             <div class="form-group">
                 <center>
                     <button onclick="" type="submit" class="btn btn-primary btn-xl">Confirmar compra</button>
