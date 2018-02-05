@@ -42,6 +42,16 @@
                 <p></p>
                 <p></p>
                 <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
                 <h2 class="text-center text-uppercase text-secondary mb-0">Información del cliente</h2>
                 <hr class="star-dark mb-5">
             </div>
@@ -67,11 +77,24 @@
                 <h2 class="text-center text-uppercase text-secondary mb-0">Productos seleccionados</h2>
                 <hr class="star-dark mb-5">
             </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Importe</th>
+                    </tr>
+                </thead>
+            </table>
+
             <div class="form-group">
                 <center>
                     <button onclick="" type="submit" class="btn btn-primary btn-xl">Confirmar compra</button>
                 </center>
             </div>
         </section>
+
+        <script src="js/sale.js"></script>
     </body>
 </html>
