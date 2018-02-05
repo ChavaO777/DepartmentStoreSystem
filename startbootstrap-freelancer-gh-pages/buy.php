@@ -91,8 +91,10 @@
                     function getProductsToBuy() {
                         if (isset($_GET["product_id"]) && isset($_GET["product_amount"])) {
                             echo '<tr>';
-                                echo '<td>'. $_GET["product_id"] . '</td>';
-                                echo '<td>'. $_GET["product_amount"] . '</td>';
+                                
+                                $product = $_GET["product_id"];
+                                echo "<script language='text/javascript'>function getProductsToBuy() { alert('$product'); }</script>";
+
                             echo '</tr>';
                         }
                     }
