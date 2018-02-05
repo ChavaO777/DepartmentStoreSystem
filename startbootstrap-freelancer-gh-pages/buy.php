@@ -35,11 +35,7 @@
             <a class="navbar-brand js-scroll-trigger" href="#page-top">Liverpool</a>
         </nav>
 
-        <header class="masthead bg-primary text-white text-center">
-            <div class="container">
-                <h1 class="text-uppercase mb-0">Confirmar compra</h1>
-            </div>
-        </header>
+
         <section class="comprar" id="customerInformation">
             <div class="container">
                 <h2 class="text-center text-uppercase text-secondary mb-0">Información del cliente</h2>
@@ -57,11 +53,16 @@
             </div>
 
         </section>
-        
+
         <section class="comprar" id="selectedProducts">
             <div class="container">
                 <h2 class="text-center text-uppercase text-secondary mb-0">Productos seleccionados</h2>
                 <hr class="star-dark mb-5">
+            </div>
+            <div class="form-group">
+                <center>
+                    <button onclick="" type="submit" class="btn btn-primary btn-xl">Confirmar compra</button>
+                </center>
             </div>
         </section>
     </body>
