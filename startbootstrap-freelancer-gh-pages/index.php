@@ -78,72 +78,7 @@
           <h2 class="text-center text-uppercase text-secondary mb-0">comprar</h2>
           <hr class="star-dark mb-5">
         </div>
-    
-    <footer class="text-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 mb-5 mb-lg-0">
-            <h4 class="text-uppercase mb-4">Producto:</h4>
-            <div align="center">
-          <select class="btn btn-primary text-center text-uppercase font-awesome">
-            <optgroup label="Él">
-              <option>Playera cuello redondo</option>
-              <option>Tenis de piel</option>
-              <option>Chamarra lisa</option>
-            </optgroup>
-            <optgroup label="Electrónicos">
-              <option>iPad Pro</option>
-              <option>Pantalla Sony</option>
-              <option>Gamer HP Omen AMD</option>
-            </optgroup>
-            <optgroup label="Electrónicos">
-              <option>iPad Pro</option>
-              <option>Pantalla Sony</option>
-              <option>Gamer HP Omen AMD</option>
-            </optgroup>
-            <optgroup label="Ella">
-              <option>Bolsa crossbody lisa</option>
-              <option>Zapatos rockpot</option>
-              <option>Lente solar</option>
-            </optgroup>
-            <optgroup label="Línea blanca">
-              <option>Máquina de espresso</option>
-              <option>Lavadora 23 kg</option>
-              <option>Máquina de palomitas</option>
-            </optgroup>
-            <optgroup label="Muebles">
-              <option>Colecho prinsel</option>
-              <option>Puff basic</option>
-              <option>Lámpara circular</option>
-            </optgroup>
-          </select>
-        </div>
-          </div>
-          <div class="col-md-4 mb-5 mb-lg-0">
-            <h4 class="text-uppercase mb-4">Precio:</h4>
-            <h5 class="text-secondary text-uppercase mb-4" id="priceLabel">0.00</h5>
-          </div>
-          <div class="col-md-4" align="center">
-            <h4 class="text-uppercase mb-4">Cantidad:</h4>
-            <h5 class="text-secondary text-uppercase" id="quantityLabel"><input style="width: 80px" type="text" name="name" value="1">
-            <button class="plus-btn btn btn-primary text-center" type="button" name="button" style="height: 30px">+</button></h5>
-          </div>
-          <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Cantidad</th>
-                  <th>Nombre</th>
-                  <th>Precio</th>
-                  <th>Importe</th>
-                </tr>
-              </thead>
-            </table>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </section> 
+    </section> 
 
 
     <!-- inventario Section -->
