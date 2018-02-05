@@ -158,7 +158,7 @@
               <tr>
                 <th>ID</th>
                 <th>Nombre producto</th>
-                <!-- <th>Departamento</th> -->
+                <th>Departamento</th>
                 <th>Precio unitario</th>
                 <th>Stock</th>
               </tr>
@@ -173,7 +173,7 @@
                   echo '<tr>';                  
                     echo '<td>'. $row['id'] . '</td>';
                     echo '<td>'. $row['name'] . '</td>';
-                    // echo '<td>'. $row['d.name'] . '</td>';
+                    echo '<td>'. $row['d.name'] . '</td>';
                     echo '<td>'. $row['price'] . '</td>';
                     echo '<td>'. $row['sku'] . '</td>';
                   echo '</tr>';
