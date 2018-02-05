@@ -100,7 +100,7 @@
                   echo '<tr>';
                     echo '<td>'. $row['product_name'] . '</td>';
                     echo '<td>'. $row['department_name'] . '</td>';
-                    echo '<td>'. $row['product_price'] . '</td>';
+                    echo '<td> $'. $row['product_price'] . '</td>';
                     echo '<td><input type="number" placeholder="0" text-center style="width: 50px" min="0"></td>';
                   echo '</tr>';
                 }
@@ -146,7 +146,7 @@
                     echo '<td>'. $row['product_id'] . '</td>';
                     echo '<td>'. $row['product_name'] . '</td>';
                     echo '<td>'. $row['department_name'] . '</td>';
-                    echo '<td>'. $row['product_price'] . '</td>';
+                    echo '<td> $'. $row['product_price'] . '</td>';
                     echo '<td>'. $row['product_sku'] . '</td>';
                   echo '</tr>';
                 }
@@ -189,7 +189,7 @@
                   echo '<td>'. $row['sale_id'] . '</td>';
                   echo '<td>'. $row['date_time'] . '</td>';
                   echo '<td>'. $row['customer_name'] . ' ' . $row['customer_lastname'] . '</td>';
-                  echo '<td>$'. $row['sale_total_amount'] . '</td>';
+                  echo '<td> $'. $row['sale_total_amount'] . '</td>';
                 echo '</tr>';
               }
               Database::disconnect();
