@@ -34,24 +34,14 @@
             <!-- Título "Liverpool" en la parte superior izquierda -->
             <a class="navbar-brand js-scroll-trigger" href="#page-top">Liverpool</a>
         </nav>
+        <header>
+            <div class="container">
+                <img class="img-fluid mb-5 d-block mx-auto" src="img/logo.png" alt="" width="100">
+            </div>
+        </header>
 
         <section class="comprar" id="customerInformation">
             <div class="container">
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
                 <h2 class="text-center text-uppercase text-secondary mb-0">Información del cliente</h2>
                 <hr class="star-dark mb-5">
             </div>
@@ -109,6 +99,6 @@
             </div>
         </section>
 
-        <script src="js/sale.js"></script>
+        <script src="js/sale.js" type="text/javascript"></script>
     </body>
 </html>
