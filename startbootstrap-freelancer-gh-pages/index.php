@@ -102,9 +102,8 @@
                     echo '<td>'. $row['department_name'] . '</td>';
                     echo '<td> $'. $row['product_price'] . '</td>';
 
-                    $product_id = $row['product_id'];
-                    
-                    echo '<td><input type="number" id=\'' . $product_id . '\' placeholder="0" text-center style="width: 50px" min="0" autocomplete="off"></td>';
+                    // echo '<td><input type="number" id=\'' . $row['product_id'] . '\' placeholder="0" text-center style="width: 50px" min="0" autocomplete="off"></td>';
+                    echo '<td><input type="number" placeholder="0" text-center style="width: 50px" min="0" autocomplete="off"></td>';
                   echo '</tr>';
                 }
                 Database::disconnect();
