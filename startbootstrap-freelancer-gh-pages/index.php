@@ -112,7 +112,7 @@
         </div>
         <div class="form-group">
           <center>
-            <button onclick="getProductsToBuy()" type="submit" class="btn btn-primary btn-xl">Comprar</button>
+            <button onclick="getProductsToBuy()" type="submit" class="btn btn-primary btn-xl">Confirmar compra</button>
           </center>
         </div>
     </section> 
