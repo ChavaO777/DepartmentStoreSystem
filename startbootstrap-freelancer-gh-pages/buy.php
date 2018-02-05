@@ -4,7 +4,12 @@
     </head>
     <body>
         <?php 
-            echo $_SERVER['QUERY_STRING']; 
+            parse_str($_SERVER["QUERY_STRING"], $query_array);
+            // echo $_SERVER['QUERY_STRING']; 
+
+            foreach($query_array as &$value) {
+                echo $value;
+            }
         ?>
     </body>
 </html>
