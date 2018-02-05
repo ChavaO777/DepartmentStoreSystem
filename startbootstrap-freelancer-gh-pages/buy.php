@@ -9,7 +9,7 @@
             // echo $_SERVER['QUERY_STRING']; 
 
             foreach($query_array as $key => $value) {
-                echo 'product_id = ' . $key . '; amount = ' . $value;
+                echo 'product_id = ' . $key . '; amount = ' . $value . '\n';
             }
         ?>
     </body>
