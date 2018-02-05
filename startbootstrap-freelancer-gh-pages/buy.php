@@ -78,15 +78,13 @@
                 </thead>
                 <tbody>
                 <?php
-                    function getProductsToBuy() {
-                        if (isset($_GET["product_id"]) && isset($_GET["product_amount"])) {
-                            echo '<tr>';
-                                
-                                $product = $_GET["product_id"];
-                                echo "<script language='text/javascript'>function getProductsToBuy() { alert('$product'); }</script>";
-
-                            echo '</tr>';
-                        }
+                    parse_str($_SERVER["QUERY_STRING"], $query_array);
+                    foreach($query_array as $key => $value) {
+                        echo '<tr>';
+                        echo '<td>' . $key . '</td>';
+                        echo '<td>' . 'PRODUCT_NAME' . '</td>';
+                        echo '<td>' . 'PRODUCT_TOTAL_AMOUNT' . '</td>';
+                        echo '</tr>';
                     }
                 ?>
                 </tbody>
