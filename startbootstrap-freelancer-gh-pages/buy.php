@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="Liverpool database">
-        <meta name="author" content="Salvaor & Aranzza">
+        <meta name="author" content="Salvador & Aranzza">
 
         <title>Liverpool</title>
 
@@ -42,7 +42,7 @@
             // echo $_SERVER['QUERY_STRING']; 
 
             foreach($query_array as $key => $value) {
-                echo 'product_id = ' . $key . '; amount = ' . $value . '\n';
+                echo '<p> product_id = ' . $key . '; amount = ' . $value . '\n</p>';
             }
         ?>
     </body>
