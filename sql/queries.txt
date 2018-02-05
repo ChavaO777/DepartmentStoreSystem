@@ -122,7 +122,15 @@ GROUP BY sale.customer
 ORDER BY products DESC LIMIT 1;
 
 
-
 //Query to get the most purchased product.
 
 SELECT product.id, product.name, product.price, sale_product.quantity, branch.name FROM sale_product, product JOIN category ON product.category = category.id JOIN department ON category.department = department.id JOIN branch ON department.branch = branch.id WHERE sale_product.product = product.id AND sale_product.quantity = (SELECT MAX(s.quantity) FROM sale_product s);
+
+
+//Query to show all sales, their customers and total amounts
+SELECT s.id, s.date_time, c.name, c.last_name, SUM(sp.quantity*product.price)
+FROM sale_product sp
+LEFT JOIN product ON sp.product = product.id
+LEFT JOIN sale s ON sp.sale = s.id
+LEFT JOIN customer c ON s.customer = c.id
+GROUP BY sp.sale
