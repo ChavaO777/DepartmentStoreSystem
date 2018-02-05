@@ -34,46 +34,34 @@
             <!-- Título "Liverpool" en la parte superior izquierda -->
             <a class="navbar-brand js-scroll-trigger" href="#page-top">Liverpool</a>
         </nav>
-        <section class="comprar" id="confirm">
+
+        <header class="masthead bg-primary text-white text-center">
             <div class="container">
-                <h2 class="text-center text-uppercase text-secondary mb-0">Confirmar compra</h2>
+                <h1 class="text-uppercase mb-0">Confirmar compra</h1>
+            </div>
+        </header>
+
+        <footer class="footer text-center">
+            <div class="container">
+                <h2 class="text-center text-uppercase text-secondary mb-0">comprar</h2>
                 <hr class="star-dark mb-5">
             </div>
-        
-            <footer class="footer text-center">
-                <div class="container">
-                    <h2 class="text-center text-uppercase text-secondary mb-0">Datos del cliente</h2>
-                    <hr class="star-dark mb-5">
-                </div>
-                <div class="container">
-                    <h4 class="text-uppercase mb-4">Nombre:</h4>
-                    <input class="text-center" id="name" type="text" placeholder="Dan" required="required" data-validation-required-message="Please enter your name." style="width: 150px">
-                    <p class="help-block text-danger"></p>
-                </div>
-                <div class="container">
-                    <h4 class="text-uppercase mb-4">Apellido:</h4>
-                    <input class="text-center" id="lastname" type="text" placeholder="Pérez" required="required" data-validation-required-message="Please enter your lastname." style="width: 150px">
-                    <p class="help-block text-danger"></p>
-                </div>
-            </footer>
-        </section>
+            <div class="container">
+                <h4 class="text-uppercase mb-4">Nombre:</h4>
+                <input class="text-center" id="name" type="text" placeholder="Dan" required="required" data-validation-required-message="Please enter your name." style="width: 150px">
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="container">
+                <h4 class="text-uppercase mb-4">Apellido:</h4>
+                <input class="text-center" id="lastname" type="text" placeholder="Pérez" required="required" data-validation-required-message="Please enter your lastname." style="width: 150px">
+                <p class="help-block text-danger"></p>
+            </div>
+        </footer>
 
-        <section>
-            <footer class="footer text-center">
-                <section class="bg-primary text-white mb-0" id="productsToBuy">
-                <div class="container">
-                    <h2 class="text-center text-uppercase text-white">Productos seleccionados</h2>
-                    <hr class="star-light mb-5">
-                </div>
-            </footer>
-
-            <br>
-            <br>
-
-            <div class="form-group">
-                <center>
-                    <button onclick="" type="submit" class="btn btn-primary btn-xl">Confirmar compra</button>
-                </center>
+        <section class="comprar" id="selectedProducts">
+            <div class="container">
+                <h2 class="text-center text-uppercase text-secondary mb-0">Productos seleccionados</h2>
+                <hr class="star-dark mb-5">
             </div>
         </section>
     </body>
