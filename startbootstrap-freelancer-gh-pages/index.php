@@ -166,7 +166,7 @@
             <tbody>
               <?php 
                 
-                require_once(database.php);
+                require_once('database.php');
                 
                 $pdo1 = Database::connect();
                 $sql = "SELECT p.id, p.name, p.price, p.sku FROM product p JOIN category c ON p.category = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' GROUP BY p.id ORDER BY d.name";
