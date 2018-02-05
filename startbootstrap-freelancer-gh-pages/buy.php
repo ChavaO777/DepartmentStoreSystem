@@ -34,13 +34,17 @@
             <!-- Título "Liverpool" en la parte superior izquierda -->
             <a class="navbar-brand js-scroll-trigger" href="#page-top">Liverpool</a>
         </nav>
-        <section class="comprar" id="comprar">
+        <section class="comprar" id="confirm">
             <div class="container">
-                <h2 class="text-center text-uppercase text-secondary mb-0">Ingresar datos del cliente</h2>
+                <h2 class="text-center text-uppercase text-secondary mb-0">Confirmar compra</h2>
                 <hr class="star-dark mb-5">
             </div>
-            
+        
             <footer class="footer text-center">
+                <div class="container">
+                    <h2 class="text-center text-uppercase text-secondary mb-0">Datos del cliente</h2>
+                    <hr class="star-dark mb-5">
+                </div>
                 <div class="container">
                     <h4 class="text-uppercase mb-4">Nombre:</h4>
                     <input class="text-center" id="name" type="text" placeholder="Dan" required="required" data-validation-required-message="Please enter your name." style="width: 150px">
@@ -50,6 +54,16 @@
                     <h4 class="text-uppercase mb-4">Apellido:</h4>
                     <input class="text-center" id="lastname" type="text" placeholder="Pérez" required="required" data-validation-required-message="Please enter your lastname." style="width: 150px">
                     <p class="help-block text-danger"></p>
+                </div>
+            </footer>
+        </section>
+
+        <section>
+            <footer class="footer text-center">
+                <section class="bg-primary text-white mb-0" id="productsToBuy">
+                <div class="container">
+                    <h2 class="text-center text-uppercase text-white">Productos seleccionados</h2>
+                    <hr class="star-light mb-5">
                 </div>
             </footer>
 
