@@ -59,8 +59,12 @@
             $allSaleProductsInsertionsAreOk = true;
 
             //This _SERVER["QUERY_STRING"] is not working
+            echo 'WTF!?';
+            
             parse_str($_SERVER["QUERY_STRING"], $query_array1);
             foreach($query_array1 as $product_id => $product_amount) {
+
+                echo $product_id;
 
                 $sql_createSaleProduct = "INSERT INTO sale_product (sale,product,quantity) values(@newSale_id,'" . $product_id . "',$product_amount)";
                 $result_insertSaleProduct = $link->query($sql_createSaleProduct);
