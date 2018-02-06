@@ -149,7 +149,7 @@
                                 echo '<tr>';
                                 echo '<td>' . $key . '</td>';
                                 echo '<td>' . $row['product_name'] . '</td>';
-                                echo '<td> $' . $value * $row['product_price'] . '</td>';
+                                echo '<td> $ ' . $value * $row['product_price'] . '</td>';
                                 echo '</tr>';
                                 $sale_total_amount += $value * $row['product_price'];
                             }
