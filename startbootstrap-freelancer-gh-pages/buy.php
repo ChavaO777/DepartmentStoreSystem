@@ -143,7 +143,7 @@
 
             <div class="form-group">
                 <center>
-                    <button onclick="" type="submit" class="btn btn-primary btn-xl">Confirmar compra</button>
+                    <button type="submit" class="btn btn-primary btn-xl">Confirmar compra</button>
                 </center>
             </div>
         </section>
