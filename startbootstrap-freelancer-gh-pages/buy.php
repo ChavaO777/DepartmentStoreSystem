@@ -59,6 +59,8 @@
             $allSaleProductsInsertionsAreOk = true;
 
             parse_str($_SERVER['REQUEST_URI'], $query_array1);
+            $url = $_SERVER['REQUEST_URI'];
+            echo "$url<br />";
 
             foreach($query_array1 as $product_id => $product_amount) {
 
