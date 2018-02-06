@@ -50,7 +50,7 @@
             $result_insertCustomer = mysqli_query($sql_insertCustomer);
 
             $sql_getRecentlyInsertedCustomerID = "SELECT LAST_INSERT_ID() INTO @newCustomer_id";
-            $pdo->query($sql_getRecentlyInsertedCustomerID);
+            mysqli_query($sql_getRecentlyInsertedCustomerID);
 
             $sql_createSale = "INSERT INTO sale (id,customer,date_time) values(null,@newCustomer_id,NOW())";
             $result_insertSale = mysqli_query($sql_createSale);
