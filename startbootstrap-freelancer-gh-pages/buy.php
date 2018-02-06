@@ -172,7 +172,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php
+                        require_once('database.php');
+                        $pdo0 = Database::connect();
+                        $sale_total_amount = 0.0;
+                        parse_str($_SERVER['QUERY_STRING'], $query_array);
+                        foreach($query_array as $key => $value) {
+                            $sql = "SELECT p.id as 'product_id', p.name as 'product_name', p.price as 'product_price' FROM product p WHERE p.id = " . $key;
+                            
+                            foreach ($pdo0->query($sql) as $row) {
+                                echo '<tr>';
+                                echo '<td>' . $key . '</td>';
+                                echo '<td>' . $row['product_name'] . '</td>';
+                                echo '<td> $ ' . $value * $row['product_price'] . '</td>';
+                                echo '</tr>';
+                                $sale_total_amount += $value * $row['product_price'];
+                            }
+                        }
+                        
+                        echo '<tr>';
+                        echo '<td></td>';
+                        echo '<td class="text-uppercase text-secondary">Monto total de la compra</td>';
+                        echo '<td> $ ' . $sale_total_amount . '</td>';
+                        echo '</tr>';
+                        Database::disconnect();
+                    ?>
                     </tbody>
                 </table>
 
