@@ -43,6 +43,7 @@
             $sql = "INSERT INTO customer (id,name,last_name) values(null,?,?)";			
 
             $q = $pdo->prepare($sql);
+
             $q->execute(array($name, $lastname));
             Database::disconnect();
             header("Location: index.php");
@@ -100,7 +101,10 @@
             <div class="container text-center">
                 <h4 class="text-uppercase mb-4">Nombre:</h4>
                 <center>
-                <input name="customer_name" value="<?php echo !empty($customer_name)?$customer_name:'';?>" class="text-center" id="name" type="text" placeholder="Dan" required="required" data-validation-required-message="Please enter your name." style="width: 150px">
+                <!-- <input name="customer_name" value="<?php echo !empty($customer_name)?$customer_name:'';?>" class="text-center" id="name" type="text" placeholder="Dan" required="required" data-validation-required-message="Please enter your name." style="width: 150px"> -->
+                <input name="customer_name" type="text"  placeholder="Dan" value="<?php echo !empty($customer_name)?$customer_name:'';?>">
+                            <?php if (($nameError != null)) ?>
+                                <span class="help-inline"><?php echo $nameError;?></span>
                 </center>
                 <p class="help-block text-danger"></p>
             </div>
@@ -159,11 +163,12 @@
 
             <div class="form-group">
                 <center>
-                    <button type="submit" class="btn btn-primary btn-xl">Confirmar compra</button>
+                    <button type="submit" class="btn btn-success">Confirmar compra</button>
+                    <!-- <button type="submit" class="btn btn-primary btn-xl">Confirmar compra</button> -->
                 </center>
             </div>
         </section>
 
-        <script src="js/sale.js" type="text/javascript"></script>
+        <script src="js/sale.js"></script>
     </body>
 </html>
