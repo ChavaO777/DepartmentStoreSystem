@@ -44,9 +44,9 @@
             $q = $pdo->prepare($sql);
             $q->execute(array($name, $lastname));
 
-            $sql = "INSERT INTO sale (id,customer, date_time) values(null,?,?)";         
-            $q = $pdo->prepare($sql);
-            $q->execute(array($name, NOW()));
+            $sql1 = "INSERT INTO sale (id,customer, date_time) values(null,?,?)";         
+            $q1 = $pdo->prepare($sql1);
+            $q1->execute(array($name, NOW()));
 
             Database::disconnect();
             header("Location: index.php");
