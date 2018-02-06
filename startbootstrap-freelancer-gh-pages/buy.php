@@ -1,3 +1,37 @@
+<?php
+    require_once('database.php');
+    $nameError = null;
+    $lastnameError = null;
+    $name = null;
+    $lastname = null;
+    if(isset($_POST['customer_name'])) 
+        $name = $_POST['customer_name'];
+    if(isset($_POST['customer_lastname']))  
+        $lastname = $_POST['customer_lastname'];
+    // validate input
+    $valid = true;
+    
+    if (empty($name)) {
+        $nameError = 'Por favor, escribe un nombre.';
+        $valid = false;
+    }
+    if (empty($lastname)) {
+        $lastnameError = 'Por favor, escribe un apellido.';
+        $valid = false;
+    }
+    // insert data
+    if ($valid) {
+        $pdo = Database::connect();
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $sql = "INSERT INTO customer (id,name,lastname,birthdate,address,active,electronic_purse) values(null,'" . $name . "','" . $lastname . "', NOW(), '', true, 0.0)";			
+        
+        $pdo->query($sql);		
+        Database::disconnect();
+        // header("Location: index.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -81,7 +115,7 @@
                     require_once('database.php');
                     $pdo0 = Database::connect();
                     $sale_total_amount = 0.0;
-                    parse_str($_SERVER["QUERY_STRING"], $query_array);
+                    parse_str($_SERVER['QUERY_STRING'], $query_array);
                     foreach($query_array as $key => $value) {
                         $sql = "SELECT p.id as 'product_id', p.name as 'product_name', p.price as 'product_price' FROM product p WHERE p.id = " . $key;
                         
