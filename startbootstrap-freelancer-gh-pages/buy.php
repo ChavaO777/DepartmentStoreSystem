@@ -53,11 +53,13 @@
             $sql_createSale = "INSERT INTO sale (id,customer,date_time) values(null,@newCustomer_id,NOW())";
             $result_insertSale = $link->query($sql_createSale);
 
-            if ($result_insertCustomer and $result_insertSale) {
-                $link->commit();
-            } else {        
-                $link->rollback();
-            }
+            // if ($result_insertCustomer and $result_insertSale) {
+            //     $link->commit();
+            // } else {        
+            //     $link->rollback();
+            // }
+
+            $link->commit();
 
             //Close the DB
             $link->close();
