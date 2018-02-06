@@ -177,10 +177,15 @@
                     </thead>
                     <tbody>
                     <?php
+                        session_start();
+
+                        $wholeURLParameters = $_SERVER['QUERY_STRING'];
+                        $_SESSION["wholeURLParameters"] = $wholeURLParameters;
+
                         require_once('database.php');
                         $pdo0 = Database::connect();
                         $sale_total_amount = 0.0;
-                        parse_str($_SERVER['QUERY_STRING'], $query_array);
+                        parse_str($wholeURLParameters, $query_array);
                         foreach($query_array as $key => $value) {
                             $sql = "SELECT p.id as 'product_id', p.name as 'product_name', p.price as 'product_price' FROM product p WHERE p.id = " . $key;
                             
