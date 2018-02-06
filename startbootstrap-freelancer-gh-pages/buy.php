@@ -8,11 +8,20 @@
 
         $name = null;
         $lastname = null;
+        
         if(isset($_POST['customer_name'])) 
             $name = $_POST['customer_name'];
 
         if(isset($_POST['customer_lastname']))  
             $lastname = $_POST['customer_lastname'];
+
+        if(isset($name)){ 
+            echo $name;
+        }
+
+        if(isset($lastname)){ 
+            echo $lastname;
+        }
 
         // validate input
         $valid = true;
