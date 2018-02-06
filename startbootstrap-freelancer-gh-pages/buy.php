@@ -82,7 +82,7 @@
             $link->close();
 
             header("Location: index.php");
-        }321
+        }
     }
 ?>
 
