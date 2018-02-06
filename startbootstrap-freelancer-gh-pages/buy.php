@@ -4,9 +4,14 @@
 
     $nameError = null;
     $lastnameError = null;
+    $name = null;
+    $lastname = null;
 
-    $name = $_POST['customer_name'];
-    $lastname = $_POST['customer_lastname'];
+    if(isset($_POST['customer_name'])) 
+        $name = $_POST['customer_name'];
+
+    if(isset($_POST['customer_lastname']))  
+        $lastname = $_POST['customer_lastname'];
 
     // validate input
     $valid = true;
@@ -119,7 +124,9 @@
 
                     $sale_total_amount = 0.0;
 
-                    parse_str($_SERVER["QUERY_STRING"], $query_array);
+                    if(isset($_SERVER['QUERY_STRING']))
+                        parse_str($_SERVER["QUERY_STRING"], $query_array);
+                    
                     foreach($query_array as $key => $value) {
 
                         $sql = "SELECT p.id as 'product_id', p.name as 'product_name', p.price as 'product_price' FROM product p WHERE p.id = " . $key;
