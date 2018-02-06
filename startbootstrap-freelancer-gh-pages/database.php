@@ -1,9 +1,9 @@
 <?php
 	class Database {
 		private static $dbName 			= 'liverpool' ; 
-		private static $dbHost 			= 'localhost' ;
+		private static $dbHost 			= '127.0.0.1' ;
 		private static $dbUsername 		= 'root';
-		private static $dbUserPassword 	= 'fararoni';
+		private static $dbUserPassword 	= '321654fermat';
 		
 		private static $cont  = null;
 		
