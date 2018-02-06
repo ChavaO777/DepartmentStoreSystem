@@ -93,81 +93,83 @@
             </div>
         </header>
 
-        <section class="comprar" id="customerInformation">
-            <div class="container">
-                <h2 class="text-center text-uppercase text-secondary mb-0">Información del cliente</h2>
-                <hr class="star-dark mb-5">
-            </div>
-            <div class="container text-center">
-                <h4 class="text-uppercase mb-4">Nombre:</h4>
-                <center>
-                <!-- <input name="customer_name" value="<?php echo !empty($customer_name)?$customer_name:'';?>" class="text-center" id="name" type="text" placeholder="Dan" required="required" data-validation-required-message="Please enter your name." style="width: 150px"> -->
-                <input name="customer_name" type="text"  placeholder="Dan" value="<?php echo !empty($customer_name)?$customer_name:'';?>">
-                            <?php if (($nameError != null)) ?>
-                                <span class="help-inline"><?php echo $nameError;?></span>
-                </center>
-                <p class="help-block text-danger"></p>
-            </div>
-            <div class="container text-center">
-                <h4 class="text-uppercase mb-4">Apellido:</h4>
-                <center>
-                <input name="customer_lastname" value="<?php echo !empty($customer_lastname)?$customer_lastname:'';?>" class="text-center" id="lastname" type="text" placeholder="Pérez" required="required" data-validation-required-message="Please enter your lastname." style="width: 150px">
-                </center>
-                <p class="help-block text-danger"></p>
-            </div>
+        <form action="buy.php" method="post">
+            <section class="comprar" id="customerInformation">
+                <div class="container">
+                    <h2 class="text-center text-uppercase text-secondary mb-0">Información del cliente</h2>
+                    <hr class="star-dark mb-5">
+                </div>
+                <div class="container text-center">
+                    <h4 class="text-uppercase mb-4">Nombre:</h4>
+                    <center>
+                    <!-- <input name="customer_name" value="<?php echo !empty($customer_name)?$customer_name:'';?>" class="text-center" id="name" type="text" placeholder="Dan" required="required" data-validation-required-message="Please enter your name." style="width: 150px"> -->
+                    <input name="customer_name" type="text"  placeholder="Dan" value="<?php echo !empty($customer_name)?$customer_name:'';?>">
+                                <?php if (($nameError != null)) ?>
+                                    <span class="help-inline"><?php echo $nameError;?></span>
+                    </center>
+                    <p class="help-block text-danger"></p>
+                </div>
+                <div class="container text-center">
+                    <h4 class="text-uppercase mb-4">Apellido:</h4>
+                    <center>
+                    <input name="customer_lastname" value="<?php echo !empty($customer_lastname)?$customer_lastname:'';?>" class="text-center" id="lastname" type="text" placeholder="Pérez" required="required" data-validation-required-message="Please enter your lastname." style="width: 150px">
+                    </center>
+                    <p class="help-block text-danger"></p>
+                </div>
 
-        </section>
+            <!-- </section> -->
 
-        <section class="comprar" id="selectedProducts">
-            <div class="container">
-                <h2 class="text-center text-uppercase text-secondary mb-0">Productos seleccionados</h2>
-                <hr class="star-dark mb-5">
-            </div>
+            <!-- <section class="comprar" id="selectedProducts"> -->
+                <div class="container">
+                    <h2 class="text-center text-uppercase text-secondary mb-0">Productos seleccionados</h2>
+                    <hr class="star-dark mb-5">
+                </div>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Importe</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php
-                    require_once('database.php');
-                    $pdo0 = Database::connect();
-                    $sale_total_amount = 0.0;
-                    parse_str($_SERVER['QUERY_STRING'], $query_array);
-                    foreach($query_array as $key => $value) {
-                        $sql = "SELECT p.id as 'product_id', p.name as 'product_name', p.price as 'product_price' FROM product p WHERE p.id = " . $key;
-                        
-                        foreach ($pdo0->query($sql) as $row) {
-                            echo '<tr>';
-                            echo '<td>' . $key . '</td>';
-                            echo '<td>' . $row['product_name'] . '</td>';
-                            echo '<td>' . $value * $row['product_price'] . '</td>';
-                            echo '</tr>';
-                            $sale_total_amount += $value * $row['product_price'];
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Importe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                        require_once('database.php');
+                        $pdo0 = Database::connect();
+                        $sale_total_amount = 0.0;
+                        parse_str($_SERVER['QUERY_STRING'], $query_array);
+                        foreach($query_array as $key => $value) {
+                            $sql = "SELECT p.id as 'product_id', p.name as 'product_name', p.price as 'product_price' FROM product p WHERE p.id = " . $key;
+                            
+                            foreach ($pdo0->query($sql) as $row) {
+                                echo '<tr>';
+                                echo '<td>' . $key . '</td>';
+                                echo '<td>' . $row['product_name'] . '</td>';
+                                echo '<td>' . $value * $row['product_price'] . '</td>';
+                                echo '</tr>';
+                                $sale_total_amount += $value * $row['product_price'];
+                            }
                         }
-                    }
-                    
-                    echo '<tr>';
-                    echo '<td></td>';
-                    echo '<td>Monto total de la compra</td>';
-                    echo '<td>' . $sale_total_amount . '</td>';
-                    echo '</tr>';
-                    Database::disconnect();
-                ?>
-                </tbody>
-            </table>
+                        
+                        echo '<tr>';
+                        echo '<td></td>';
+                        echo '<td>Monto total de la compra</td>';
+                        echo '<td>' . $sale_total_amount . '</td>';
+                        echo '</tr>';
+                        Database::disconnect();
+                    ?>
+                    </tbody>
+                </table>
 
-            <div class="form-group">
-                <center>
-                    <button type="submit" class="btn btn-success">Confirmar compra</button>
-                    <!-- <button type="submit" class="btn btn-primary btn-xl">Confirmar compra</button> -->
-                </center>
-            </div>
-        </section>
+                <div class="form-group">
+                    <center>
+                        <button type="submit" class="btn btn-success">Confirmar compra</button>
+                        <!-- <button type="submit" class="btn btn-primary btn-xl">Confirmar compra</button> -->
+                    </center>
+                </div>
+            </section>
+        </form>
 
         <script src="js/sale.js"></script>
     </body>
