@@ -26,7 +26,7 @@
         $pdo = Database::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-        $sql = "INSERT INTO customer (id,name,lastname,birthdate,address,active,electronic_purse) values(null,'" . $name . "','" . $lastname . "', NOW(), '', true, 0.0)";			
+        $sql = "INSERT INTO customer (id,name,last_name,birthdate,address,active,electronic_purse) values(null,'" . $name . "','" . $lastname . "', NOW(), '', true, 0.0)";			
         
         $pdo->query($sql);		
         Database::disconnect();
