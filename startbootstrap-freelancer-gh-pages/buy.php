@@ -44,7 +44,7 @@
 
             // $pdo->query("START TRANSACTION");
 
-            $sql_insertCustomer = "INSERT INTO customer (id,name,last_name) values(null,$name,$lastname)"; 
+            $sql_insertCustomer = "INSERT INTO customer (id,name,last_name) values(null,'" . "$name" . "','" . $lastname . "')"; 
             $result_insertCustomer = $link->query($sql_insertCustomer);
 
             $sql_getRecentlyInsertedCustomerID = "SELECT LAST_INSERT_ID() INTO @newCustomer_id";
