@@ -40,13 +40,10 @@
             $pdo = Database::connect();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-            $sql = "INSERT INTO customer (id,name,last_name) values(null,?,?) INSERT INTO sale (id, customer, date_time) VALUES (null, ?, ?)";
-
-            $customer = LAST_INSERT_ID();
-            $datetime = NOW();
+            $sql = "INSERT INTO customer (id,name,last_name) values(null,?,?)";
 
             $q = $pdo->prepare($sql);
-            $q->execute(array($name, $lastname, $customer, $datetime);
+            $q->execute(array($name, $lastname);
 
             Database::disconnect();
             header("Location: index.php");
