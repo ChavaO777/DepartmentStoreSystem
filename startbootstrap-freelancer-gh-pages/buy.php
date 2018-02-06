@@ -112,7 +112,10 @@
                 <div class="container text-center">
                     <h4 class="text-uppercase mb-4">Apellido:</h4>
                     <center>
-                    <input name="customer_lastname" value="<?php echo !empty($customer_lastname)?$customer_lastname:'';?>" class="text-center" id="lastname" type="text" placeholder="Pérez" required="required" data-validation-required-message="Please enter your lastname." style="width: 150px">
+                    <!-- <input name="customer_lastname" value="<?php echo !empty($customer_lastname)?$customer_lastname:'';?>" class="text-center" id="lastname" type="text" placeholder="Pérez" required="required" data-validation-required-message="Please enter your lastname." style="width: 150px"> -->
+                    <input name="customer_lastname" type="text"  placeholder="Dan" value="<?php echo !empty($customer_lastname)?$customer_lastname:'';?>">
+                                <?php if (($lastnameError != null)) ?>
+                                    <span class="help-inline"><?php echo $lastnameError;?></span>
                     </center>
                     <p class="help-block text-danger"></p>
                 </div>
