@@ -37,34 +37,31 @@
         // insert data
         if ($valid) {
 
-            $pdo = Database::connect();
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $link = mysqli_connect("localhost", "root", "321654fermat", "liverpool");
 
-            mysqli_query("START TRANSACTION");
+            $link->autocommit(FALSE);
+            $link->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+
             // $pdo->query("START TRANSACTION");
 
-            // $a1 = mysql_query("INSERT INTO rarara (l_id) VALUES('1')");
-            // $a2 = mysql_query("INSERT INTO rarara (l_id) VALUES('2')");
-
             $sql_insertCustomer = "INSERT INTO customer (id,name,last_name) values(null,?,?)"; 
-            $result_insertCustomer = mysqli_query($sql_insertCustomer);
+            $result_insertCustomer = $link->query($sql_insertCustomer);
 
             $sql_getRecentlyInsertedCustomerID = "SELECT LAST_INSERT_ID() INTO @newCustomer_id";
-            mysqli_query($sql_getRecentlyInsertedCustomerID);
+            $link->query($sql_getRecentlyInsertedCustomerID);
 
             $sql_createSale = "INSERT INTO sale (id,customer,date_time) values(null,@newCustomer_id,NOW())";
-            $result_insertSale = mysqli_query($sql_createSale);
+            $result_insertSale = $link->query($sql_createSale);
 
             if ($result_insertCustomer and $result_insertSale) {
-                mysqli_query("COMMIT");
+                $link->commit();
             } else {        
-                mysqli_query("ROLLBACK");
+                $link->rollback();
             }
 
-            mysqli_query("END TRANSACTION");
-            // $pdo->query("END TRANSACTION");
+            //Close the DB
+            $link->close();
 
-            Database::disconnect();
             header("Location: index.php");
         }
     }
