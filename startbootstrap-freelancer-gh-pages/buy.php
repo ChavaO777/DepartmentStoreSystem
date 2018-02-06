@@ -103,7 +103,7 @@
                     
                     echo '<tr>';
                     echo '<td></td>';
-                    echo '<td></td>';
+                    echo '<td>Monto total de la compra</td>';
                     echo '<td>' . $sale_total_amount . '</td>';
                     echo '</tr>';
 
