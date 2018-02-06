@@ -3,7 +3,7 @@
 		private static $dbName 			= 'liverpool' ; 
 		private static $dbHost 			= '127.0.0.1' ;
 		private static $dbUsername 		= 'root';
-		private static $dbUserPassword 	= '321654fermat';
+		private static $dbUserPassword 	= '';
 		
 		private static $cont  = null;
 		

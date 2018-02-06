@@ -1,3 +1,8 @@
+<?php
+  //Start a session
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -90,11 +95,8 @@
               </tr>
             </thead>
             <tbody>
-              <?php 
+              <?php
 
-                //Start a session
-                session_start();
-                
                 require_once('database.php');
                 
                 $pdo0 = Database::connect();

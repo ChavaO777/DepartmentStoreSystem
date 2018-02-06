@@ -1,4 +1,17 @@
 <?php
+
+    //Initialize session variable
+
+    if($_SESSION["wholeURLParameters"] == null){
+
+        $_SESSION["wholeURLParameters"] = $_SERVER['QUERY_STRING'];
+    }
+
+    if($query_array == null){
+
+        parse_str($_SESSION["wholeURLParameters"], $query_array);
+    }
+
     // require_once('database.php');
 
     $nameError = null;
@@ -37,7 +50,7 @@
         // insert data
         if ($valid) {
 
-            $link = mysqli_connect("127.0.0.1", "root", "321654fermat", "liverpool");
+            $link = mysqli_connect("127.0.0.1", "root", "", "liverpool");
 
             $link->autocommit(FALSE);
             $link->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
@@ -58,13 +71,8 @@
 
             $allSaleProductsInsertionsAreOk = true;
 
-            //Use the session variable
-            parse_str($_SESSION["wholeURLParameters"], $query_array1);
-
             //Traverse through the map of (key=product_id, value=product_amount)
-            foreach($query_array1 as $product_id => $product_amount) {
-
-                echo $product_id;
+            foreach($query_array as $product_id => $product_amount) {
 
                 $sql_createSaleProduct = "INSERT INTO sale_product (sale,product,quantity) values(@newSale_id,'" . $product_id . "',$product_amount)";
                 $result_insertSaleProduct = $link->query($sql_createSaleProduct);
@@ -85,7 +93,7 @@
             //Close the DB
             $link->close();
 
-            // header("Location: index.php");
+            header("Location: index.php");
         }
     }
 ?>
@@ -132,7 +140,7 @@
             </div>
         </header>
 
-        <form action="buy.php" method="post">
+        <form action= <?php echo "buy.php?" . $_SESSION["wholeURLParameters"] ?> method="post">
             <section class="comprar" id="customerInformation">
                 <div class="container">
                     <h2 class="text-center text-uppercase text-secondary mb-0">Información del cliente</h2>
@@ -178,18 +186,9 @@
                     <tbody>
                     <?php
 
-                        //Initialize session variable
-                        $_SESSION["wholeURLParameters"] = $_SERVER['QUERY_STRING'];
-
                         require_once('database.php');
                         $pdo0 = Database::connect();
                         $sale_total_amount = 0.0;
-
-                        //Use session variable
-                        parse_str($_SESSION["wholeURLParameters"], $query_array);
-
-                        echo '<script type="javascript">alert("Here");</script>';
-                        echo '<script type="javascript">alert(' . _SESSION["wholeURLParameters"] . ');</script>';
 
                         //Traverse through the map(key=product_id, value=product_amount)
                         foreach($query_array as $key => $value) {
@@ -199,6 +198,7 @@
                             
                             //Query to get the data and create a row of the table
                             foreach ($pdo0->query($sql) as $row) {
+
                                 echo '<tr>';
                                 echo '<td>' . $key . '</td>';
                                 echo '<td>' . $row['product_name'] . '</td>';

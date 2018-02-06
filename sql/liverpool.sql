@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.20, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.21, for Linux (x86_64)
 --
 -- Host: localhost    Database: liverpool
 -- ------------------------------------------------------
--- Server version	5.7.20-0ubuntu0.16.04.1
+-- Server version	5.7.21-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -114,7 +114,7 @@ CREATE TABLE `customer` (
   `active` tinyint(1) DEFAULT NULL,
   `electronic_purse` double DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,6 +123,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+INSERT INTO `customer` VALUES (1,'Juan','Gonzalez','1980-03-03','El Pedregal #412',1,0),(2,'Julio','Regalado','1978-05-03','El Pedregal #415412',1,0),(12,'Dan','Perez',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -549,7 +550,7 @@ CREATE TABLE `sale` (
   CONSTRAINT `sale_ibfk_1` FOREIGN KEY (`customer`) REFERENCES `customer` (`id`),
   CONSTRAINT `sale_ibfk_2` FOREIGN KEY (`special_offer`) REFERENCES `special_offer` (`id`),
   CONSTRAINT `sale_ibfk_3` FOREIGN KEY (`mode_of_payment`) REFERENCES `mode_of_payment` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -558,6 +559,7 @@ CREATE TABLE `sale` (
 
 LOCK TABLES `sale` WRITE;
 /*!40000 ALTER TABLE `sale` DISABLE KEYS */;
+INSERT INTO `sale` VALUES (1,1,'2018-02-02 00:00:00','SO12348','MOP138191','2018-02-04 19:17:41'),(2,2,'2018-02-02 00:00:00','SO12348','MOP138191','2018-02-04 19:17:54'),(12,12,'2018-02-06 11:10:28',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `sale` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -585,6 +587,7 @@ CREATE TABLE `sale_product` (
 
 LOCK TABLES `sale_product` WRITE;
 /*!40000 ALTER TABLE `sale_product` DISABLE KEYS */;
+INSERT INTO `sale_product` VALUES (1,'1095829573',3),(1,'1073948519',2),(1,'1065700049',2),(2,'1073948519',1),(2,'1065700049',10);
 /*!40000 ALTER TABLE `sale_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -762,4 +765,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-03 20:17:46
+-- Dump completed on 2018-02-06 15:10:05
