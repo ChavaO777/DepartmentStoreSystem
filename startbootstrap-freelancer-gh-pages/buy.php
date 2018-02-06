@@ -188,8 +188,8 @@
                         //Use session variable
                         parse_str($_SESSION["wholeURLParameters"], $query_array);
 
-                        echo '<script>alert(Here);</script>';
-                        echo '<script>alert(' . _SESSION["wholeURLParameters"] . ');</script>';
+                        echo '<script type="javascript">alert("Here");</script>';
+                        echo '<script type="javascript">alert(' . _SESSION["wholeURLParameters"] . ');</script>';
 
                         //Traverse through the map(key=product_id, value=product_amount)
                         foreach($query_array as $key => $value) {
