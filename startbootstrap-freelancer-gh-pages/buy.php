@@ -58,10 +58,7 @@
 
             $allSaleProductsInsertionsAreOk = true;
 
-            // parse_str($_SERVER['QUERY_STRING'], $query_array1);
-
-            parse_str( parse_url( $_SERVER['QUERY_STRING'], PHP_URL_QUERY), $query_array1 );
-            // print_r( $array );
+            parse_str($_SERVER['REQUEST_URI'], $query_array1);
 
             foreach($query_array1 as $product_id => $product_amount) {
 
