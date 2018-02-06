@@ -58,10 +58,7 @@
 
             $allSaleProductsInsertionsAreOk = true;
 
-            parse_str($_SERVER['REQUEST_URI'], $query_array1);
-            $url = $_SERVER['REQUEST_URI'];
-            echo "$url<br />";
-
+            parse_str($_SERVER["QUERY_STRING"], $query_array1);
             foreach($query_array1 as $product_id => $product_amount) {
 
                 $sql_createSaleProduct = "INSERT INTO sale_product (sale,product,quantity) values(@newSale_id,'" . $product_id . "',$product_amount)";
