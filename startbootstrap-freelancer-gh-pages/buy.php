@@ -53,7 +53,25 @@
             $sql_createSale = "INSERT INTO sale (id,customer,date_time) values(null,@newCustomer_id,NOW())";
             $result_insertSale = $link->query($sql_createSale);
 
-            if ($result_insertCustomer and $result_insertSale) {
+            $sql_getRecentlyInsertedSaleID = "SELECT LAST_INSERT_ID() INTO @newSale_id";
+            $link->query($sql_getRecentlyInsertedSaleID);
+
+            $allSaleProductsInsertionsAreOk = true;
+
+            parse_str($_SERVER['QUERY_STRING'], $query_array1);
+            foreach($query_array1 as $product_id => $product_amount) {
+
+                $sql_createSaleProduct = "INSERT INTO sale_product(sale,product,quantity) values(@newSale_id,'" . $product_id . "', $product_amount)";
+                $result_insertSaleProduct = $link->query($sql_createSaleProduct);
+
+                if($result_insertSaleProduct == false){
+
+                    $allSaleProductsInsertionsAreOk = false;
+                    break;
+                }
+            }
+
+            if ($result_insertCustomer and $result_insertSale and $allSaleProductsInsertionsAreOk) {
                 $link->commit();
             } else {        
                 $link->rollback();
