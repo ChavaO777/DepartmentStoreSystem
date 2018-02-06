@@ -153,6 +153,10 @@
                                 $sale_total_amount += $value * $row['product_price'];
                             }
                         }
+
+                        $sql1 = "UPDATE product SET sku = " .$value " WHERE product = " . $key;         
+                        $q1 = $pdo->prepare($sql1);
+                        $q1->execute(array($name, $lastname));
                         
                         echo '<tr>';
                         echo '<td></td>';
