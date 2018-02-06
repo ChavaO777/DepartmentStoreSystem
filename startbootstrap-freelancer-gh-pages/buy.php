@@ -60,7 +60,7 @@
 
             //This _SERVER["QUERY_STRING"] is not working
             echo 'WTF!?';
-            
+
             parse_str($_SERVER["QUERY_STRING"], $query_array1);
             foreach($query_array1 as $product_id => $product_amount) {
 
@@ -85,7 +85,7 @@
             //Close the DB
             $link->close();
 
-            header("Location: index.php");
+            // header("Location: index.php");
         }
     }
 ?>
