@@ -61,7 +61,7 @@
             //This _SERVER["QUERY_STRING"] is not working
             echo 'WTF!?';
 
-            parse_str($_SERVER["QUERY_STRING"], $query_array1);
+            parse_str($_SESSION["wholeURLParameters"], $query_array1);
             foreach($query_array1 as $product_id => $product_amount) {
 
                 echo $product_id;
