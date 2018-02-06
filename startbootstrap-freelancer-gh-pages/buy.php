@@ -39,13 +39,18 @@
 
             $pdo = Database::connect();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-            $sql = "INSERT INTO customer (id,name,last_name) values(null,?,?)";			
-            $q = $pdo->prepare($sql);
-            $q->execute(array($name, $lastname));
 
-            Database::disconnect();
-            header("Location: index.php");
+            $sql = "SELECT id FROM customer WHERE name= '"$name"' AND last_name = '"$lastname"')";
+
+            if(empty($sql)){
+
+                $sql = "INSERT INTO customer (id,name,last_name) values(null,?,?)";         
+                $q = $pdo->prepare($sql);
+                $q->execute(array($name, $lastname));
+
+                Database::disconnect();
+                header("Location: index.php");
+            }
         }
     }
 ?>
