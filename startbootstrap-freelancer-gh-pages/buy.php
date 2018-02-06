@@ -1,36 +1,42 @@
 <?php
     require_once('database.php');
+
     $nameError = null;
     $lastnameError = null;
-    $name = null;
-    $lastname = null;
-    if(isset($_POST['customer_name'])) 
-        $name = $_POST['customer_name'];
-    if(isset($_POST['customer_lastname']))  
-        $lastname = $_POST['customer_lastname'];
-    // validate input
-    $valid = true;
-    
-    if (empty($name)) {
-        $nameError = 'Por favor, escribe un nombre.';
-        $valid = false;
-    }
-    if (empty($lastname)) {
-        $lastnameError = 'Por favor, escribe un apellido.';
-        $valid = false;
-    }
-    // insert data
-    if ($valid) {
 
-        echo 'Hello!';
-        $pdo = Database::connect();
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    if(!empty($_POST)){
+
+        $name = null;
+        $lastname = null;
+        if(isset($_POST['customer_name'])) 
+            $name = $_POST['customer_name'];
+
+        if(isset($_POST['customer_lastname']))  
+            $lastname = $_POST['customer_lastname'];
+
+        // validate input
+        $valid = true;
         
-        $sql = "INSERT INTO customer (id,name,last_name,birthdate,address,active,electronic_purse) values(null,'" . $name . "','" . $lastname . "', NOW(), '', true, 0.0)";			
-        
-        $pdo->query($sql);		
-        Database::disconnect();
-        // header("Location: index.php");
+        if (empty($name)) {
+            $nameError = 'Por favor, escribe un nombre.';
+            $valid = false;
+        }
+        if (empty($lastname)) {
+            $lastnameError = 'Por favor, escribe un apellido.';
+            $valid = false;
+        }
+        // insert data
+        if ($valid) {
+
+            $pdo = Database::connect();
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+            $sql = "INSERT INTO customer (id,name,last_name,birthdate,address,active,electronic_purse) values(null,'$name','$lastname', NOW(), '', true, 0.0)";			
+            
+            $pdo->query($sql);		
+            Database::disconnect();
+            // header("Location: index.php");
+        }
     }
 ?>
 
