@@ -58,10 +58,10 @@
 
             $allSaleProductsInsertionsAreOk = true;
 
-            //This _SERVER["QUERY_STRING"] is not working
-            echo 'WTF!?';
-
+            //Use the session variable
             parse_str($_SESSION["wholeURLParameters"], $query_array1);
+
+            //Traverse through the map of (key=product_id, value=product_amount)
             foreach($query_array1 as $product_id => $product_amount) {
 
                 echo $product_id;
@@ -177,32 +177,44 @@
                     </thead>
                     <tbody>
                     <?php
-                        session_start();
 
+                        //Initialize session variable
                         $_SESSION["wholeURLParameters"] = $_SERVER['QUERY_STRING'];
 
                         require_once('database.php');
                         $pdo0 = Database::connect();
                         $sale_total_amount = 0.0;
+
+                        //Use session variable
                         parse_str($_SESSION["wholeURLParameters"], $query_array);
+
+                        //Traverse through the map(key=product_id, value=product_amount)
                         foreach($query_array as $key => $value) {
+
+                            //Query string to get the product's name and its price
                             $sql = "SELECT p.id as 'product_id', p.name as 'product_name', p.price as 'product_price' FROM product p WHERE p.id = " . $key;
                             
+                            //Query to get the data and create a row of the table
                             foreach ($pdo0->query($sql) as $row) {
                                 echo '<tr>';
                                 echo '<td>' . $key . '</td>';
                                 echo '<td>' . $row['product_name'] . '</td>';
                                 echo '<td> $ ' . $value * $row['product_price'] . '</td>';
                                 echo '</tr>';
+
+                                //Add to the total amount of the sale
                                 $sale_total_amount += $value * $row['product_price'];
                             }
                         }
                         
+                        //Show the total amount of the sale
                         echo '<tr>';
                         echo '<td></td>';
                         echo '<td class="text-uppercase text-secondary">Monto total de la compra</td>';
                         echo '<td> $ ' . $sale_total_amount . '</td>';
                         echo '</tr>';
+
+                        //Disconnect the DB
                         Database::disconnect();
                     ?>
                     </tbody>

@@ -91,6 +91,9 @@
             </thead>
             <tbody>
               <?php 
+
+                //Start a session
+                session_start();
                 
                 require_once('database.php');
                 
