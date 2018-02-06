@@ -8,7 +8,7 @@
 
         $name = null;
         $lastname = null;
-        
+
         if(isset($_POST['customer_name'])) 
             $name = $_POST['customer_name'];
 
@@ -40,12 +40,12 @@
             $pdo = Database::connect();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-            $sql = "INSERT INTO customer (id,name,last_name,birthdate,address,active,electronic_purse) values(null,?,?, NOW(), '', true, 0.0)";			
+            $sql = "INSERT INTO customer (id,name,last_name) values(null,?,?)";			
 
             $q = $pdo->prepare($sql);
             $q->execute(array($name, $lastname));
             Database::disconnect();
-            // header("Location: index.php");
+            header("Location: index.php");
         }
     }
 ?>
