@@ -85,7 +85,7 @@
                     $sale_total_amount = 0.0;
 
                     if(isset($_SERVER['QUERY_STRING']))
-                        parse_str($_SERVER["QUERY_STRING"], $query_array);
+                        parse_str($_SERVER['QUERY_STRING'], $query_array);
                     
                     foreach($query_array as $key => $value) {
 
