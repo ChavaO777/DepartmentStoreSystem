@@ -31,9 +31,10 @@
             $pdo = Database::connect();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-            $sql = "INSERT INTO customer (id,name,last_name,birthdate,address,active,electronic_purse) values(null,'$name','$lastname', NOW(), '', true, 0.0)";			
-            
-            $pdo->query($sql);		
+            $sql = "INSERT INTO customer (id,name,last_name,birthdate,address,active,electronic_purse) values(null,?,?, NOW(), '', true, 0.0)";			
+
+            $q = $pdo->prepare($sql);
+            $q->execute(array($name, $lastname));
             Database::disconnect();
             // header("Location: index.php");
         }
