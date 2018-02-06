@@ -40,29 +40,28 @@
             $pdo = Database::connect();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            // mysqli_query("START TRANSACTION");
+            mysqli_query("START TRANSACTION");
             // $pdo->query("START TRANSACTION");
 
             // $a1 = mysql_query("INSERT INTO rarara (l_id) VALUES('1')");
             // $a2 = mysql_query("INSERT INTO rarara (l_id) VALUES('2')");
 
             $sql_insertCustomer = "INSERT INTO customer (id,name,last_name) values(null,?,?)"; 
-            $q = $pdo->prepare($sql_insertCustomer);
-            $result_insertCustomer = $q->execute(array($name, $lastname));
+            $result_insertCustomer = mysqli_query($sql_insertCustomer);
 
             $sql_getRecentlyInsertedCustomerID = "SELECT LAST_INSERT_ID() INTO @newCustomer_id";
             $pdo->query($sql_getRecentlyInsertedCustomerID);
 
             $sql_createSale = "INSERT INTO sale (id,customer,date_time) values(null,@newCustomer_id,NOW())";
-            $result_insertSale = $pdo->query($sql_createSale);
+            $result_insertSale = mysqli_query($sql_createSale);
 
-            // if ($result_insertCustomer and $result_insertSale) {
-            //     mysqli_query("COMMIT");
-            // } else {        
-            //     mysqli_query("ROLLBACK");
-            // }
+            if ($result_insertCustomer and $result_insertSale) {
+                mysqli_query("COMMIT");
+            } else {        
+                mysqli_query("ROLLBACK");
+            }
 
-            // mysqli_query("END TRANSACTION");
+            mysqli_query("END TRANSACTION");
             // $pdo->query("END TRANSACTION");
 
             Database::disconnect();
