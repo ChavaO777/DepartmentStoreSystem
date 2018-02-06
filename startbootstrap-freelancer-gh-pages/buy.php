@@ -44,7 +44,7 @@
 
             // $pdo->query("START TRANSACTION");
 
-            $sql_insertCustomer = "INSERT INTO customer (id,name,last_name) values(null,?,?)"; 
+            $sql_insertCustomer = "INSERT INTO customer (id,name,last_name) values(null,$name,$lastname)"; 
             $result_insertCustomer = $link->query($sql_insertCustomer);
 
             $sql_getRecentlyInsertedCustomerID = "SELECT LAST_INSERT_ID() INTO @newCustomer_id";
@@ -53,13 +53,11 @@
             $sql_createSale = "INSERT INTO sale (id,customer,date_time) values(null,@newCustomer_id,NOW())";
             $result_insertSale = $link->query($sql_createSale);
 
-            // if ($result_insertCustomer and $result_insertSale) {
-            //     $link->commit();
-            // } else {        
-            //     $link->rollback();
-            // }
-
-            $link->commit();
+            if ($result_insertCustomer and $result_insertSale) {
+                $link->commit();
+            } else {        
+                $link->rollback();
+            }
 
             //Close the DB
             $link->close();
