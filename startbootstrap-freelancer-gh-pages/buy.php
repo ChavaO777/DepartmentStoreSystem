@@ -157,7 +157,7 @@
                         
                         echo '<tr>';
                         echo '<td></td>';
-                        echo '<td text-uppercase text-secondary>Monto total de la compra</td>';
+                        echo '<td class="text-uppercase text-secondary">Monto total de la compra</td>';
                         echo '<td>' . $sale_total_amount . '</td>';
                         echo '</tr>';
                         Database::disconnect();
