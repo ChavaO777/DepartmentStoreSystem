@@ -82,6 +82,8 @@
                     require_once('database.php');
                     $pdo0 = Database::connect();
 
+                    $sale_total_amount = 0.0;
+
                     parse_str($_SERVER["QUERY_STRING"], $query_array);
                     foreach($query_array as $key => $value) {
 
@@ -94,9 +96,17 @@
                             echo '<td>' . $row['product_name'] . '</td>';
                             echo '<td>' . $value * $row['product_price'] . '</td>';
                             echo '</tr>';
+
+                            $sale_total_amount += $value * $row['product_price'];
                         }
                     }
-                
+                    
+                    echo '<tr>';
+                    echo '<td></td>';
+                    echo '<td></td>';
+                    echo '<td>' . $sale_total_amount . '</td>';
+                    echo '</tr>';
+
                     Database::disconnect();
                 ?>
                 </tbody>
