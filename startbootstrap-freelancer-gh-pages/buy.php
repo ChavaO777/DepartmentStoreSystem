@@ -37,7 +37,7 @@
         // insert data
         if ($valid) {
 
-            $link = mysqli_connect("localhost", "root", "321654fermat", "liverpool");
+            $link = mysqli_connect("127.0.0.1", "root", "321654fermat", "liverpool");
 
             $link->autocommit(FALSE);
             $link->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
