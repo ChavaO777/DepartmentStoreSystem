@@ -40,9 +40,10 @@
             $pdo = Database::connect();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $sql = "SELECT id FROM customer WHERE name= '"$name"' AND last_name = '"$lastname"')";
+            $sql1 = "SELECT id FROM customer WHERE name= '"$name"' AND last_name = '"$lastname"')";
+            $q1 = $pdo->prepare($sql1);
 
-            if(empty($sql)){
+            if(empty($sql1)){
 
                 $sql = "INSERT INTO customer (id,name,last_name) values(null,?,?)";         
                 $q = $pdo->prepare($sql);
