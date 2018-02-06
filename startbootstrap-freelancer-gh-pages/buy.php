@@ -1,3 +1,38 @@
+<?php
+
+    require_once('database.php');
+
+    $nameError = null;
+    $lastnameError = null;
+
+    $name = $_POST['customer_name'];
+    $lastname = $_POST['customer_lastname'];
+
+    // validate input
+    $valid = true;
+    
+    if (empty($name)) {
+        $nameError = 'Por favor, escribe un nombre.';
+        $valid = false;
+    }
+    if (empty($lastname)) {
+        $lastnameError = 'Por favor, escribe un apellido.';
+        $valid = false;
+    }
+
+    // insert data
+    if ($valid) {
+        $pdo = Database::connect();
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $sql = "INSERT INTO customer (id,name,lastname,birthdate,address,active,electronic_purse) values(null," . $name . "," . $lastname . "NOW(), '', true, 0.0)";			
+        
+        $pdo->query($sql);		
+        Database::disconnect();
+        header("Location: index.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -48,14 +83,14 @@
             <div class="container text-center">
                 <h4 class="text-uppercase mb-4">Nombre:</h4>
                 <center>
-                <input class="text-center" id="name" type="text" placeholder="Dan" required="required" data-validation-required-message="Please enter your name." style="width: 150px">
+                <input name="customer_name" class="text-center" id="name" type="text" placeholder="Dan" required="required" data-validation-required-message="Please enter your name." style="width: 150px">
                 </center>
                 <p class="help-block text-danger"></p>
             </div>
             <div class="container text-center">
                 <h4 class="text-uppercase mb-4">Apellido:</h4>
                 <center>
-                <input class="text-center" id="lastname" type="text" placeholder="Pérez" required="required" data-validation-required-message="Please enter your lastname." style="width: 150px">
+                <input name="customer_lastname" class="text-center" id="lastname" type="text" placeholder="Pérez" required="required" data-validation-required-message="Please enter your lastname." style="width: 150px">
                 </center>
                 <p class="help-block text-danger"></p>
             </div>
@@ -94,7 +129,7 @@
                             echo '<tr>';
                             echo '<td>' . $key . '</td>';
                             echo '<td>' . $row['product_name'] . '</td>';
-                            echo '<td>' . $value * $row['product_price'] . '</td>';
+                            echo '<td>$' . $value * $row['product_price'] . '</td>';
                             echo '</tr>';
 
                             $sale_total_amount += $value * $row['product_price'];
@@ -104,7 +139,7 @@
                     echo '<tr>';
                     echo '<td></td>';
                     echo '<td>Monto total de la compra</td>';
-                    echo '<td>' . $sale_total_amount . '</td>';
+                    echo '<td>$' . $sale_total_amount . '</td>';
                     echo '</tr>';
 
                     Database::disconnect();
@@ -114,7 +149,8 @@
 
             <div class="form-group">
                 <center>
-                    <button onclick="" type="submit" class="btn btn-primary btn-xl">Confirmar compra</button>
+                    <button onclick="" type="submit" class="btn btn-primary btn-xl">Confirmar compra
+                    </button>
                 </center>
             </div>
         </section>
