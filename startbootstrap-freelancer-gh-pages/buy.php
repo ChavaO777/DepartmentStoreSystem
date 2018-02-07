@@ -81,7 +81,7 @@
                 $sql_currentSku = "SELECT sku FROM product WHERE id = '" . $product_id . "')";
                 $result_selectCurrentSku = $link->query($sql_currentSku);
 
-                $sql_updateSku = "UPDATE product SET sku = '' . $result_selectCurrentSku . '' WHERE id = '" . $product_id . "')";
+                $sql_updateSku = "UPDATE product SET sku = ''. $result_selectCurrentSku .'' WHERE id = '" . $product_id . "')";
                 $result_updateSku = $link->query($sql_updateSku);
 
                 if($result_insertSaleProduct == false and $result_updateSku == false){
