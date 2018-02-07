@@ -50,7 +50,7 @@
         // insert data
         if ($valid) {
 
-            $link = mysqli_connect("127.0.0.1", "root", "", "liverpool");
+            $link = mysqli_connect("localhost", "root", "MyNewPass", "liverpool");
 
             $link->autocommit(FALSE);
             $link->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
@@ -78,22 +78,30 @@
                 $sql_createSaleProduct = "INSERT INTO sale_product (sale,product,quantity) values(@newSale_id,'" . $product_id . "',$product_amount)";
                 $result_insertSaleProduct = $link->query($sql_createSaleProduct);
 
-                //$sql_currentSku = "SELECT (sku - $product_amount) FROM product WHERE id = '" . $product_id . "'";
-                //$result_selectCurrentSku = $link->query($sql_currentSku);
+                $sql_selectCurrentSKU = "SELECT sku FROM product WHERE id = " . $product_id;
+                $result_selectedSKU = $link->query($sql_selectCurrentSKU);
 
-                $sql_updateSku = "UPDATE product SET sku = $product_amount WHERE id = '" . $product_id . "'";
-                $result_updateSku = $link->query($sql_updateSku);
+                while($row = $result_selectedSKU->fetch_assoc()){
+                   $result = $row['sku'] - $product_amount;
+                }
 
-                if($result_insertSaleProduct == false and $result_updateSku == false){
+                echo $result;
+
+                if($result >= 0){
+
+                    $sql_updateSKU = "UPDATE product SET sku = $result WHERE id = " . $product_id;
+                    $result_updateSKU = $link->query($sql_updateSKU);
+                }
+                
+                if($result_insertSaleProduct == false AND $result_updateSKU == false AND $result_selectedSKU == false){
 
                     $allSaleProductsInsertionsAreOk = false;
                     $allSKUUpdatesAreOk = false;
-
                     break;
                 }
             }
 
-            if ($result_insertCustomer and $result_insertSale and $allSaleProductsInsertionsAreOk and $allSKUUpdatesAreOk) {
+            if ($result_insertCustomer and $result_insertSale and $result_selectedSKU and $allSaleProductsInsertionsAreOk and $allSKUUpdatesAreOk) {
                 $link->commit();
             } else {        
                 $link->rollback();
