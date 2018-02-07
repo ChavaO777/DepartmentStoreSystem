@@ -8,11 +8,19 @@
 
   <head>
 
+    <!-- Tag to include special characters -->
     <meta charset="utf-8">
+
+    <!-- Tag to create a responsive web site -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Web application information -->
     <meta name="description" content="Liverpool database">
+
+    <!-- Salvador Orozco Villalever: A07104218 & Aranzza Abascal Fararoni: A01329203 -->
     <meta name="author" content="Salvador & Aranzza">
 
+    <!-- Web site name -->
     <title>Liverpool</title>
 
     <!-- Bootstrap core CSS -->
@@ -26,7 +34,7 @@
     <!-- Plugin CSS -->
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles -->
     <link href="css/freelancer.min.css" rel="stylesheet">
 
   </head>
@@ -36,21 +44,19 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
 
-      <!-- División de la primera sección -->
+      <!-- Creating pink section on top -->
       <div class="container">
 
-        <!-- Título "Liverpool" en la parte superior izquierda -->
+        <!-- "Liverpool on left-top" -->
         <a class="navbar-brand js-scroll-trigger" href="#page-top">Liverpool</a>
 
-        <!-- Botón de menú cuando se haga chica la pantalla -->
+        <!-- Creating a menu button when screen gets smaller -->
         <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menú
-
-          <!-- Ícono de 3 líneas horizontales para el menú -->
           <i class="fa fa-bars"></i>
         </button>
 
-        <!-- Sección de los botones -->
+        <!-- Buttons section: Comprar, Inventario, Ventas -->
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item mx-0 mx-lg-1">
@@ -70,20 +76,21 @@
     <!-- Header -->
     <header class="masthead bg-primary text-white text-center">
       <div class="container">
+        <!-- "Liverpool" title with star and two lines-->
         <img class="img-fluid mb-5 d-block mx-auto" src="img/logo.png" alt="" width="100">
         <h1 class="text-uppercase mb-0">Liverpool</h1>
         <h2 class="font-weight-light mb-0">Es parte de tu vida</h2>
       </div>
     </header>
 
-    <!-- comprar Grid Section -->
-
+    <!-- "Comprar" Section -->
     <section class="comprar" id="comprar">
         <div class="container">
           <h2 class="text-center text-uppercase text-secondary mb-0">comprar</h2>
           <hr class="star-dark mb-5">
         </div>
 
+        <!-- Table to show products -->
         <div class="table-responsive">
           <table class="table text-center">
             <thead class="text-uppercase">
@@ -94,6 +101,7 @@
                 <th>Cantidad</th>
               </tr>
             </thead>
+            <!-- Table with php code to show the products using a mysql query -->
             <tbody>
               <?php
 
@@ -113,8 +121,9 @@
               ?>
             </tbody>
           </table>
-          
         </div>
+
+        <!-- "Comprar" button, it calls getProductsToBuy to know which products are selected  -->
         <div class="form-group">
           <center>
             <button onclick="getProductsToBuy()" class="btn btn-primary btn-xl">Compra</button>
@@ -123,12 +132,14 @@
     </section> 
 
 
-    <!-- inventario Section -->
+    <!-- "inventario" Section -->
     <section class="bg-primary text-white mb-0" id="inventario">
       <div class="container">
+        <!-- "Inventario title with a star and two lines" -->
         <h2 class="text-center text-uppercase text-white">inventario</h2>
         <hr class="star-light mb-5">
 
+        <!-- Responsive table to show id, name, department, price and sku from each product -->
         <div class="table-responsive">
           <table class="table text-center">
             <thead class = "text-uppercase">
@@ -140,6 +151,7 @@
                 <th>Stock</th>
               </tr>
             </thead>
+            <!-- Table body with php code to show details using a mysql query -->
             <tbody>
               <?php 
                 
@@ -163,15 +175,17 @@
         </div>
     </section>
 
-    <!-- ventas Section -->
+    <!-- "ventas" Section -->
     <section id="ventas">
       <div class="container">
+        <!-- Ventas title with star and two lines -->
         <h2 class="text-center text-uppercase text-secondary mb-0">ventas</h2>
         <hr class="star-dark mb-5">
         <div class="row">
           <div class="col-lg-8 mx-auto"></div>
         </div>
       </div>
+      <!-- Responsive table to show id, date_time, customer and total from each sale -->
       <div class="table-responsive text-center">
         <table class="table">
           <thead>
@@ -182,6 +196,7 @@
               <th>Importe total</th>
             </tr>
           </thead>
+          <!-- Table body with php code to show dateails using a mysql query -->
           <tbody>
             <?php 
               
@@ -205,7 +220,7 @@
       </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer section to show branch information -->
     <footer class="footer text-center">
       <div class="container">
         <h4 class="text-uppercase mb-4">sucursal</h4>
@@ -214,6 +229,7 @@
       </div>
     </footer> 
 
+    <!-- Last section on page: copyright -->
     <div class="copyright py-4 text-center text-white">
       <div class="container">
         <small>Copyright &copy; Salvador Orozco & Aranzza Abascal 2018</small>

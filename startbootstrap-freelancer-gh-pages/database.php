@@ -1,5 +1,6 @@
 <?php
 	class Database {
+		// Mysql information to connect
 		private static $dbName 			= 'liverpool' ; 
 		private static $dbHost 			= 'localhost' ;
 		private static $dbUsername 		= 'root';
