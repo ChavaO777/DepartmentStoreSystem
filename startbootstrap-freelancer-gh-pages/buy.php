@@ -83,7 +83,8 @@
 
                 $newSKU = $result_selectCurrentSku - $product_amount;
 
-                echo $newSKU;
+                echo "<div class=\"dark\">"$result_selectCurrentSku"</div>";
+                echo "<div class=\"dark\">$result_selectCurrentSku</div>";
 
                 $sql_updateSku = "UPDATE product SET sku = $newSKU WHERE id = '" . $product_id . "'";
                 $result_updateSku = $link->query($sql_updateSku);
