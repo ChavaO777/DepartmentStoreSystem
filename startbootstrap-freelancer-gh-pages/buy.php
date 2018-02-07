@@ -70,6 +70,7 @@
             $link->query($sql_getRecentlyInsertedSaleID);
 
             $allSaleProductsInsertionsAreOk = true;
+            $allSKUUpdatesAreOk = true;
 
             //Traverse through the map of (key=product_id, value=product_amount)
             foreach($query_array as $product_id => $product_amount) {
@@ -77,14 +78,19 @@
                 $sql_createSaleProduct = "INSERT INTO sale_product (sale,product,quantity) values(@newSale_id,'" . $product_id . "',$product_amount)";
                 $result_insertSaleProduct = $link->query($sql_createSaleProduct);
 
-                if($result_insertSaleProduct == false){
+                $sql_currentSku = "SELECT sku FROM product WHERE id = '" . $product_id . "')";
+                $result_selectCurrentSku = $link->query($sql_currentSku);
+
+                if($result_insertSaleProduct == false and $result_selectCurrentSku == false){
 
                     $allSaleProductsInsertionsAreOk = false;
+                    $allSKUUpdatesAreOk = false;
+
                     break;
                 }
             }
 
-            if ($result_insertCustomer and $result_insertSale and $allSaleProductsInsertionsAreOk) {
+            if ($result_insertCustomer and $result_insertSale and $allSaleProductsInsertionsAreOk and $allSKUUpdatesAreOk) {
                 $link->commit();
             } else {        
                 $link->rollback();
