@@ -102,6 +102,10 @@
                     // Mysql query to update stock value
                     $sql_updateSKU = "UPDATE product SET sku = $result WHERE id = " . $product_id;
                     $result_updateSKU = $link->query($sql_updateSKU);
+                } else {
+                    // Redirect to error page
+                    header("Location: error.php");
+                    die;
                 }
                 
                 // Flags to know if transactions where correctly done

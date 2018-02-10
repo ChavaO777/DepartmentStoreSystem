@@ -49,7 +49,7 @@
             <div class="container">
             
                 <!-- "Información del cliente" title -->
-                <h2 class="text-center text-uppercase text-secondary mb-0">Compra no realizada.</h2>
+                <h2 class="text-center text-uppercase text-secondary mb-0">Compra no realizada</h2>
                 <hr class="star-dark mb-5">
             </div>
 
