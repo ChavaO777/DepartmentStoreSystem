@@ -4,4 +4,4 @@ In Ubuntu:
 sudo cp -a home/salvador/Desktop/DepartmentStoreSystem/startbootstrap-freelancer-gh-pages/. var/www/html/
 
 In Mac:
-sudo cp -a Users/salvador/Desktop/DepartmentStoreSystem/startbootstrap-freelancer-gh-pages/. Library/WebServer/Documents/
+sudo cp -a Users/salvador/Desktop/DepartmentStoreSystem/www/. Library/WebServer/Documents/
