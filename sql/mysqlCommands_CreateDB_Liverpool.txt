@@ -303,7 +303,6 @@ DO
 	SET @currentTime := CURRENT_TIME();
 	IF @currentTime >= '06:00:00' AND @currentTime <= '23:00:00' THEN
 
-		DELIMITER $$
 		START TRANSACTION;
 
 		SELECT @sales_amount = compute_sales_amount(NOW() - INTERVAL 1 HOUR, NOW());
@@ -311,7 +310,7 @@ DO
 
 		COMMIT;
 	END IF;
-END $$
+$$
 DELIMITER ;
 
 
