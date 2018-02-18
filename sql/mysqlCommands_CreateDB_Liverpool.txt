@@ -297,9 +297,9 @@ DELIMITER ;
 // transaction. Check the official mysql documentation page
 
 CREATE EVENT [IF NOT EXIST] sales_per_hour_event
-ON SCHEDULE EVERY HOUR 
+ON SCHEDULE EVERY 1 HOUR 
 DO
-	IF CURRENT_TIME BETWEEN '06:00:00' AND '23:00:00' 
+	IF CURRENT_TIME >= '06:00:00' AND CURRENT_TIME <= '23:00:00' 
 		THEN
 
 			START TRANSACTION;
