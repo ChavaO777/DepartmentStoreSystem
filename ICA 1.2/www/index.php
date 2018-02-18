@@ -223,6 +223,17 @@
       </div>
     </section>
 
+    <section class="bg-primary text-white mb-0" id="ordenDeCompra">
+      <div class="container">
+        <!-- Orden de compra title with star and two lines -->
+        <h2 class="text-center text-uppercase text-secondary mb-0">Orden de Compra</h2>
+        <hr class="star-dark mb-5">
+        <div class="row">
+          <div class="col-lg-8 mx-auto"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- Footer section to show branch information -->
     <footer class="footer text-center">
       <div class="container">
