@@ -299,7 +299,7 @@ DELIMITER ;
 // transaction. Check the official mysql documentation page
 
 DELIMITER //
-CREATE EVENT sales_per_hour_event ON SCHEDULE EVERY 1 MINUTE 
+CREATE EVENT sales_per_hour_event ON SCHEDULE EVERY 1 HOUR 
 ON COMPLETION PRESERVE
 DO
 	IF CURRENT_TIME() >= '06:00:00' AND CURRENT_TIME() <= '23:00:00' THEN
