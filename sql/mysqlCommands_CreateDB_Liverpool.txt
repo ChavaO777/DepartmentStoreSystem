@@ -304,7 +304,7 @@ DO
 
 		START TRANSACTION;
 		SELECT @sales_amount := compute_sales_amount(NOW() - INTERVAL 1 HOUR, NOW());
-		INSERT sales_per_hour VALUES(NOW() - INTERVAL 1 HOUR, NOW(), @sales_amount);
+		INSERT INTO sales_per_hour VALUES(NOW() - INTERVAL 1 HOUR, NOW(), @sales_amount);
 		COMMIT;
 	END IF//
 DELIMITER ;
