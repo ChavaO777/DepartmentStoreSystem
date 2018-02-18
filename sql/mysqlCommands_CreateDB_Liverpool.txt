@@ -300,7 +300,8 @@ DELIMITER $$
 CREATE EVENT [IF NOT EXIST] sales_per_hour_event
 ON SCHEDULE EVERY 1 HOUR 
 DO
-	IF CURTIME >= '06:00:00' AND CURTIME <= '23:00:00' THEN
+	@currentTime = SELECT CURTIME();
+	IF @currentTime >= '06:00:00' AND @currentTime <= '23:00:00' THEN
 
 		DELIMITER $$
 		START TRANSACTION;
