@@ -112,7 +112,7 @@ CREATE TABLE supplier_price_history (
 CREATE TABLE invoice (
 	id INT NOT NULL AUTO_INCREMENT,
 	supplier VARCHAR(16),
-	purchase_order VARCHAR(10), ////Cambiamos esto a int
+	purchase_order INT, 
 	date_time DATETIME,
 	expenditure VARCHAR(10),
 	PRIMARY KEY(id),
