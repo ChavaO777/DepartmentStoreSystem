@@ -297,7 +297,7 @@ DELIMITER ;
 // transaction. Check the official mysql documentation page
 
 DELIMITER $$
-CREATE EVENT [IF NOT EXIST] sales_per_hour_event
+CREATE EVENT sales_per_hour_event
 ON SCHEDULE EVERY 1 HOUR 
 DO
 	SET @currentTime := CURRENT_TIME();
