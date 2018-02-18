@@ -63,7 +63,7 @@
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#comprar">comprar</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#ordenDeCompra">orden de compra</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#CompraProveedores">Proveedores</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#inventario">inventario</a>
@@ -134,15 +134,48 @@
         </div>
     </section> 
 
-    <!-- "Orden de compra" Section -->
-    <section class="bg-primary text-white mb-0" id="ordenDeCompra">
+    <!-- "Compra a proveedores" Section -->
+    <section class="bg-primary text-white mb-0" id="CompraProveedores">
       <div class="container">
-        <!-- Orden de compra title with star and two lines -->
-        <h2 class="text-center text-uppercase text-white">Orden de Compra</h2>
+        <!-- Compra a proveedores title with star and two lines -->
+        <h2 class="text-center text-uppercase text-white">Compra a proveedores</h2>
         <hr class="star-light mb-5">
         <div class="row">
           <div class="col-lg-8 mx-auto"></div>
         </div>
+
+        <div class="table-responsive">
+          <table class="table text-center">
+            <thead class="text-uppercase">
+              <tr>
+                <th>RFC</th>
+                <th>Proveedor</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <!-- Table with php code to show the products using a mysql query -->
+            <tbody>
+              <?php
+
+                require_once('database.php');
+                
+                $pdo0 = Database::connect();
+                $sql = "SELECT s.rfc as 'supplier_rfc', s.name as 'supplier_name', s.type as 'supplier_type' FROM supplier s";
+                foreach ($pdo0->query($sql) as $row) {
+                  echo '<tr>';
+                    echo '<td>' . $row['supplier_rfc'] . '</td>';
+                    echo '<td>' . $row['supplier_name'] . '</td>';
+                    echo '<td>' . $row['supplier_type'] . '</td>';
+                    echo '<td><input rfc="' . $row['supplier_rfc'] . '" class="product-amount" type="number" placeholder="0" text-center style="width: 50px" min="0" autocomplete="off"></td>';
+                  echo '</tr>';
+                }
+                Database::disconnect();
+              ?>
+            </tbody>
+          </table>
+        </div>
+
       </div>
     </section>
 
