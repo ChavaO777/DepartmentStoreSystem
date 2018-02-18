@@ -160,14 +160,14 @@
 
                 require_once('database.php');
                 
-                $pdo0 = Database::connect();
-                $sql = "SELECT s.rfc as 'supplier_rfc', s.name as 'supplier_name', s.type as 'supplier_type' FROM supplier s";
-                foreach ($pdo0->query($sql) as $row) {
+                $pdo3 = Database::connect();
+                $sql = "SELECT p.id as 'product_id', p.name as 'product_name', d.name as 'department_name', p.price as 'product_price', p.sku as 'product_sku' FROM product p JOIN category c ON p.category = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' GROUP BY p.id ORDER BY d.name";
+                foreach ($pdo3->query($sql) as $row) {
                   echo '<tr>';
-                    echo '<td>' . $row['supplier_rfc'] . '</td>';
-                    echo '<td>' . $row['supplier_name'] . '</td>';
-                    echo '<td>' . $row['supplier_type'] . '</td>';
-                    echo '<td><input rfc="' . $row['supplier_rfc'] . '" class="product-amount" type="number" placeholder="0" text-center style="width: 50px" min="0" autocomplete="off"></td>';
+                    echo '<td>' . $row['product_name'] . '</td>';
+                    echo '<td>' . $row['department_name'] . '</td>';
+                    echo '<td> $' . $row['product_price'] . '</td>';
+                    echo '<td><input id="' . $row['product_id'] . '" class="product-amount" type="number" placeholder="0" text-center style="width: 50px" min="0" autocomplete="off" max="' . $row['product_sku'] . '"></td>';
                   echo '</tr>';
                 }
                 Database::disconnect();
@@ -175,7 +175,12 @@
             </tbody>
           </table>
         </div>
+      </div>
 
+      <div class="form-group">
+        <center>
+          <button onclick="getProductsToBuy()" class="btn btn-primary btn-xl">Compra</button>
+        </center>
       </div>
     </section>
 
