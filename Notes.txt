@@ -5,3 +5,14 @@ sudo cp -a home/salvador/Desktop/DepartmentStoreSystem/startbootstrap-freelancer
 
 In Mac:
 sudo cp -a Users/salvador/Desktop/DepartmentStoreSystem/www/. Library/WebServer/Documents/
+
+--------------
+To fix the invalid connection to MySQL:
+
+This happned after the home brew install. This happens due to permission issues. The following commands fixed the issue.
+
+sudo chown -R _mysql:mysql /usr/local/var/mysql
+
+sudo mysql.server start
+
+src: https://stackoverflow.com/questions/15450091/for-a-newbie-error-2002-hy000-cant-connect-to-local-mysql-server-through-so

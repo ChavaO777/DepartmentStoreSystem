@@ -61,23 +61,38 @@ CREATE TABLE warehouse_delivery (
 
 
 CREATE TABLE purchase_order (
-	id VARCHAR(10) NOT NULL,
+	id INT NOT NULL AUTO_INCREMENT,
 	payment_details VARCHAR(100),
 	date_time DATETIME,
 	shipment_details VARCHAR(100),
-	supplier VARCHAR(16),
-	warehouse_delivery VARCHAR(10),
+	supplier VARCHAR(16) NOT NULL,
+	warehouse_delivery VARCHAR(10) NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (warehouse_delivery) REFERENCES warehouse_delivery(id),
 	FOREIGN KEY (supplier) REFERENCES supplier(rfc)
 );
 
+CREATE TABLE purchase_order (
+	id INT NOT NULL AUTO_INCREMENT,
+	payment_details VARCHAR(100),
+	date_time DATETIME,
+	shipment_details VARCHAR(100),
+	supplier VARCHAR(16) NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (supplier) REFERENCES supplier(rfc)
+);
+
+ALTER TABLE purchase_order ADD supplier VARCHAR(16);
+ALTER TABLE purchase_order ADD CONSTRAINT FOREIGN KEY(supplier) REFERENCES supplier(rfc);
+
 
 CREATE TABLE purchase_order_product (
-	purchase_order VARCHAR(10),
+	id INT NOT NULL AUTO_INCREMENT,
 	product VARCHAR(10),
 	quantity INT,
 	price DOUBLE,	
+	purchase_order INT,
+	PRIMARY KEY(id),
 	FOREIGN KEY (purchase_order) REFERENCES purchase_order(id),
 	FOREIGN KEY (product) REFERENCES product(id)
 );
@@ -95,9 +110,9 @@ CREATE TABLE supplier_price_history (
 );
 
 CREATE TABLE invoice (
-	id VARCHAR(10) NOT NULL,
+	id INT NOT NULL AUTO_INCREMENT,
 	supplier VARCHAR(16),
-	purchase_order VARCHAR(10),
+	purchase_order VARCHAR(10), ////Cambiamos esto a int
 	date_time DATETIME,
 	expenditure VARCHAR(10),
 	PRIMARY KEY(id),
