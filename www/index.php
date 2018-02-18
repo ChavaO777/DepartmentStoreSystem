@@ -60,7 +60,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#comprar">Comprar</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#comprar">comprar</a>
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#ordenDeCompra">orden de compra</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#inventario">inventario</a>
@@ -131,13 +134,24 @@
         </div>
     </section> 
 
+    <!-- "Orden de compra" Section -->
+    <section class="bg-primary text-white mb-0" id="ordenDeCompra">
+      <div class="container">
+        <!-- Orden de compra title with star and two lines -->
+        <h2 class="text-center text-uppercase text-white">Orden de Compra</h2>
+        <hr class="star-light mb-5">
+        <div class="row">
+          <div class="col-lg-8 mx-auto"></div>
+        </div>
+      </div>
+    </section>
 
     <!-- "inventario" Section -->
-    <section class="bg-primary text-white mb-0" id="inventario">
+    <section class="inventario" id="inventario">
       <div class="container">
         <!-- "Inventario title with a star and two lines" -->
-        <h2 class="text-center text-uppercase text-white">inventario</h2>
-        <hr class="star-light mb-5">
+        <h2 class="text-center text-uppercase text-secondary mb-0">inventario</h2>
+        <hr class="star-dark mb-5">
 
         <!-- Responsive table to show id, name, department, price and sku from each product -->
         <div class="table-responsive">
@@ -176,11 +190,11 @@
     </section>
 
     <!-- "ventas" Section -->
-    <section id="ventas">
+    <section class="bg-primary text-white mb-0" id="ventas">
       <div class="container">
         <!-- Ventas title with star and two lines -->
-        <h2 class="text-center text-uppercase text-secondary mb-0">ventas</h2>
-        <hr class="star-dark mb-5">
+        <h2 class="text-center text-uppercase text-white">ventas</h2>
+        <hr class="star-light mb-5">
         <div class="row">
           <div class="col-lg-8 mx-auto"></div>
         </div>
