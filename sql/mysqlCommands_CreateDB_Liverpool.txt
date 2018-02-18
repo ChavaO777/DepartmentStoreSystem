@@ -271,7 +271,8 @@ CREATE TABLE sales_per_hour(
 	id INT NOT NULL AUTO_INCREMENT,
 	start_hour DATETIME,
 	end_hour DATETIME,
-	sales_amount INT
+	sales_amount INT,
+	PRIMARY KEY (id)
 );
 
 // Function to compute the amount of sales in a given time INTERVAL
