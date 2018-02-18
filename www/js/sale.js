@@ -3,7 +3,7 @@ function getProductsToBuy(HTML_element_class, url_to_redirect){
     var url = url_to_redirect + "?";
     var counter = 0;
 
-    $(HTML_element_class).each(function () {
+    $("." + HTML_element_class).each(function () {
 
         var product_id = $(this).attr('id');
         var product_amount = $(this).val();
@@ -16,10 +16,11 @@ function getProductsToBuy(HTML_element_class, url_to_redirect){
             url += product_id + "=" + product_amount;
             counter += 1;
         }
+
     });
 
     if(counter > 0)
-            window.location.href = url;
+        window.location.href = url;
 
 }
     
