@@ -296,29 +296,14 @@ DELIMITER ;
 // in a table salesPerHour (create the table) the event MUST include a 
 // transaction. Check the official mysql documentation page
 
-DELIMITER $$
-CREATE EVENT sales_per_hour_event
-ON SCHEDULE EVERY 1 HOUR 
+DELIMITER //
+CREATE EVENT sales_per_hour_event ON SCHEDULE EVERY 1 HOUR 
 DO
-	SET @currentTime := CURRENT_TIME();
-	IF @currentTime >= '06:00:00' AND @currentTime <= '23:00:00' THEN
+	IF CURRENT_TIME() >= '06:00:00' AND CURRENT_TIME() <= '23:00:00' THEN
 
+		START TRANSACTION;
 		SELECT @sales_amount = compute_sales_amount(NOW() - INTERVAL 1 HOUR, NOW());
 		INSERT sales_per_hour VALUES(NOW() - INTERVAL 1 HOUR, NOW(), @sales_amount);
-	END IF;
-$$
+		COMMIT;
+	END IF//
 DELIMITER ;
-
-
-DELIMITER $$
-CREATE EVENT sales_per_hour_event
-EVERY 1 HOUR STARTS  DATE_FORMAT( NOW( ) ,  "%m-%d-%y 06:00:00" ) ENDS  DATE_FORMAT( NOW( ) ,  "%m-%d-%y 23:00:00" )
-DO 
-	START TRANSACTION;
-
-	SELECT @sales_amount = compute_sales_amount(NOW() - INTERVAL 1 HOUR, NOW());
-	INSERT sales_per_hour VALUES(NOW() - INTERVAL 1 HOUR, NOW(), @sales_amount);
-
-	COMMIT;
-	END $$
-	DELIMITER ;
