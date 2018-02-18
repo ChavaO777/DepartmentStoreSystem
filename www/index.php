@@ -117,7 +117,7 @@
                     echo '<td>' . $row['product_name'] . '</td>';
                     echo '<td>' . $row['department_name'] . '</td>';
                     echo '<td> $' . $row['product_price'] . '</td>';
-                    echo '<td><input id="' . $row['product_id'] . '" class="product-amount" type="number" placeholder="0" text-center style="width: 50px" min="0" autocomplete="off" max="' . $row['product_sku'] . '"></td>';
+                    echo '<td><input id="' . $row['product_id'] . '" class="product-sale-amount" type="number" placeholder="0" text-center style="width: 50px" min="0" autocomplete="off" max="' . $row['product_sku'] . '"></td>';
                   echo '</tr>';
                 }
                 Database::disconnect();
@@ -129,7 +129,7 @@
         <!-- "Comprar" button, it calls getProductsToBuy to know which products are selected  -->
         <div class="form-group">
           <center>
-            <button onclick="getProductsToBuy()" class="btn btn-primary btn-xl">Compra</button>
+            <button onclick="getProductsToBuy('product-sale-amount', 'buy.php')" class="btn btn-primary btn-xl">Compra</button>
           </center>
         </div>
     </section> 
@@ -148,9 +148,9 @@
           <table class="table text-center">
             <thead class="text-uppercase">
               <tr>
-                <th>RFC</th>
-                <th>Proveedor</th>
-                <th>Producto</th>
+                <th>Nombre producto</th>
+                <th>Departamento</th>
+                <th>Precio unitario</th>
                 <th>Cantidad</th>
               </tr>
             </thead>
@@ -167,7 +167,7 @@
                     echo '<td>' . $row['product_name'] . '</td>';
                     echo '<td>' . $row['department_name'] . '</td>';
                     echo '<td> $' . $row['product_price'] . '</td>';
-                    echo '<td><input id="' . $row['product_id'] . '" class="product-amount" type="number" placeholder="0" text-center style="width: 50px" min="0" autocomplete="off" max="' . $row['product_sku'] . '"></td>';
+                    echo '<td><input id="' . $row['product_id'] . '" class="product-purchase-amount" type="number" placeholder="0" text-center style="width: 50px" min="0" autocomplete="off"></td>';
                   echo '</tr>';
                 }
                 Database::disconnect();
@@ -179,7 +179,7 @@
 
       <div class="form-group">
         <center>
-          <button onclick="getProductsToBuy()" class="btn btn-primary btn-xl">Compra</button>
+          <button onclick="getProductsToBuy('product-purchase-amount', 'purchase.php')" class="btn btn-primary btn-xl">Compra</button>
         </center>
       </div>
     </section>
