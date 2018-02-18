@@ -1,0 +1,32 @@
+// Trigger that when the stock of a product reaches 0 units, it generates a purchase order to get min_sku more products.
+
+DELIMITER $$
+CREATE TRIGGER after_product_sale_sku0 
+    AFTER UPDATE ON product
+    FOR EACH ROW 
+BEGIN
+
+    START TRANSACTION;
+
+    DECLARE purchase_order_id INT;
+
+    INSERT INTO purchase_order(
+        id, payment_details, shipment_details, supplier, warehouse_delivery
+    ) VALUES (
+        NULL, NULL, NOW(), NULL, "SUPPLIER01234567", NULL
+    );
+
+    @purchase_order_id := LAST_INSERT_ID(); 
+
+    IF OLD.sku == 0 THEN
+
+        INSERT INTO purchase_order_product(
+            purchase_order, product, quantity, price
+        ) VALUES(
+            @purchase_order_id, OLD.id, OLD.min_req_sku, OLD.price
+        );
+    
+    COMMIT;
+    
+END$$
+DELIMITER ;
