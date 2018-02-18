@@ -300,16 +300,17 @@ DELIMITER $$
 CREATE EVENT [IF NOT EXIST] sales_per_hour_event
 ON SCHEDULE EVERY 1 HOUR 
 DO
-	IF CURRENT_TIME >= '06:00:00' AND CURRENT_TIME <= '23:00:00' 
+	IF NOW() >= '06:00:00' AND NOW() <= '23:00:00' 
 		THEN
 
+			DELIMITER $$
 			START TRANSACTION;
 
 			SELECT @sales_amount = compute_sales_amount(NOW() - INTERVAL 1 HOUR, NOW());
 			INSERT sales_per_hour VALUES(NOW() - INTERVAL 1 HOUR, NOW(), @sales_amount);
 
 			COMMIT;
-END $$
+			END $$
 DELIMITER ;
 
 
