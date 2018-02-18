@@ -276,7 +276,7 @@ CREATE TABLE sales_per_hour(
 // Function to compute the amount of sales in a given time INTERVAL
 
 DELIMITER $$
-CREATE FUNCTION compute_sales_amount (IN prevDateTime DATETIME, IN nextDateTime DATETIME) 
+CREATE FUNCTION compute_sales_amount (prevDateTime DATETIME, nextDateTime DATETIME) 
 RETURNS INT
 DETERMINISTIC
 BEGIN 
