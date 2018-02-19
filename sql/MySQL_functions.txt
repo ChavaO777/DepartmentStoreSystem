@@ -45,7 +45,7 @@ RETURNS DOUBLE
 DETERMINISTIC
 BEGIN 
 	DECLARE @answer INT(11);
-	SET @answer := -1;
+	SET @answer = -1;
 	RETURN @answer;
 END
 $$
