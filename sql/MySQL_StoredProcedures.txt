@@ -1,16 +1,15 @@
-DELIMITER //
-CREATE PROCEDURE GetCategoryProduct(IN categoryID VARCHAR(10))
-	BEGIN
-	SELECT p.id, p.name, p.sku, d.name 
-	FROM product p
-	JOIN category c
-	ON p.category = c.id
-	JOIN department d
-	ON c.department = d.id
-	JOIN branch b
-	ON d.branch = "B0710"
-	WHERE c.id = categoryID
-	GROUP BY p.id
-	ORDER BY d.name;
+CREATE PROCEDURE GetCategoryProduct(IN categoryID VARCHAR(10)) 
+BEGIN
+SELECT p.id
+FROM product p
+JOIN category c
+ON p.category = c.id
+JOIN department d
+ON c.department = d.id
+JOIN branch b
+ON d.branch = "B0710"
+WHERE c.id = categoryID
+GROUP BY p.id
+ORDER BY d.name;
 END //
 DELIMITER ;
