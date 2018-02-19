@@ -26,7 +26,7 @@ BEGIN
 	DECLARE sales_amount_on_day REAL;
 	SET sales_amount_on_day = 0;
 
-		SELECT SUM(daySalesQuery.sale_total_amount) as day_total
+		SELECT SUM(daySalesQuery.sale_total_amount) as day_total INTO sales_amount_on_day
 		FROM
 			(SELECT SUM(sp.quantity*product.price) as sale_total_amount INTO sales_amount_on_day
 			FROM sale_product sp 
