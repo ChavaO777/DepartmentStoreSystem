@@ -28,7 +28,7 @@ BEGIN
 
 		SELECT SUM(daySalesQuery.sale_total_amount) as day_total
 		FROM
-			(SELECT SUM(sp.quantity*product.price) as 'sale_total_amount' INTO sales_amount_on_day
+			(SELECT SUM(sp.quantity*product.price) as sale_total_amount INTO sales_amount_on_day
 			FROM sale_product sp 
 			LEFT JOIN product ON sp.product = product.id 
 			LEFT JOIN sale s ON sp.sale = s.id 
