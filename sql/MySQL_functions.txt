@@ -23,7 +23,7 @@ CREATE FUNCTION compute_sales_details_on_day (date DATE)
 RETURNS REAL
 DETERMINISTIC
 BEGIN 
-	SET sales_amount_on_day := SELECT SUM(daySalesQuery.sale_total_amount)
+	SET sales_amount_on_day := (SELECT SUM(daySalesQuery.sale_total_amount)
 	FROM
 		(SELECT SUM(sp.quantity*product.price) as sale_total_amount 
 		FROM sale_product sp 
@@ -31,7 +31,7 @@ BEGIN
 		LEFT JOIN sale s ON sp.sale = s.id 
 		LEFT JOIN customer c ON s.customer = c.id 
 		WHERE DATE(s.date_time) = date
-		GROUP BY sp.sale) AS daySalesQuery;
+		GROUP BY sp.sale) AS daySalesQuery);
 
 	RETURN sales_amount_on_day;
 END$$
