@@ -5,20 +5,20 @@ CREATE TRIGGER after_product_sale_sku0
     AFTER UPDATE ON product
     FOR EACH ROW 
 
-    DECLARE @purchase_order_id INT(11);
+    DECLARE purchase_order_id INT DEFAULT 0;
 
     INSERT INTO purchase_order VALUES (
         NULL, NULL, NOW(), NULL, "SUPPLIER01234567"
     );
 
-    SET @purchase_order_id := LAST_INSERT_ID(); 
+    SET purchase_order_id := LAST_INSERT_ID(); 
 
     IF OLD.sku = 0 THEN
 
         INSERT INTO purchase_order_product(
             purchase_order, product, quantity, price
         ) VALUES(
-            @purchase_order_id, OLD.id, OLD.min_req_sku, OLD.price
+            purchase_order_id, OLD.id, OLD.min_req_sku, OLD.price
         );
     
     END IF;
