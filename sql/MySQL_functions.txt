@@ -24,7 +24,7 @@ RETURNS DOUBLE
 DETERMINISTIC
 BEGIN 
 	DECLARE sales_amount_on_day DOUBLE;
-	SET sales_amount_on_day := (SELECT SUM(daySalesQuery.sale_total_amount)
+	SET sales_amount_on_day = (SELECT SUM(daySalesQuery.sale_total_amount)
 	FROM
 		(SELECT SUM(sp.quantity*product.price) as sale_total_amount 
 		FROM sale_product sp 
