@@ -6,15 +6,15 @@ CREATE TRIGGER after_product_sale_sku0
     FOR EACH ROW 
     BEGIN
 
-    DECLARE purchase_order_id INT DEFAULT 0;
-
-    INSERT INTO purchase_order VALUES (
-        NULL, NULL, NOW(), NULL, "SUPPLIER01234567"
-    );
-
-    SET purchase_order_id := LAST_INSERT_ID(); 
-
     IF NEW.sku = 0 THEN
+
+        DECLARE purchase_order_id INT DEFAULT 0;
+
+        INSERT INTO purchase_order VALUES (
+            NULL, NULL, NOW(), NULL, "SUPPLIER01234567"
+        );
+
+        SET purchase_order_id := LAST_INSERT_ID(); 
 
         INSERT INTO purchase_order_product(
             purchase_order, product, quantity, price
