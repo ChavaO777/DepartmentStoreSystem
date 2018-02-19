@@ -6,9 +6,9 @@ CREATE TRIGGER after_product_sale_sku0
     FOR EACH ROW 
     BEGIN
 
-    IF NEW.sku = 0 THEN
+    DECLARE purchase_order_id INT DEFAULT 0;
 
-        DECLARE purchase_order_id INT DEFAULT 0;
+    IF NEW.sku = 0 THEN
 
         INSERT INTO purchase_order VALUES (
             NULL, NULL, NOW(), NULL, "SUPPLIER01234567"
