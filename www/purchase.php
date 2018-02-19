@@ -35,12 +35,13 @@
 
         // Mysql query to select price of the product the company will buy
         $sql_getProductPrice = "SELECT price FROM product WHERE id = " . $product_id;
+        $result_getProductPrice = $link->query($sql_getProductPrice);
 
         // Traverse through the map of (row = product_price)
-        foreach ($link->query($sql_getProductPrice) as $product_price){
+        while ($product_price = $result_getProductPrice->fetch_assoc()){
 
             // Mysql to insert on purchase_order_product table
-            $sql_insertPurchaseOrderProduct = "INSERT INTO purchase_order_product VALUES (null, '" . $product_id . "', $product_amount, " . $product_price . ", @newPurchaseOrder_id)";
+            $sql_insertPurchaseOrderProduct = "INSERT INTO purchase_order_product VALUES (null, '" . $product_id . "', $product_amount, '". $product_price."', @newPurchaseOrder_id)";
             $result_insertPurchaseOrderProduct = $link->query($sql_insertPurchaseOrderProduct);
 
             // Mysql query to get stock of the product the company will buy
@@ -147,7 +148,6 @@
 
                         require_once('database.php');
                         $pdo0 = Database::connect();
-                        $sale_total_amount = 0.0;
 
                         //Traverse through the map(key=product_id, value=product_amount)
                         foreach($query_array as $key => $value) {
@@ -163,18 +163,8 @@
                                 echo '<td>' . $row['product_name'] . '</td>';
                                 echo '<td> $ ' . $value * $row['product_price'] . '</td>';
                                 echo '</tr>';
-
-                                //Add to the total amount of the sale
-                                $sale_total_amount += $value * $row['product_price'];
                             }
                         }
-                        
-                        //Show the total amount of the sale
-                        echo '<tr>';
-                        echo '<td></td>';
-                        echo '<td class="text-uppercase text-secondary">Monto total de la compra</td>';
-                        echo '<td> $ ' . $sale_total_amount . '</td>';
-                        echo '</tr>';
 
                         //Disconnect the DB
                         Database::disconnect();
