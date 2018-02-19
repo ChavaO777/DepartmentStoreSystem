@@ -33,7 +33,7 @@ BEGIN
 			LEFT JOIN product ON sp.product = product.id 
 			LEFT JOIN sale s ON sp.sale = s.id 
 			LEFT JOIN customer c ON s.customer = c.id 
-			WHERE DATE(s.date_time) = date;
+			WHERE DATE(s.date_time) = date
 			GROUP BY sp.sale) AS daySalesQuery;
 
 	RETURN sales_amount_on_day;
