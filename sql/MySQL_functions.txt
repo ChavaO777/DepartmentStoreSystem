@@ -46,7 +46,7 @@ DETERMINISTIC
 BEGIN 
 	DECLARE answer INT(11);
 	SET answer = -1;
-	RETURN @answer;
+	RETURN answer;
 END
 $$
 DELIMITER ;
