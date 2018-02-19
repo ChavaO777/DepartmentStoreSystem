@@ -5,8 +5,6 @@ CREATE TRIGGER after_product_sale_sku0
     AFTER UPDATE ON product
     FOR EACH ROW 
 
-    START TRANSACTION;
-
     DECLARE purchase_order_id integer;
 
     INSERT INTO purchase_order(
@@ -24,7 +22,5 @@ CREATE TRIGGER after_product_sale_sku0
         ) VALUES(
             @purchase_order_id, OLD.id, OLD.min_req_sku, OLD.price
         );
-    
-    COMMIT;
 $$
 DELIMITER ;
