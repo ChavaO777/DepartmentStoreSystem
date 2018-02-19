@@ -40,12 +40,11 @@ DELIMITER ;
 // Example Function
 
 DELIMITER $$
-CREATE FUNCTION example_function (date DATE) 
-RETURNS DOUBLE
+CREATE FUNCTION example_function (date DATE) RETURNS DOUBLE(10)
 DETERMINISTIC
 BEGIN 
-	DECLARE answer INT(11);
-	SET answer = -1;
+	DECLARE answer DOUBLE(10);
+	SET answer = -1.0;
 	RETURN answer;
 END
 $$
