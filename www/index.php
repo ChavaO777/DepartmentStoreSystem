@@ -72,7 +72,7 @@
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#ventas">ventas</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#ventas">Ordenes de compra</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#ordenesDeCompra">Ordenes de compra</a>
             </li>
           </ul>
         </div>
@@ -281,6 +281,43 @@
         <!-- "Inventario title with a star and two lines" -->
         <h2 class="text-center text-uppercase text-secondary mb-0">Ordenes de compra</h2>
         <hr class="star-dark mb-5">
+      </div>
+
+      <div class="table-responsive text-center">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Fecha y hora</th>
+              <th>Proveedor</th>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Importe total</th>
+            </tr>
+          </thead>
+          <tbody>
+          <!-- Table body with php code to show dateails using a mysql query -->
+          <?php 
+              
+              require_once('database.php');
+
+              $pdo4 = Database::connect();
+              $sql = "SELECT po.id as 'purchase_id', po.date_time as 'date_time', po.supplier as 'puchase_supplier', p.name as 'product_name', pop.quantity as 'product_quantity', (pop.quantity*p.price) as 'purchase_total_amount' FROM purchase_order po LEFT JOIN purchase_order_product pop ON po.id = pop.purchase_order LEFT JOIN product p ON pop.product = p.id";
+              
+              foreach ($pdo4->query($sql) as $row) {
+                echo '<tr>';                  
+                  echo '<td>'. $row['purchase_id'] . '</td>';
+                  echo '<td>'. $row['date_time'] . '</td>';
+                  echo '<td>'. $row['puchase_supplier'] . '</td>';
+                  echo '<td>'. $row['product_name'] . '</td>';
+                  echo '<td>'. $row['product_quantity'] . '</td>';
+                  echo '<td>$ '. $row['purchase_total_amount'] . '</td>';
+                echo '</tr>';
+              }
+              Database::disconnect();
+            ?>
+          </tbody>
+        </table>
       </div>
     </section>
 
