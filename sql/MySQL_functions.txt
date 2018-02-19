@@ -31,8 +31,20 @@ BEGIN
 		LEFT JOIN sale s ON sp.sale = s.id 
 		LEFT JOIN customer c ON s.customer = c.id 
 		WHERE DATE(s.date_time) = date
-		GROUP BY sp.sale) GROUP BY sale_total_amount AS daySalesQuery);
+		GROUP BY sp.sale) AS daySalesQuery);
 
 	RETURN @sales_amount_on_day;
+END$$
+DELIMITER ;
+
+// Example Function
+
+DELIMITER $$
+CREATE FUNCTION example_function (date DATE) 
+RETURNS DOUBLE
+DETERMINISTIC
+BEGIN 
+	SET @answer := -1;
+	RETURN @answer;
 END$$
 DELIMITER ;
