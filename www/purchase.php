@@ -41,6 +41,7 @@
         while ($product_price = $result_getProductPrice->fetch_assoc()){
 
             // Mysql to insert on purchase_order_product table
+
             $sql_insertPurchaseOrderProduct = "INSERT INTO purchase_order_product VALUES (null, '" . $product_id . "', $product_amount, '". $product_price."', @newPurchaseOrder_id)";
             $result_insertPurchaseOrderProduct = $link->query($sql_insertPurchaseOrderProduct);
 
