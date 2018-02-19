@@ -19,22 +19,23 @@ DELIMITER ;
 // Function to compute the amount of a given sale in a given time INTERVAL
 
 DELIMITER $$
-CREATE FUNCTION compute_sales_details_on_day (date DATE) 
+CREATE FUNCTION compute_sales_details_on_day (date_param DATE) 
 RETURNS DOUBLE
 DETERMINISTIC
 BEGIN 
-	SET @sales_amount_on_day := (SELECT SUM(daySalesQuery.sale_total_amount)
+	DECLARE sales_amount_on_day DOUBLE;
+	SET sales_amount_on_day := (SELECT SUM(daySalesQuery.sale_total_amount)
 	FROM
 		(SELECT SUM(sp.quantity*product.price) as sale_total_amount 
 		FROM sale_product sp 
 		LEFT JOIN product ON sp.product = product.id 
 		LEFT JOIN sale s ON sp.sale = s.id 
 		LEFT JOIN customer c ON s.customer = c.id 
-		WHERE DATE(s.date_time) = date
+		WHERE DATE(s.date_time) = date_param
 		GROUP BY sp.sale) AS daySalesQuery);
 
-	RETURN @sales_amount_on_day;
-END$$
+	RETURN sales_amount_on_day;
+END $$
 DELIMITER ;
 
 // Example Function
@@ -65,4 +66,5 @@ DELIMITER ;
 
 
 
-SELECT WEIGHTED_AVERAGE(70,65,65,60)\G
+SELECT WEIGHTED_AVERAGE(70,65,65,60)\G;
+
