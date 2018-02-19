@@ -71,6 +71,9 @@
             <li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#ventas">ventas</a>
             </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#ventas">Ordenes de compra</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -269,6 +272,15 @@
             ?>
           </tbody>
         </table>
+      </div>
+    </section>
+
+    <!-- "inventario" Section -->
+    <section class="ordenesDeCompra" id="ordenesDeCompra">
+      <div class="container">
+        <!-- "Inventario title with a star and two lines" -->
+        <h2 class="text-center text-uppercase text-secondary mb-0">Ordenes de compra</h2>
+        <hr class="star-dark mb-5">
       </div>
     </section>
 
