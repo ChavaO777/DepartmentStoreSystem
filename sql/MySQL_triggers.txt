@@ -4,6 +4,7 @@ DELIMITER $$
 CREATE TRIGGER after_product_sale_sku0 
     AFTER UPDATE ON product
     FOR EACH ROW 
+    BEGIN
 
     DECLARE purchase_order_id INT DEFAULT 0;
 
@@ -22,5 +23,7 @@ CREATE TRIGGER after_product_sale_sku0
         );
     
     END IF;
+
+    END 
 $$
 DELIMITER ;
