@@ -16,7 +16,7 @@ BEGIN
         NULL, NULL, NOW(), NULL, "SUPPLIER01234567", NULL
     );
 
-    @purchase_order_id := LAST_INSERT_ID(); 
+    SET @purchase_order_id := LAST_INSERT_ID(); 
 
     IF OLD.sku == 0 THEN
 
