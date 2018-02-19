@@ -15,7 +15,7 @@ CREATE TRIGGER after_product_sale_sku0
 
     SET @purchase_order_id := LAST_INSERT_ID(); 
 
-    IF OLD.sku == 0 THEN
+    IF OLD.sku = 0 THEN
 
         INSERT INTO purchase_order_product(
             purchase_order, product, quantity, price
