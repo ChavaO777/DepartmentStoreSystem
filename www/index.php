@@ -315,9 +315,6 @@
               <th>ID</th>
               <th>Fecha y hora</th>
               <th>Proveedor</th>
-              <th>Producto</th>
-              <th>Cantidad</th>
-              <th>Importe total</th>
             </tr>
           </thead>
           <tbody>
@@ -334,9 +331,6 @@
                   echo '<td>'. $row['purchase_id'] . '</td>';
                   echo '<td>'. $row['date_time'] . '</td>';
                   echo '<td>'. $row['puchase_supplier'] . '</td>';
-                  echo '<td>'. $row['product_name'] . '</td>';
-                  echo '<td>'. $row['product_quantity'] . '</td>';
-                  echo '<td>$ '. $row['purchase_total_amount'] . '</td>';
                 echo '</tr>';
               }
               Database::disconnect();
