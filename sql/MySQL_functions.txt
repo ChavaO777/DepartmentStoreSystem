@@ -1,0 +1,17 @@
+// Function to compute the amount of sales in a given time INTERVAL
+
+DELIMITER $$
+CREATE FUNCTION compute_sales_amount (prevDateTime DATETIME, nextDateTime DATETIME) 
+RETURNS INT
+DETERMINISTIC
+BEGIN 
+	DECLARE sales_amount INT;
+	SET sales_amount = 0;
+
+	SELECT COUNT(*) INTO sales_amount
+	FROM sale 
+	WHERE prevDateTime <= date_time AND date_time <= nextDateTime;
+
+	RETURN sales_amount;
+END$$
+DELIMITER ;

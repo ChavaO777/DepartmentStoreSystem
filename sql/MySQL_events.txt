@@ -1,0 +1,17 @@
+// Event with a transaction to create an event that every hour stores the amount of 
+// sales in the last hour (starting at 5:00 hrs and ending at 23:00 hrs) 
+// in a table salesPerHour (create the table) the event MUST include a 
+// transaction. Check the official mysql documentation page
+
+DELIMITER //
+CREATE EVENT sales_per_hour_event ON SCHEDULE EVERY 1 HOUR 
+ON COMPLETION PRESERVE
+DO
+	IF CURRENT_TIME() >= '06:00:00' AND CURRENT_TIME() <= '23:00:00' THEN
+
+		START TRANSACTION;
+		SELECT @sales_amount := compute_sales_amount(NOW() - INTERVAL 1 HOUR, NOW());
+		INSERT INTO sales_per_hour VALUES(NULL, NOW() - INTERVAL 1 HOUR, NOW(), @sales_amount);
+		COMMIT;
+	END IF//
+DELIMITER ;
