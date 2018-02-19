@@ -29,15 +29,6 @@
         if(isset($_POST['customer_lastname']))  
             $lastname = $_POST['customer_lastname'];
 
-        /*Avoid "undefined index" error
-        if(isset($name)){ 
-            echo $name;
-        }
-
-        if(isset($lastname)){ 
-            echo $lastname;
-        }*/
-
         //Input validation
         $valid = true;
         
