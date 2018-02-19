@@ -44,8 +44,8 @@ CREATE FUNCTION example_function (date DATE)
 RETURNS DOUBLE
 DETERMINISTIC
 BEGIN 
-	DECLARE @answer INT(11);
-	SET @answer = -1;
+	DECLARE answer INT(11);
+	SET answer = -1;
 	RETURN @answer;
 END
 $$
