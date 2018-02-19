@@ -5,7 +5,7 @@ CREATE TRIGGER after_product_sale_sku0
     AFTER UPDATE ON product
     FOR EACH ROW 
 
-    DECLARE @purchase_order_id INT;
+    DECLARE @purchase_order_id INT(11);
 
     INSERT INTO purchase_order(
         id, payment_details, date_time, shipment_details, supplier
