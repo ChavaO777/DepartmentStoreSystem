@@ -7,9 +7,7 @@ CREATE TRIGGER after_product_sale_sku0
 
     DECLARE @purchase_order_id INT(11);
 
-    INSERT INTO purchase_order(
-        id, payment_details, date_time, shipment_details, supplier
-    ) VALUES (
+    INSERT INTO purchase_order VALUES (
         NULL, NULL, NOW(), NULL, "SUPPLIER01234567"
     );
 
