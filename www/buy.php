@@ -46,7 +46,7 @@
         if ($valid) {
 
             //Initialize mysql
-            $link = mysqli_connect("127.0.0.1", "root", "", "liverpool");
+            $link = mysqli_connect("localhost", "root", "MyNewPass", "liverpool");
 
             // Start of transaction
             $link->autocommit(FALSE);

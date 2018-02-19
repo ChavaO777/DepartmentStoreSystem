@@ -2,9 +2,9 @@
 	class Database {
 		// Mysql information to connect
 		private static $dbName 			= 'liverpool' ; 
-		private static $dbHost 			= '127.0.0.1' ;
+		private static $dbHost 			= 'localhost' ;
 		private static $dbUsername 		= 'root';
-		private static $dbUserPassword 	= '';
+		private static $dbUserPassword 	= 'MyNewPass';
 		
 		private static $cont  = null;
 		
