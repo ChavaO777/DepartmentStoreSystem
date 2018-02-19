@@ -16,24 +16,55 @@ BEGIN
 END$$
 DELIMITER ;
 
-// Function to compute the amount of sales in a given time INTERVAL
+// Function to compute the amount of a given sale in a given time INTERVAL
 
 DELIMITER $$
-CREATE FUNCTION compute_sales_details_on_day (date DATE) 
-RETURNS REAL
+CREATE FUNCTION compute_sales_details_on_day (date_param DATE) 
+RETURNS DOUBLE
 DETERMINISTIC
 BEGIN 
-	DECLARE sales_amount_on_day REAL;
-	SET sales_amount = 0;
-
-	SELECT SUM(sp.quantity*product.price) as 'sale_total_amount' INTO sales_amount_on_day
-	FROM sale_product sp 
-	LEFT JOIN product ON sp.product = product.id 
-	LEFT JOIN sale s ON sp.sale = s.id 
-	LEFT JOIN customer c ON s.customer = c.id 
-	WHERE DATE(s.date_time) = date;
-	GROUP BY sp.sale;
+	DECLARE sales_amount_on_day DOUBLE;
+	SET sales_amount_on_day = (SELECT SUM(daySalesQuery.sale_total_amount)
+	FROM
+		(SELECT SUM(sp.quantity*product.price) as sale_total_amount 
+		FROM sale_product sp 
+		LEFT JOIN product ON sp.product = product.id 
+		LEFT JOIN sale s ON sp.sale = s.id 
+		LEFT JOIN customer c ON s.customer = c.id 
+		WHERE DATE(s.date_time) = date_param
+		GROUP BY sp.sale) AS daySalesQuery);
 
 	RETURN sales_amount_on_day;
-END$$
+END $$
 DELIMITER ;
+
+// Example Function
+
+DELIMITER $$
+CREATE FUNCTION example_function (var INT) RETURNS DOUBLE
+DETERMINISTIC
+BEGIN 
+	DECLARE answer DOUBLE;
+	SET answer = -1.0;
+	RETURN (answer);
+END
+$$
+DELIMITER ;
+
+// Another example function
+
+DELIMITER $$
+CREATE FUNCTION WEIGHTED_AVERAGE (n1 INT, n2 INT, n3 INT, n4 INT)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+	DECLARE avg INT;
+	SET avg = (n1+n2+n3*2+n4*4)/8;
+	RETURN avg;
+END $$
+DELIMITER ;
+
+
+
+SELECT WEIGHTED_AVERAGE(70,65,65,60)\G;
+

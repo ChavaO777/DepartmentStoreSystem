@@ -1,0 +1,263 @@
+#instructions 4 mySQL terminal
+
+
+####################################################################################
+#                        MySQL events                                              #
+####################################################################################
+
+SET GLOBAL event_scheduler = ON;
+	
+SHOW PROCESSLIST;
+
+CREATE TABLE IF NOT EXISTS messages (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    message VARCHAR(255) NOT NULL,
+    created_at DATETIME NOT NULL
+);
+
+CREATE EVENT IF NOT EXISTS test_event_01
+ON SCHEDULE AT CURRENT_TIMESTAMP
+DO
+  INSERT INTO messages(message,created_at)
+  VALUES('Test MySQL Event 1',NOW());
+
+
+CREATE EVENT test_event_02
+ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 1 MINUTE
+ON COMPLETION PRESERVE
+DO
+   INSERT INTO messages(message,created_at)
+   VALUES('Test MySQL Event 2',NOW());
+
+CREATE EVENT test_event_03
+ON SCHEDULE EVERY 1 MINUTE
+STARTS CURRENT_TIMESTAMP
+ENDS CURRENT_TIMESTAMP + INTERVAL 1 HOUR
+DO
+   INSERT INTO messages(message,created_at)
+   VALUES('Test MySQL recurring Event',NOW());
+
+
+DROP EVENT test_event_01;
+
+DROP EVENT test_event_02;
+
+DROP EVENT test_event_03;
+
+
+####################################################################################
+#                        MySQL stored functions                                    #
+####################################################################################
+
+
+DELIMITER $$
+  CREATE FUNCTION Country(idmarca int) RETURNS VARCHAR(10)
+  DETERMINISTIC
+  BEGIN
+    DECLARE country varchar(10);
+    IF idmarca = 1 THEN
+    SET country = 'JAPAN';
+    ELSEIF idmarca = 2  THEN
+    SET country = 'GERMANY';
+    ELSEIF idmarca = 3 THEN
+    SET country = 'U.S.A.';
+    END IF;
+    RETURN (country);
+  END
+  $$	
+
+DELIMITER ;
+
+select nombrec, Country(idmarca) from auto2 order by idauto;
+
+drop function Country;
+
+
+
+####################################################################################
+#                        MySQL triggers                                            #
+####################################################################################
+
+# MySQL trigger naming convention
+# (BEFORE | AFTER)_tableName_(INSERT| UPDATE | DELETE)
+# tablename_(BEFORE | AFTER)_(INSERT| UPDATE | DELETE)
+
+create table auto2_audit(id int not null primary key auto_increment, nombrec varchar(20), changedat datetime default null, action varchar(50) default null);
+
+DELIMITER $$
+  CREATE TRIGGER before_auto2_update 
+  BEFORE UPDATE ON auto2
+  FOR EACH ROW 
+  BEGIN
+    INSERT INTO auto2_audit
+    SET action = 'update',
+    nombrec = OLD.nombrec,
+    changedat = NOW(); 
+  END$$
+
+
+DELIMITER ;
+
+# update a car
+# check the auto2_audit table
+
+
+
+
+####################################################################################
+#                        MySQL stored procedures                                   #
+####################################################################################
+
+
+# simple example
+
+DELIMITER //
+CREATE PROCEDURE GetAllCars()
+  BEGIN
+    select * from auto2 natural join marca2;
+  END //
+DELIMITER ;
+
+CALL GetAllCars();
+
+
+
+# Using parameters
+
+DELIMITER //
+  CREATE PROCEDURE GetCarsByMake(IN makeId int)
+    BEGIN
+      select * from auto2 
+      natural join 
+      marca2 
+      where idmarca = makeId;
+    END //
+DELIMITER ;
+
+
+call GetCarsByMake(1);
+
+# Using in and out
+
+DELIMITER $$
+CREATE PROCEDURE CountCarsByMake(
+ IN makeId int,
+ OUT total INT)
+  BEGIN
+   SELECT count(nombrec)
+   INTO total
+   FROM auto2
+   WHERE idmarca = makeId;
+  END$$
+DELIMITER ;
+
+
+call CountCarsByMake(1, @hondaCars);
+
+select @hondaCars;
+
+# Multiple return values
+
+DELIMITER $$
+ 
+CREATE PROCEDURE get_cars_by_make(
+OUT honda INT,
+OUT volkswagen INT,
+OUT ford INT,
+OUT mazda INT)
+BEGIN
+-- honda
+ SELECT count(nombrec)
+ INTO honda
+ FROM auto2
+ WHERE idmarca = 1;
+
+-- volkswagen
+ SELECT count(nombrec)
+ INTO volkswagen
+ FROM auto2
+ WHERE idmarca = 2;
+
+-- ford
+ SELECT count(nombrec)
+ INTO ford
+ FROM auto2
+ WHERE idmarca = 3;
+
+-- mazda
+ SELECT count(nombrec)
+ INTO mazda
+ FROM auto2
+ WHERE idmarca = 5;
+ 
+END$$
+
+DELIMITER ;
+
+
+
+call get_cars_by_make(@honda, @vw, @ford, @mazda);
+
+select @honda, @vw, @ford, @mazda;
+
+
+
+# using IF 
+
+DELIMITER $$
+
+CREATE PROCEDURE GetAvailableCars(
+    in  makeId int(11), 
+    out available  varchar(10))
+BEGIN
+    DECLARE howmany int;
+ 
+SELECT count(nombrec)
+INTO howmany
+FROM auto2
+WHERE idmarca = makeId;
+ 
+IF howmany > 0 THEN
+SET available = 'Available';
+ELSE
+SET available = 'NOT AVAILABLE';
+END IF;
+ 
+END$$
+
+DELIMITER ;
+
+
+call GetAvailableCars(1,@hondas);
+
+ select @hondas;
+
+
+
+ DELIMITER $$
+
+CREATE PROCEDURE GetAvailableCars(
+    in  makeId int(11), 
+    out available  varchar(20))
+BEGIN
+    DECLARE howmany int;
+ 
+SELECT count(nombrec)
+INTO howmany
+FROM auto2
+WHERE idmarca = makeId;
+ 
+IF howmany > 0 THEN
+SET available = 'Available';
+ELSE
+SET available = 'NOT AVAILABLE';
+END IF;
+ 
+END$$
+
+DELIMITER ;
+
+
+call GetAvailableCars(1,@hondas);
+
+ select @hondas;
