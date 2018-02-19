@@ -324,7 +324,7 @@
               require_once('database.php');
 
               $pdo4 = Database::connect();
-              $sql = "SELECT po.id as 'purchase_id', po.date_time as 'date_time', po.supplier as 'puchase_supplier', p.name as 'product_name', pop.quantity as 'product_quantity', (pop.quantity*p.price) as 'purchase_total_amount' FROM purchase_order po LEFT JOIN purchase_order_product pop ON po.id = pop.purchase_order LEFT JOIN product p ON pop.product = p.id";
+              $sql = "SELECT po.id as 'purchase_id', po.date_time as 'date_time', po.supplier as 'puchase_supplier', p.name as 'product_name', pop.quantity as 'product_quantity', (pop.quantity*p.price) as 'purchase_total_amount' FROM purchase_order po LEFT JOIN purchase_order_product pop ON po.id = pop.purchase_order LEFT JOIN product p ON pop.product = p.id ORDER BY po.id";
               
               foreach ($pdo4->query($sql) as $row) {
                 echo '<tr>';                  
