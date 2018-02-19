@@ -8,9 +8,9 @@ CREATE TRIGGER after_product_sale_sku0
     DECLARE purchase_order_id integer;
 
     INSERT INTO purchase_order(
-        id, payment_details, shipment_details, supplier, warehouse_delivery
+        id, payment_details, date_time, shipment_details, supplier
     ) VALUES (
-        NULL, NULL, NOW(), NULL, "SUPPLIER01234567", NULL
+        NULL, NULL, NOW(), NULL, "SUPPLIER01234567"
     );
 
     SET @purchase_order_id := LAST_INSERT_ID(); 
