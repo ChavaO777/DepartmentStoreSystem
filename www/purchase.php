@@ -40,7 +40,7 @@
         foreach ($link->query($sql_getProductPrice) as $product_price){
 
             // Mysql to insert on purchase_order_product table
-            $sql_insertPurchaseOrderProduct = "INSERT INTO purchase_order_product VALUES (null, '" . $product_id . "', $product_amount, " . $product_price . ", @newPurchaseOrder_id)";
+            $sql_insertPurchaseOrderProduct = "INSERT INTO purchase_order_product VALUES (null, '" . $product_id . "', $product_amount, $product_price, @newPurchaseOrder_id)";
             $result_insertPurchaseOrderProduct = $link->query($sql_insertPurchaseOrderProduct);
 
             // Mysql query to get stock of the product the company will buy
