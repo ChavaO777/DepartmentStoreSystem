@@ -4,7 +4,6 @@ DELIMITER $$
 CREATE TRIGGER after_product_sale_sku0 
     AFTER UPDATE ON product
     FOR EACH ROW 
-BEGIN
 
     START TRANSACTION;
 
@@ -27,6 +26,5 @@ BEGIN
         );
     
     COMMIT;
-
-END$$
+$$
 DELIMITER ;
