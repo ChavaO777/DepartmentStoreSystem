@@ -8,7 +8,7 @@ BEGIN
 
     START TRANSACTION;
 
-    DECLARE purchase_order_id INT;
+    DECLARE purchase_order_id integer;
 
     INSERT INTO purchase_order(
         id, payment_details, shipment_details, supplier, warehouse_delivery
@@ -27,6 +27,6 @@ BEGIN
         );
     
     COMMIT;
-    
+
 END$$
 DELIMITER ;
