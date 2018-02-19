@@ -45,7 +45,7 @@ DETERMINISTIC
 BEGIN 
 	DECLARE answer DOUBLE;
 	SET answer = -1.0;
-	RETURN answer;
+	RETURN (answer);
 END
 $$
 DELIMITER ;
