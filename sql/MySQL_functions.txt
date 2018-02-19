@@ -16,7 +16,7 @@ BEGIN
 END$$
 DELIMITER ;
 
-// Function to compute the amount of a given sale in a given time INTERVAL
+// Function to compute the sum of the amounts of all sales on a given date
 
 DELIMITER $$
 CREATE FUNCTION compute_sales_details_on_day (date_param DATE) 

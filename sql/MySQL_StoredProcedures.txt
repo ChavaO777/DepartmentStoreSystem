@@ -1,3 +1,4 @@
+DELIMITER //
 CREATE PROCEDURE GetCategoryProduct(IN categoryID VARCHAR(10)) 
 BEGIN
 SELECT p.id
