@@ -97,21 +97,68 @@
         </div>
         <!-- Table to show products -->
         <div><center>
-          <select class="text-center">
+          <form action="#" method="post">
+            <select class="text-center btn btn-primary" name = "category">
+             <option value="null" disabled selected>Categoría</option>
+              <?php
+                require_once('database.php');
+
+                $pdo0 = Database::connect();
+                $sql = "SELECT category.name as 'category_name', category.id as 'category_id' FROM category INNER JOIN department ON category.department = department.id WHERE department.branch = 'B0710'";
+
+                foreach ($pdo0->query($sql) as $row){
+                  echo '<option value='. $row['category_id'] .'>'. $row['category_name'] . '</option>';
+                }
+
+                Database::disconnect();
+              ?>
+            </select>
+            <input type="submit" name="submit" value="Ver artículos" / class="btn btn-primary" href="comprar">
+          </form> 
+          
+          <div class="table-responsive">
+          <table class="table text-center">
+            <thead class="text-uppercase">
+              <tr>
+                <th>Nombre producto</th>
+                <th>Departamento</th>
+                <th>Precio unitario</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
             <?php
-              require_once('database.php');
+              if(isset($_POST['submit'])){
+                $selected_val = $_POST['category'];
 
-              $pdo0 = Database::connect();
-              $sql = "SELECT category.name as 'category_name' FROM category INNER JOIN department ON category.department = department.id WHERE department.branch = 'B0710'";
+                require_once('database.php');
+                
+                $pdo0 = Database::connect();
 
-              foreach ($pdo0->query($sql) as $row){
-                echo '<option>'. $row['category_name'] . '</option>';
+                $sql = "SELECT p.id as 'product_id', p.name as 'product_name', d.name as 'department_name', p.price as 'product_price', p.sku as 'product_sku' FROM product p JOIN category c ON p.category = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' WHERE c.id = '" . $selected_val . "' GROUP BY p.id ORDER BY d.name";
+                foreach ($pdo0->query($sql) as $row) {
+                  echo '<tr>';
+                    echo '<td>' . $row['product_name'] . '</td>';
+                    echo '<td>' . $row['department_name'] . '</td>';
+                    echo '<td> $' . $row['product_price'] . '</td>';
+                    echo '<td><input id="' . $row['product_id'] . '" class="product-sale-amount" type="number" placeholder="0" text-center style="width: 50px" min="0" autocomplete="off" max="' . $row['product_sku'] . '"></td>';
+                  echo '</tr>';
+                }
+                Database::disconnect();
               }
-
-              Database::disconnect();
             ?>
-          </select>
-        </div></center>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="form-group">
+          <center>
+            <button onclick="getProductsToBuy('product-sale-amount', 'buy.php')" class="btn btn-primary btn-xl">Compra</button>
+          </center>
+        </div>
+        
+      </div>
+      </center>
     </section> 
 
     <!-- "Compra a proveedores" Section -->
