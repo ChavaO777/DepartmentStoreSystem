@@ -20,7 +20,7 @@ DELIMITER ;
 
 DELIMITER $$
 CREATE FUNCTION compute_sales_details_on_day (date DATE) 
-RETURNS REAL
+RETURNS DOUBLE
 DETERMINISTIC
 BEGIN 
 	SET @sales_amount_on_day := (SELECT SUM(daySalesQuery.sale_total_amount)
