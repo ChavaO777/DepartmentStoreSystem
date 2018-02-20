@@ -133,18 +133,29 @@
                 $selected_val = $_POST['category'];
 
                 require_once('database.php');
-                $pdo0 = Database::connect();
+                $pdo5 = Database::connect();
 
-                $sql = "SELECT p.id as 'product_id', p.name as 'product_name', d.name as 'department_name', p.price as 'product_price', p.sku as 'product_sku' FROM product p JOIN category c ON p.category = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' WHERE c.id = '" . $selected_val . "' GROUP BY p.id ORDER BY d.name";
+                $sql_callStoredProcedure = "CALL GetCategoryProduct('" . $selected_val ."')";
+                
+                foreach ($pdo5->query($sql_callStoredProcedure) as $row){
+                  
+                  $sql_selectProductTable = "SELECT p.id as 'product_id', p.name as 'product_name', d.name as 'department_name', p.price as 'product_price', p.sku as 'product_sku' FROM product p JOIN category c ON p.category = c.id JOIN department d ON c.department = d.id JOIN branch b ON d.branch = 'B0710' WHERE p.id = '" . $row['id'] . "' GROUP BY p.id";
+                  $result_selectProductTable = $pdo5->prepare($sql_selectProductTable);
+                  $result_selectProductTable->execute();
+                  
+                  echo $row['id'];
+                  while($result = $result_selectProductTable->fetch(PDO::FETCH_ASSOC)) {
+                    echo $row['id'];
 
-                foreach ($pdo0->query($sql) as $row) {
-                  echo '<tr>';
-                  echo '<td>' . $row['product_name'] . '</td>';
-                  echo '<td>' . $row['department_name'] . '</td>';
-                  echo '<td> $' . $row['product_price'] . '</td>';
-                  echo '<td><input id="' . $row['product_id'] . '" class="product-sale-amount" type="number" placeholder="0" text-center style="width: 50px" min="0" autocomplete="off" max="' . $row['product_sku'] . '"></td>';
-                  echo '</tr>';
-                }
+                    echo '<tr>';
+                    echo '<td>' . $result['product_name'] . '</td>';
+                    echo '<td>' . $result['department_name'] . '</td>';
+                    echo '<td> $' . $result['product_price'] . '</td>';
+                    echo '<td><input id="' . $result['product_id'] . '" class="product-purchase-amount" type="number" placeholder="0" text-center style="width: 50px" min="0" autocomplete="off"></td>';
+                    echo '</tr>';
+                  }
+                } 
+
                 Database::disconnect();
               }
             ?>
@@ -315,12 +326,14 @@
               <th>ID</th>
               <th>Fecha y hora</th>
               <th>Proveedor</th>
+              <th>Cantidad</th>
+              <th>Importe total</th>
             </tr>
           </thead>
           <tbody>
           <!-- Table body with php code to show dateails using a mysql query -->
-          <?php 
-              
+          <?php
+
               require_once('database.php');
 
               $pdo4 = Database::connect();
