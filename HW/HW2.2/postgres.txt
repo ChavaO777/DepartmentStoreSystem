@@ -1,0 +1,41 @@
+// Start postgres
+sudo -u postgres psql postgres;
+
+// Create database
+CREATE DATABASE superheroe;
+
+// Use superheroe database
+\c superheroe;
+
+// Create superheroes table
+CREATE TABLE superheroes(id SERIAL PRIMARY KEY, name VARCHAR(30), real_name VARCHAR(30), editorial VARCHAR(30), first_appearance INTEGER);
+
+// Create creators table
+CREATE TABLE creators(id SERIAL PRIMARY KEY, name varchar(20), last_name varchar(30));
+
+// Create superheroes_creators table
+CREATE TABLE superheroes_creators(id SERIAL PRIMARY KEY, id_creator INTEGER REFERENCES creators, id_superheroe INTEGER REFERENCES superheroes);
+
+// Insert batman into superheroes
+INSERT INTO superheroes(id, name, real_name, editorial, first_appearance) values(DEFAULT, 'Batman', 'Bruce Wayne', 'DC Comics', 1939);
+
+batman
+superman
+spiderman
+ironman
+cap America
+Hulk
+flash
+wonder woman
+green lantern
+thor
+acuaman
+green arrow
+nightwing
+Black Widow
+wolverine
+black panther
+atom
+antman
+storm
+cyclops
