@@ -1,2 +1,2 @@
-# DepartmentStoreSystem
-Department store system. Project of the Advanced Databases class.
+# AdvancedDatabasesClass
+Projects of the Advanced Databases class.
