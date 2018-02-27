@@ -16,26 +16,62 @@ CREATE TABLE creators(id SERIAL PRIMARY KEY, name varchar(20), last_name varchar
 // Create superheroes_creators table
 CREATE TABLE superheroes_creators(id SERIAL PRIMARY KEY, id_creator INTEGER REFERENCES creators, id_superheroe INTEGER REFERENCES superheroes);
 
-// Insert batman into superheroes
-INSERT INTO superheroes(id, name, real_name, editorial, first_appearance) values(DEFAULT, 'Batman', 'Bruce Wayne', 'DC Comics', 1939);
+// Insert batman into superheroes: Bob Kane & Bill Finger
+INSERT INTO superheroes values(DEFAULT, 'Batman', 'Bruce Wayne', 'DC Comics', 1939);
 
-batman
-superman
-spiderman
-ironman
-cap America
-Hulk
-flash
-wonder woman
-green lantern
-thor
-acuaman
-green arrow
-nightwing
-Black Widow
-wolverine
-black panther
-atom
-antman
-storm
-cyclops
+// Insert superman into superheroes: 	Jerry Siegel & Joe Shuster
+INSERT INTO superheroes values(DEFAULT, 'Superman', 'Clark Joseph Kent', 'DC Comics', 1938);
+
+// Insert spiderman into superheroes: Stan Lee & Steve Ditko
+INSERT INTO superheroes values(DEFAULT, 'Spiderman', 'Peter Benjamin Parker', 'Marvel Comics', 1962);
+
+// Insert ironman into superheroes: Stan Lee, Larry Lieber, Don Heck & Jack Kirby
+INSERT INTO superheroes values(DEFAULT, 'Ironman', 'Anthony Edward Stark', 'Marvel Comics', 1963);
+
+// Insert cap America into superheroes:  Joe Simon & Jack Kirby
+INSERT INTO superheroes values(DEFAULT, 'Captain America', 'Steven Grant Rogers', 'Marvel Comics', 1941);
+
+// Insert hulk into superheroes: Stan Lee & Jack Kirby
+INSERT INTO superheroes values(DEFAULT, 'Hulk', 'Robert Bruce Banner', 'Marvel Comics', 1962);
+
+// Insert flash into superheroes: Gardner Fox y Harry Lampert
+INSERT INTO superheroes values(DEFAULT, 'Flash', 'Jay Garrick', 'DC Comics', 1940);
+
+// Insert wonder woman into superheroes:  William Moulton Marston & Sadie Holloway Marston
+INSERT INTO superheroes values(DEFAULT, 'Wonder woman', 'Princesa Diana', 'DC Comics', 1941);
+
+// Insert green lantern into superheroes: Bill Finger & Martin Nodell
+INSERT INTO superheroes values(DEFAULT, 'Green lantern', 'Harold Jordan', 'DC Comics', 1940);
+
+// Insert thor into superheroes: Stan Lee, Larry Lieber & Jack Kirby
+INSERT INTO superheroes values(DEFAULT, 'Thor', 'Thor Odinson', 'Marvel Comics', 1962);
+
+// Insert aquaman into superheroes: Paul Norris y Mort Weisinger
+INSERT INTO superheroes values(DEFAULT, 'Aquaman', 'Arthur Curry', 'DC Comics', 1941);
+
+// Insert green arrow into superheroes: Mort Weisinger & George Papp
+INSERT INTO superheroes values(DEFAULT, 'Green arrow', 'Oliver Jonas', 'DC Comics', 1941);
+
+// Insert nightwing into superheroes: Edmond Hamilton & Curt Swan
+INSERT INTO superheroes values(DEFAULT, 'Nightwing', 'Richard John Grayson', 'DC Comics', 1963);
+
+// Insert Black Widow into superheroes: Stan Lee, Don Rico & Don Heck
+INSERT INTO superheroes values(DEFAULT, 'Black widow', 'Natasha Romanoff', 'Marvel', 1964);
+
+// Insert wolverine into superheroes: Len Wein, John Romita Sr. & Herb Trimpe
+INSERT INTO superheroes values(DEFAULT, 'Wolverine', 'James Howlett', 'Marvel', 1974);
+
+// Insert black panther into superheroes: Stan Lee & Jack Kirby
+INSERT INTO superheroes values(DEFAULT, 'Black panther', 'T'Challa', 'Marvel', 1966);
+
+// Insert atom into superheroes:
+INSERT INTO superheroes values(DEFAULT, 'Atom', '', '', );
+
+// Insert antman into superheroes: Stan Lee y Jack Kirby
+INSERT INTO superheroes values(DEFAULT, 'Antman', 'Scott Lang', 'Marvel Comics', 1962);
+
+// Insert storm into superheroes: Len Wein & Dave Cockrum
+INSERT INTO superheroes values(DEFAULT, 'Storm', 'Ororo Iqadi Munroe', 'Marvel Comics', 1975);
+
+// Insert cyclops into superheroes: Stan Lee & Jack Kirby
+INSERT INTO superheroe) values(DEFAULT, 'Cyclops', 'Scott Summers', 'Marvel Comics', 1963);
