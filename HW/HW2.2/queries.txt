@@ -1,0 +1,63 @@
+// Query to show all information
+SELECT s.name AS Superhero,
+       s.real_name AS Real_Name,
+       s.editorial AS Editorial,
+       s.first_appearance AS Debut,
+       c.name AS Creator     
+FROM superheroes s
+INNER JOIN superheroes_creators sc 
+	ON sc.id_superheroes = s.id
+INNER JOIN creators c
+	ON sc.id_creator = c.id;
+
+// Query to show all the Marvel Superheroes (with all the attributes)
+SELECT s.name AS Superhero,
+       s.real_name AS Real_Name,
+       s.editorial AS Editorial,
+       s.first_appearance AS Debut,
+       c.name AS Creator     
+FROM superheroes s
+INNER JOIN superheroes_creators sc 
+	ON sc.id_superheroes = s.id
+INNER JOIN creators c
+	ON sc.id_creator = c.id
+WHERE s.editorial = 'Marvel Comics';
+
+// Query to show all the superheroes introduced in 1950 or earlier (with all the attributes)
+SELECT s.name AS Superhero,
+       s.real_name AS Real_Name,
+       s.editorial AS Editorial,
+       s.first_appearance AS Debut,
+       c.name AS Creator     
+FROM superheroes s
+INNER JOIN superheroes_creators sc 
+	ON sc.id_superheroes = s.id
+INNER JOIN creators c
+	ON sc.id_creator = c.id
+WHERE s.first_appearance >= 1950;
+
+// Query to show all the superheroes sorted by real_name
+SELECT s.name AS Superhero,
+       s.real_name AS Real_Name,
+       s.editorial AS Editorial,
+       s.first_appearance AS Debut,
+       c.name AS Creator     
+FROM superheroes s
+INNER JOIN superheroes_creators sc 
+	ON sc.id_superheroes = s.id
+INNER JOIN creators c
+	ON sc.id_creator = c.id
+ORDER BY real_name;
+
+// Query to show all the superheroes created by Stan Lee
+SELECT s.name AS Superhero,
+       s.real_name AS Real_Name,
+       s.editorial AS Editorial,
+       s.first_appearance AS Debut,
+       c.name AS Creator     
+FROM superheroes s
+INNER JOIN superheroes_creators sc 
+	ON sc.id_superheroes = s.id
+INNER JOIN creators c
+	ON sc.id_creator = c.id
+WHERE sc.id_creator = 5;
