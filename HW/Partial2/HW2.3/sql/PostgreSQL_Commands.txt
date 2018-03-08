@@ -104,3 +104,87 @@ CREATE TABLE product_appointment(
     appointment_id INTEGER REFERENCES appointments (id),
     quantity INTEGER
 );
+
+#######################
+
+// To insert data into patients table
+
+INSERT INTO patients VALUES(
+			     DEFAULT,
+			     'Aranzza',
+			     'Abascal',
+			     '1996-10-12',
+			     now(),
+			     'arabascalf@gmail.com',
+			     2225474191);
+
+#######################
+
+// To insert data into dentists table
+
+INSERT INTO dentists VALUES(
+			     DEFAULT,
+			     'Isabel',
+			     'Fonz',
+			     2225474181,
+			     '1986-08-19',
+			     '2002-02-03',
+			     TRUE);
+
+#######################
+
+// To insert data into appointment_types table
+
+INSERT INTO appointment_types VALUES(
+				      DEFAULT,
+				      'Operación',
+				      130,
+				      1600);
+
+#######################
+
+// To insert data into products table
+
+INSERT INTO products VALUES(
+			     DEFAULT,
+			     'Equipo de succión',
+			     'Tirden',
+			     'Elimina el exceso de saliva producida por el paciente',
+			     50,
+			     20,
+			     128);
+
+#######################
+
+// To insert data into appointments table
+
+INSERT INTO appointments VALUES(
+				  DEFAULT,
+				  1,
+				  FALSE,
+				  '2018-03-21 10:00:00',
+				  now(),                
+				  null,
+				  1,
+				  1);
+
+#######################
+
+// To insert data into product_appointment table
+
+INSERT INTO product_appointment VALUES(
+					DEFAULT,
+					1,
+					2,
+					2);
+
+
+#######################
+
+// To insert data into purchase_orders table
+
+INSERT INTO purchase_orders VALUES(
+				    DEFAULT,
+				    1,
+				    NOW(),
+				    120);
