@@ -1,0 +1,106 @@
+// To create the "dentists" table
+
+DROP TABLE IF EXISTS "dentists";
+
+CREATE TABLE dentists 
+( 
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(30),
+    last_name VARCHAR(30),
+    cellphone INTEGER,
+    birthdate DATE,
+    start_date DATE,
+    status BOOLEAN
+);
+
+#######################
+
+// To create the "products" table
+
+DROP TABLE IF EXISTS "products";
+
+CREATE TABLE products(
+
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(30),
+    brand VARCHAR(30),
+    description VARCHAR(100),
+    min_req_sku INTEGER,
+    sku INTEGER,
+    price DOUBLE
+)
+
+#######################
+
+// To create the "appointment_types" table
+
+DROP TABLE IF EXISTS "appointment_types";
+
+CREATE TABLE appointment_types(
+
+    id SERIAL PRIMARY KEY,
+    description VARCHAR(100)
+)
+
+#######################
+
+// To create the "appointments" table
+
+DROP TABLE IF EXISTS "appointments";
+
+CREATE TABLE appointments(
+
+    id SERIAL PRIMARY KEY,
+    patient_id INTEGER REFERENCES patients (id),
+    must_be_rescheduled BOOLEAN,
+    date_time TIMESTAMP,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    appointment_type_id INTEGER REFERENCES appointment_types (id),
+    dentist_id INTEGER REFERENCES dentists (id)
+)
+
+#######################
+
+// To create the "purchase_orders" table
+
+DROP TABLE IF EXISTS "purchase_orders";
+
+CREATE TABLE purchase_orders(
+
+    id SERIAL PRIMARY KEY,
+    product_id INTEGER REFERENCES products (id),
+    date_time TIMESTAMP,
+    quantity INTEGER
+)
+
+#######################
+
+// To create the "product_appointment" table
+
+DROP TABLE IF EXISTS "product_appointment";
+
+CREATE TABLE product_appointment(
+
+    id SERIAL PRIMARY KEY,
+    product_id INTEGER REFERENCES products (id),
+    appointment_id INTEGER REFERENCES appointments (id),,
+    quantity INTEGER
+)
+
+#######################
+
+// To create the "patients" table
+
+DROP TABLE IF EXISTS "patients";
+
+CREATE TABLE patients(
+
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(30),
+    last_name VARCHAR(30),
+    birthdate DATE,
+    created_at TIMESTAMP,
+    email VARCHAR(30),
+    cellphone INTEGER,
+)
