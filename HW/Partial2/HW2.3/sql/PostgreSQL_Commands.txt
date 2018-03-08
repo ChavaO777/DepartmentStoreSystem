@@ -27,8 +27,8 @@ CREATE TABLE products(
     description VARCHAR(100),
     min_req_sku INTEGER,
     sku INTEGER,
-    price DOUBLE
-)
+    price REAL
+);
 
 #######################
 
@@ -40,7 +40,24 @@ CREATE TABLE appointment_types(
 
     id SERIAL PRIMARY KEY,
     description VARCHAR(100)
-)
+);
+
+#######################
+
+// To create the "patients" table
+
+DROP TABLE IF EXISTS "patients";
+
+CREATE TABLE patients(
+
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(30),
+    last_name VARCHAR(30),
+    birthdate DATE,
+    created_at TIMESTAMP,
+    email VARCHAR(30),
+    cellphone INTEGER
+);
 
 #######################
 
@@ -58,7 +75,7 @@ CREATE TABLE appointments(
     updated_at TIMESTAMP,
     appointment_type_id INTEGER REFERENCES appointment_types (id),
     dentist_id INTEGER REFERENCES dentists (id)
-)
+);
 
 #######################
 
@@ -72,7 +89,7 @@ CREATE TABLE purchase_orders(
     product_id INTEGER REFERENCES products (id),
     date_time TIMESTAMP,
     quantity INTEGER
-)
+);
 
 #######################
 
@@ -84,23 +101,6 @@ CREATE TABLE product_appointment(
 
     id SERIAL PRIMARY KEY,
     product_id INTEGER REFERENCES products (id),
-    appointment_id INTEGER REFERENCES appointments (id),,
+    appointment_id INTEGER REFERENCES appointments (id),
     quantity INTEGER
-)
-
-#######################
-
-// To create the "patients" table
-
-DROP TABLE IF EXISTS "patients";
-
-CREATE TABLE patients(
-
-    id SERIAL PRIMARY KEY,
-    first_name VARCHAR(30),
-    last_name VARCHAR(30),
-    birthdate DATE,
-    created_at TIMESTAMP,
-    email VARCHAR(30),
-    cellphone INTEGER,
-)
+);
