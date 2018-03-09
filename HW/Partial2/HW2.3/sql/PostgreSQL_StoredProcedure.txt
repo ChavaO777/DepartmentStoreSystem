@@ -1,6 +1,6 @@
 // To create the stored procedure to insert into appointments table
 
-CREATE OR REPLACE FUNCTION add_appointment(patient_id INTEGER,
+CREATE FUNCTION add_appointment(patient_id INTEGER,
                                 date_time TIMESTAMP,
                                 appointment_type_id INTEGER,
                                 dentist_id INTEGER)
