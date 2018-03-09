@@ -1,0 +1,5 @@
+CREATE TRIGGER after_product_sale
+  AFTER UPDATE
+  ON products
+  FOR EACH ROW
+  EXECUTE PROCEDURE order_product_if_required();

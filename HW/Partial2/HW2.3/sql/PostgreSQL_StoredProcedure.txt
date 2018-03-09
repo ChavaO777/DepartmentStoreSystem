@@ -1,4 +1,6 @@
 // To create the stored procedure to insert into appointments table
+// The lock before the insertion guarantees that this is a transaction; 
+// PostgreSQL does not support transactions within stored procedures yet
 
 CREATE FUNCTION add_appointment(patient_id INTEGER,
                                 date_time TIMESTAMP,
@@ -7,6 +9,9 @@ CREATE FUNCTION add_appointment(patient_id INTEGER,
 
 RETURNS void AS $$
 BEGIN
+
+    LOCK TABLE appointments IN EXCLUSIVE MODE;
+
     INSERT INTO appointments VALUES(
                                     DEFAULT,
                                     patient_id,

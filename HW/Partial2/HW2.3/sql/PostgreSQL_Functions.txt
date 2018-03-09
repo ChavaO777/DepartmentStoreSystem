@@ -23,3 +23,16 @@ $$ LANGUAGE plpgsql;
 // TO call get_sku function
 
 SELECT * FROM get_sku(...);
+
+######################################
+
+CREATE FUNCTION order_product_if_required()
+
+RETURNS void 
+AS $$
+BEGIN 
+    IF NEW.sku <= NEW.min_req_sku THEN
+        INSERT INTO purchase_orders VALUES(default, NEW.id, NOW(), NEW.min_req_sku);
+    END IF;
+END;
+
