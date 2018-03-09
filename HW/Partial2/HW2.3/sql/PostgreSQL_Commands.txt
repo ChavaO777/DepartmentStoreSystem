@@ -104,3 +104,26 @@ CREATE TABLE product_appointment(
     appointment_id INTEGER REFERENCES appointments (id),
     quantity INTEGER
 );
+
+#######################
+
+// To create the stored procedure to insert into appointments table
+
+CREATE OR REPLACE FUNCTION add_appointment(patient_id INTEGER,
+                                date_time TIMESTAMP,
+                                appointment_type_id INTEGER,
+                                dentist_id INTEGER)
+
+RETURNS void AS $$
+BEGIN
+    INSERT INTO appointments VALUES(
+                                    DEFAULT,
+                                    patient_id,
+                                    FALSE,
+                                    date_time,
+                                    NOW(),
+                                    null,
+                                    appointment_type_id,
+                                    dentist_id);
+END;
+$$ LANGUAGE plpgsql;
