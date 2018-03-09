@@ -91,7 +91,7 @@
         }
 
         public static function baseurl() {
-             return stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'] . "/crudpgsql/";
+             return stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'] . "/usuario5/TC3041_AdvancedDatabaseSystems/Examples/crudpgsql/";
         }
 
         public function checkUser($user) {
