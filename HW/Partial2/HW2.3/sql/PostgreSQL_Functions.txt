@@ -1,0 +1,25 @@
+// To create function to get the sku of a given id product
+
+CREATE FUNCTION get_sku(product_id INTEGER)
+
+RETURNS table(id INTEGER,
+              name VARCHAR(30),
+              sku INTEGER)
+
+AS $$
+BEGIN
+    RETURN query
+    SELECT p.id AS id,
+           p.name AS name,
+           p.sku AS quantity
+    FROM products p
+    WHERE p.id = product_id;
+
+END;
+$$ LANGUAGE plpgsql;
+
+#######################
+
+// TO call get_sku function
+
+SELECT * FROM get_sku(...);

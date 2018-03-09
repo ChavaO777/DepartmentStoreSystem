@@ -107,65 +107,6 @@ CREATE TABLE product_appointment(
 
 #######################
 
-<<<<<<< HEAD
-// To create the stored procedure to insert into appointments table
-
-CREATE OR REPLACE FUNCTION add_appointment(patient_id INTEGER,
-                                date_time TIMESTAMP,
-                                appointment_type_id INTEGER,
-                                dentist_id INTEGER)
-
-RETURNS void AS $$
-BEGIN
-    INSERT INTO appointments VALUES(
-                                    DEFAULT,
-                                    patient_id,
-                                    FALSE,
-                                    date_time,
-                                    NOW(),
-                                    null,
-                                    appointment_type_id,
-                                    dentist_id);
-END;
-$$ LANGUAGE plpgsql;
-
-#######################
-
-// To call add_appointment function
-
-DO $$ BEGIN
-PERFORM add_appointment(...);
-END $$
-;
-
-#######################
-
-// To create function to get the sku of a given id product
-
-CREATE FUNCTION get_sku(product_id INTEGER)
-
-RETURNS table(id INTEGER,
-              name VARCHAR(30),
-              sku INTEGER)
-
-AS $$
-BEGIN
-    RETURN query
-    SELECT p.id AS id,
-           p.name AS name,
-           p.sku AS quantity
-    FROM products p
-    WHERE p.id = product_id;
-
-END;
-$$ LANGUAGE plpgsql;
-
-#######################
-
-// TO call get_sku function
-
-SELECT * FROM get_sku(...);
-=======
 // To insert data into patients table
 
 INSERT INTO patients VALUES(
@@ -247,4 +188,3 @@ INSERT INTO purchase_orders VALUES(
 				    1,
 				    NOW(),
 				    120);
->>>>>>> 44f0c6d29cf5aa0f761a9c5e02366bcf4b5cfef1
