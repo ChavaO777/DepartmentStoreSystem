@@ -2,15 +2,13 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.3
--- Dumped by pg_dump version 10.3
+-- Dumped from database version 9.5.11
+-- Dumped by pg_dump version 9.5.11
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
@@ -29,28 +27,31 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
+SET search_path = public, pg_catalog;
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: appointment_types; Type: TABLE; Schema: public; Owner: salvador
+-- Name: appointment_types; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.appointment_types (
+CREATE TABLE appointment_types (
     id integer NOT NULL,
-    description character varying(100)
+    description character varying(30),
+    minutes integer,
+    price real
 );
 
 
-ALTER TABLE public.appointment_types OWNER TO salvador;
+ALTER TABLE appointment_types OWNER TO postgres;
 
 --
--- Name: appointment_types_id_seq; Type: SEQUENCE; Schema: public; Owner: salvador
+-- Name: appointment_types_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.appointment_types_id_seq
-    AS integer
+CREATE SEQUENCE appointment_types_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -58,20 +59,20 @@ CREATE SEQUENCE public.appointment_types_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.appointment_types_id_seq OWNER TO salvador;
+ALTER TABLE appointment_types_id_seq OWNER TO postgres;
 
 --
--- Name: appointment_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: salvador
+-- Name: appointment_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.appointment_types_id_seq OWNED BY public.appointment_types.id;
+ALTER SEQUENCE appointment_types_id_seq OWNED BY appointment_types.id;
 
 
 --
--- Name: appointments; Type: TABLE; Schema: public; Owner: salvador
+-- Name: appointments; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.appointments (
+CREATE TABLE appointments (
     id integer NOT NULL,
     patient_id integer,
     must_be_rescheduled boolean,
@@ -83,14 +84,13 @@ CREATE TABLE public.appointments (
 );
 
 
-ALTER TABLE public.appointments OWNER TO salvador;
+ALTER TABLE appointments OWNER TO postgres;
 
 --
--- Name: appointments_id_seq; Type: SEQUENCE; Schema: public; Owner: salvador
+-- Name: appointments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.appointments_id_seq
-    AS integer
+CREATE SEQUENCE appointments_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -98,38 +98,38 @@ CREATE SEQUENCE public.appointments_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.appointments_id_seq OWNER TO salvador;
+ALTER TABLE appointments_id_seq OWNER TO postgres;
 
 --
--- Name: appointments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: salvador
+-- Name: appointments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.appointments_id_seq OWNED BY public.appointments.id;
+ALTER SEQUENCE appointments_id_seq OWNED BY appointments.id;
 
 
 --
--- Name: dentists; Type: TABLE; Schema: public; Owner: salvador
+-- Name: dentists; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.dentists (
+CREATE TABLE dentists (
     id integer NOT NULL,
     first_name character varying(30),
     last_name character varying(30),
-    cellphone integer,
+    cellphone bigint,
+    email character varying(30),
     birthdate date,
     start_date date,
     status boolean
 );
 
 
-ALTER TABLE public.dentists OWNER TO salvador;
+ALTER TABLE dentists OWNER TO postgres;
 
 --
--- Name: dentists_id_seq; Type: SEQUENCE; Schema: public; Owner: salvador
+-- Name: dentists_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.dentists_id_seq
-    AS integer
+CREATE SEQUENCE dentists_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -137,38 +137,37 @@ CREATE SEQUENCE public.dentists_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.dentists_id_seq OWNER TO salvador;
+ALTER TABLE dentists_id_seq OWNER TO postgres;
 
 --
--- Name: dentists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: salvador
+-- Name: dentists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.dentists_id_seq OWNED BY public.dentists.id;
+ALTER SEQUENCE dentists_id_seq OWNED BY dentists.id;
 
 
 --
--- Name: patients; Type: TABLE; Schema: public; Owner: salvador
+-- Name: patients; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.patients (
+CREATE TABLE patients (
     id integer NOT NULL,
     first_name character varying(30),
     last_name character varying(30),
     birthdate date,
     created_at timestamp without time zone,
     email character varying(30),
-    cellphone integer
+    cellphone bigint
 );
 
 
-ALTER TABLE public.patients OWNER TO salvador;
+ALTER TABLE patients OWNER TO postgres;
 
 --
--- Name: patients_id_seq; Type: SEQUENCE; Schema: public; Owner: salvador
+-- Name: patients_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.patients_id_seq
-    AS integer
+CREATE SEQUENCE patients_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -176,20 +175,20 @@ CREATE SEQUENCE public.patients_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.patients_id_seq OWNER TO salvador;
+ALTER TABLE patients_id_seq OWNER TO postgres;
 
 --
--- Name: patients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: salvador
+-- Name: patients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.patients_id_seq OWNED BY public.patients.id;
+ALTER SEQUENCE patients_id_seq OWNED BY patients.id;
 
 
 --
--- Name: product_appointment; Type: TABLE; Schema: public; Owner: salvador
+-- Name: product_appointment; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.product_appointment (
+CREATE TABLE product_appointment (
     id integer NOT NULL,
     product_id integer,
     appointment_id integer,
@@ -197,14 +196,13 @@ CREATE TABLE public.product_appointment (
 );
 
 
-ALTER TABLE public.product_appointment OWNER TO salvador;
+ALTER TABLE product_appointment OWNER TO postgres;
 
 --
--- Name: product_appointment_id_seq; Type: SEQUENCE; Schema: public; Owner: salvador
+-- Name: product_appointment_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.product_appointment_id_seq
-    AS integer
+CREATE SEQUENCE product_appointment_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -212,20 +210,20 @@ CREATE SEQUENCE public.product_appointment_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.product_appointment_id_seq OWNER TO salvador;
+ALTER TABLE product_appointment_id_seq OWNER TO postgres;
 
 --
--- Name: product_appointment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: salvador
+-- Name: product_appointment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.product_appointment_id_seq OWNED BY public.product_appointment.id;
+ALTER SEQUENCE product_appointment_id_seq OWNED BY product_appointment.id;
 
 
 --
--- Name: products; Type: TABLE; Schema: public; Owner: salvador
+-- Name: products; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.products (
+CREATE TABLE products (
     id integer NOT NULL,
     name character varying(30),
     brand character varying(30),
@@ -236,14 +234,13 @@ CREATE TABLE public.products (
 );
 
 
-ALTER TABLE public.products OWNER TO salvador;
+ALTER TABLE products OWNER TO postgres;
 
 --
--- Name: products_id_seq; Type: SEQUENCE; Schema: public; Owner: salvador
+-- Name: products_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.products_id_seq
-    AS integer
+CREATE SEQUENCE products_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -251,20 +248,20 @@ CREATE SEQUENCE public.products_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.products_id_seq OWNER TO salvador;
+ALTER TABLE products_id_seq OWNER TO postgres;
 
 --
--- Name: products_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: salvador
+-- Name: products_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.products_id_seq OWNED BY public.products.id;
+ALTER SEQUENCE products_id_seq OWNED BY products.id;
 
 
 --
--- Name: purchase_orders; Type: TABLE; Schema: public; Owner: salvador
+-- Name: purchase_orders; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.purchase_orders (
+CREATE TABLE purchase_orders (
     id integer NOT NULL,
     product_id integer,
     date_time timestamp without time zone,
@@ -272,14 +269,13 @@ CREATE TABLE public.purchase_orders (
 );
 
 
-ALTER TABLE public.purchase_orders OWNER TO salvador;
+ALTER TABLE purchase_orders OWNER TO postgres;
 
 --
--- Name: purchase_orders_id_seq; Type: SEQUENCE; Schema: public; Owner: salvador
+-- Name: purchase_orders_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.purchase_orders_id_seq
-    AS integer
+CREATE SEQUENCE purchase_orders_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -287,271 +283,297 @@ CREATE SEQUENCE public.purchase_orders_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.purchase_orders_id_seq OWNER TO salvador;
+ALTER TABLE purchase_orders_id_seq OWNER TO postgres;
 
 --
--- Name: purchase_orders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: salvador
+-- Name: purchase_orders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.purchase_orders_id_seq OWNED BY public.purchase_orders.id;
-
-
---
--- Name: appointment_types id; Type: DEFAULT; Schema: public; Owner: salvador
---
-
-ALTER TABLE ONLY public.appointment_types ALTER COLUMN id SET DEFAULT nextval('public.appointment_types_id_seq'::regclass);
+ALTER SEQUENCE purchase_orders_id_seq OWNED BY purchase_orders.id;
 
 
 --
--- Name: appointments id; Type: DEFAULT; Schema: public; Owner: salvador
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.appointments ALTER COLUMN id SET DEFAULT nextval('public.appointments_id_seq'::regclass);
-
-
---
--- Name: dentists id; Type: DEFAULT; Schema: public; Owner: salvador
---
-
-ALTER TABLE ONLY public.dentists ALTER COLUMN id SET DEFAULT nextval('public.dentists_id_seq'::regclass);
+ALTER TABLE ONLY appointment_types ALTER COLUMN id SET DEFAULT nextval('appointment_types_id_seq'::regclass);
 
 
 --
--- Name: patients id; Type: DEFAULT; Schema: public; Owner: salvador
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.patients ALTER COLUMN id SET DEFAULT nextval('public.patients_id_seq'::regclass);
-
-
---
--- Name: product_appointment id; Type: DEFAULT; Schema: public; Owner: salvador
---
-
-ALTER TABLE ONLY public.product_appointment ALTER COLUMN id SET DEFAULT nextval('public.product_appointment_id_seq'::regclass);
+ALTER TABLE ONLY appointments ALTER COLUMN id SET DEFAULT nextval('appointments_id_seq'::regclass);
 
 
 --
--- Name: products id; Type: DEFAULT; Schema: public; Owner: salvador
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.products ALTER COLUMN id SET DEFAULT nextval('public.products_id_seq'::regclass);
-
-
---
--- Name: purchase_orders id; Type: DEFAULT; Schema: public; Owner: salvador
---
-
-ALTER TABLE ONLY public.purchase_orders ALTER COLUMN id SET DEFAULT nextval('public.purchase_orders_id_seq'::regclass);
+ALTER TABLE ONLY dentists ALTER COLUMN id SET DEFAULT nextval('dentists_id_seq'::regclass);
 
 
 --
--- Data for Name: appointment_types; Type: TABLE DATA; Schema: public; Owner: salvador
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-COPY public.appointment_types (id, description) FROM stdin;
+ALTER TABLE ONLY patients ALTER COLUMN id SET DEFAULT nextval('patients_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY product_appointment ALTER COLUMN id SET DEFAULT nextval('product_appointment_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY products ALTER COLUMN id SET DEFAULT nextval('products_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY purchase_orders ALTER COLUMN id SET DEFAULT nextval('purchase_orders_id_seq'::regclass);
+
+
+--
+-- Data for Name: appointment_types; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY appointment_types (id, description, minutes, price) FROM stdin;
+1	Operación	130	1600
+2	Revisión general	50	900
 \.
 
 
 --
--- Data for Name: appointments; Type: TABLE DATA; Schema: public; Owner: salvador
+-- Name: appointment_types_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-COPY public.appointments (id, patient_id, must_be_rescheduled, date_time, created_at, updated_at, appointment_type_id, dentist_id) FROM stdin;
+SELECT pg_catalog.setval('appointment_types_id_seq', 2, true);
+
+
+--
+-- Data for Name: appointments; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY appointments (id, patient_id, must_be_rescheduled, date_time, created_at, updated_at, appointment_type_id, dentist_id) FROM stdin;
+1	1	f	2018-03-21 10:00:00	2018-03-08 16:59:44.547047	\N	1	1
+2	2	t	2018-03-10 16:30:00	2018-01-30 13:24:09	2018-03-08 17:01:17.188306	2	2
 \.
 
 
 --
--- Data for Name: dentists; Type: TABLE DATA; Schema: public; Owner: salvador
+-- Name: appointments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-COPY public.dentists (id, first_name, last_name, cellphone, birthdate, start_date, status) FROM stdin;
+SELECT pg_catalog.setval('appointments_id_seq', 2, true);
+
+
+--
+-- Data for Name: dentists; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY dentists (id, first_name, last_name, cellphone, email, birthdate, start_date, status) FROM stdin;
+0	Isabel	Fonz	2225474181	rfonz@dentists.com	1986-08-19	2002-02-03	t
+2	Joel	Alvizar	2225733595	jalvizar@dentists.com	1983-06-19	2005-01-30	t
+1	Miguel	Ochoa	2225477191	mochoa@dentists.com	1960-12-03	2003-09-16	t
 \.
 
 
 --
--- Data for Name: patients; Type: TABLE DATA; Schema: public; Owner: salvador
+-- Name: dentists_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-COPY public.patients (id, first_name, last_name, birthdate, created_at, email, cellphone) FROM stdin;
+SELECT pg_catalog.setval('dentists_id_seq', 1, true);
+
+
+--
+-- Data for Name: patients; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY patients (id, first_name, last_name, birthdate, created_at, email, cellphone) FROM stdin;
+1	Aranzza	Abascal	1996-10-12	2018-03-08 16:34:52.374792	arabascalf@gmail.com	2225474191
+2	Arianna	Abascal	1994-12-09	2018-03-08 16:35:35.499822	ariabascal@gmail.com	2225474797
 \.
 
 
 --
--- Data for Name: product_appointment; Type: TABLE DATA; Schema: public; Owner: salvador
+-- Name: patients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-COPY public.product_appointment (id, product_id, appointment_id, quantity) FROM stdin;
+SELECT pg_catalog.setval('patients_id_seq', 2, true);
+
+
+--
+-- Data for Name: product_appointment; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY product_appointment (id, product_id, appointment_id, quantity) FROM stdin;
+1	1	2	2
+2	2	2	1
+3	1	1	2
 \.
 
 
 --
--- Data for Name: products; Type: TABLE DATA; Schema: public; Owner: salvador
+-- Name: product_appointment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-COPY public.products (id, name, brand, description, min_req_sku, sku, price) FROM stdin;
+SELECT pg_catalog.setval('product_appointment_id_seq', 3, true);
+
+
+--
+-- Data for Name: products; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY products (id, name, brand, description, min_req_sku, sku, price) FROM stdin;
+2	Espejo	Tirden	Espejo redondo para ver el interior de las partes ocultas de la boca y los dientes	70	48	359
+1	Equipo de succión	Tirden	Elimina el exceso de saliva producida por el paciente	240	20	128
 \.
 
 
 --
--- Data for Name: purchase_orders; Type: TABLE DATA; Schema: public; Owner: salvador
+-- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-COPY public.purchase_orders (id, product_id, date_time, quantity) FROM stdin;
+SELECT pg_catalog.setval('products_id_seq', 2, true);
+
+
+--
+-- Data for Name: purchase_orders; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY purchase_orders (id, product_id, date_time, quantity) FROM stdin;
+1	1	2018-03-08 17:05:26.889887	120
+2	2	2018-03-08 17:05:34.678023	70
 \.
 
 
 --
--- Name: appointment_types_id_seq; Type: SEQUENCE SET; Schema: public; Owner: salvador
+-- Name: purchase_orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.appointment_types_id_seq', 1, false);
-
-
---
--- Name: appointments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: salvador
---
-
-SELECT pg_catalog.setval('public.appointments_id_seq', 1, false);
+SELECT pg_catalog.setval('purchase_orders_id_seq', 2, true);
 
 
 --
--- Name: dentists_id_seq; Type: SEQUENCE SET; Schema: public; Owner: salvador
+-- Name: appointment_types_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.dentists_id_seq', 1, false);
-
-
---
--- Name: patients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: salvador
---
-
-SELECT pg_catalog.setval('public.patients_id_seq', 1, false);
-
-
---
--- Name: product_appointment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: salvador
---
-
-SELECT pg_catalog.setval('public.product_appointment_id_seq', 1, false);
-
-
---
--- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: salvador
---
-
-SELECT pg_catalog.setval('public.products_id_seq', 1, false);
-
-
---
--- Name: purchase_orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: salvador
---
-
-SELECT pg_catalog.setval('public.purchase_orders_id_seq', 1, false);
-
-
---
--- Name: appointment_types appointment_types_pkey; Type: CONSTRAINT; Schema: public; Owner: salvador
---
-
-ALTER TABLE ONLY public.appointment_types
+ALTER TABLE ONLY appointment_types
     ADD CONSTRAINT appointment_types_pkey PRIMARY KEY (id);
 
 
 --
--- Name: appointments appointments_pkey; Type: CONSTRAINT; Schema: public; Owner: salvador
+-- Name: appointments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.appointments
+ALTER TABLE ONLY appointments
     ADD CONSTRAINT appointments_pkey PRIMARY KEY (id);
 
 
 --
--- Name: dentists dentists_pkey; Type: CONSTRAINT; Schema: public; Owner: salvador
+-- Name: dentists_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.dentists
+ALTER TABLE ONLY dentists
     ADD CONSTRAINT dentists_pkey PRIMARY KEY (id);
 
 
 --
--- Name: patients patients_pkey; Type: CONSTRAINT; Schema: public; Owner: salvador
+-- Name: patients_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.patients
+ALTER TABLE ONLY patients
     ADD CONSTRAINT patients_pkey PRIMARY KEY (id);
 
 
 --
--- Name: product_appointment product_appointment_pkey; Type: CONSTRAINT; Schema: public; Owner: salvador
+-- Name: product_appointment_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.product_appointment
+ALTER TABLE ONLY product_appointment
     ADD CONSTRAINT product_appointment_pkey PRIMARY KEY (id);
 
 
 --
--- Name: products products_pkey; Type: CONSTRAINT; Schema: public; Owner: salvador
+-- Name: products_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.products
+ALTER TABLE ONLY products
     ADD CONSTRAINT products_pkey PRIMARY KEY (id);
 
 
 --
--- Name: purchase_orders purchase_orders_pkey; Type: CONSTRAINT; Schema: public; Owner: salvador
+-- Name: purchase_orders_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.purchase_orders
+ALTER TABLE ONLY purchase_orders
     ADD CONSTRAINT purchase_orders_pkey PRIMARY KEY (id);
 
 
 --
--- Name: appointments appointments_appointment_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: salvador
+-- Name: appointments_appointment_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.appointments
-    ADD CONSTRAINT appointments_appointment_type_id_fkey FOREIGN KEY (appointment_type_id) REFERENCES public.appointment_types(id);
-
-
---
--- Name: appointments appointments_dentist_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: salvador
---
-
-ALTER TABLE ONLY public.appointments
-    ADD CONSTRAINT appointments_dentist_id_fkey FOREIGN KEY (dentist_id) REFERENCES public.dentists(id);
+ALTER TABLE ONLY appointments
+    ADD CONSTRAINT appointments_appointment_type_id_fkey FOREIGN KEY (appointment_type_id) REFERENCES appointment_types(id);
 
 
 --
--- Name: appointments appointments_patient_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: salvador
+-- Name: appointments_dentist_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.appointments
-    ADD CONSTRAINT appointments_patient_id_fkey FOREIGN KEY (patient_id) REFERENCES public.patients(id);
-
-
---
--- Name: product_appointment product_appointment_appointment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: salvador
---
-
-ALTER TABLE ONLY public.product_appointment
-    ADD CONSTRAINT product_appointment_appointment_id_fkey FOREIGN KEY (appointment_id) REFERENCES public.appointments(id);
+ALTER TABLE ONLY appointments
+    ADD CONSTRAINT appointments_dentist_id_fkey FOREIGN KEY (dentist_id) REFERENCES dentists(id);
 
 
 --
--- Name: product_appointment product_appointment_product_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: salvador
+-- Name: appointments_patient_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.product_appointment
-    ADD CONSTRAINT product_appointment_product_id_fkey FOREIGN KEY (product_id) REFERENCES public.products(id);
+ALTER TABLE ONLY appointments
+    ADD CONSTRAINT appointments_patient_id_fkey FOREIGN KEY (patient_id) REFERENCES patients(id);
 
 
 --
--- Name: purchase_orders purchase_orders_product_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: salvador
+-- Name: product_appointment_appointment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.purchase_orders
-    ADD CONSTRAINT purchase_orders_product_id_fkey FOREIGN KEY (product_id) REFERENCES public.products(id);
+ALTER TABLE ONLY product_appointment
+    ADD CONSTRAINT product_appointment_appointment_id_fkey FOREIGN KEY (appointment_id) REFERENCES appointments(id);
+
+
+--
+-- Name: product_appointment_product_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY product_appointment
+    ADD CONSTRAINT product_appointment_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(id);
+
+
+--
+-- Name: purchase_orders_product_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY purchase_orders
+    ADD CONSTRAINT purchase_orders_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(id);
+
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
 --
