@@ -1,6 +1,6 @@
 <?php
-    require_once("../db/Database.php");
-    require_once("../interfaces/IAppointment.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/db/Database.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/interfaces/IAppointment.php");
 
     class Appointment implements IAppointment {
     	private $con;
@@ -131,7 +131,7 @@
 
         public function checkAppointment($appointment) {
             if( ! $appointment ) {
-                header("Location:" . User::baseurl() . "app/list.php");
+                header("Location:" . Appointment::baseurl() . "index.php");
             }
         }
     }

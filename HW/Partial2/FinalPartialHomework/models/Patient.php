@@ -1,17 +1,16 @@
 <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . "/db/Database.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/interfaces/IDentist.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/interfaces/IPatient.php");
 
-    class Dentist implements IDentist {
+    class Patient implements IPatient {
     	private $con;
         private $id;
         private $firstName;
         private $lastName;
-        private $cellphone;
-        private $email;
         private $birthdate;
-        private $startDate;
-        private $status;
+        private $createdAt;
+        private $email;
+        private $cellphone;
 
     	public function __construct(Database $db){
     		$this->con = new $db;
@@ -29,37 +28,32 @@
             $this->lastName = $lastName;
         }
 
-        public function setCellPhone($cellphone){
-            $this->cellphone = $cellphone;
+        public function setBirthdate($birthdate){
+            $this->birthdate = $birthdate;
+        }
+
+        public function setCreatedAt($createdAt){
+            $this->createdAt = $createdAt;
         }
 
         public function setEmail($email){
             $this->email = $email;
         }
 
-        public function setBirthdate($birthdate){
-            $this->birthdate = $birthdate;
+        public function setCellphone($cellphone){
+            $this->cellphone = $cellphone;
         }
 
-        public function setStartDate($startDate){
-            $this->startDate = $startDate;
-        }
-
-        public function setStatus($status){
-            $this->status = $status;
-        }
-
-    	//insertamos dentistas en una tabla con postgreSql
+    	//insertamos pacientes en una tabla con postgreSql
     	public function save() {
     		try{
-    			$query = $this->con->prepare('INSERT INTO dentists (first_name, last_name, cellphone, email, birthdate, start_date, status) values (?,?,?,?,?,?,?)');
+    			$query = $this->con->prepare('INSERT INTO patients (first_name, last_name, birthdate, created_at, email, cellphone) values (?,?,?,?,?,?)');
                 $query->bindParam(1, $this->firstName, PDO::PARAM_STR);
                 $query->bindParam(2, $this->lastName, PDO::PARAM_STR);
-                $query->bindParam(3, $this->cellphone, PDO::PARAM_STR);
-                $query->bindParam(4, $this->email, PDO::PARAM_STR);
-                $query->bindParam(5, $this->birthdate, PDO::PARAM_STR);
-                $query->bindParam(6, $this->startDate, PDO::PARAM_STR);
-                $query->bindParam(7, $this->status, PDO::PARAM_STR);
+                $query->bindParam(3, $this->birthdate, PDO::PARAM_STR);
+                $query->bindParam(4, $this->createdAt, PDO::PARAM_STR);
+                $query->bindParam(5, $this->email, PDO::PARAM_STR);
+                $query->bindParam(6, $this->cellphone, PDO::PARAM_STR);
     			$query->execute();
     			$this->con->close();
     		}
@@ -70,15 +64,14 @@
 
         public function update(){
     		try{
-    			$query = $this->con->prepare('UPDATE dentists SET first_name = ?, last_name = ?, cellphone = ?, email = ?, birthdate = ?, start_date = ?, status = ? WHERE id = ?');
-    			$query->bindParam(1, $this->firstName, PDO::PARAM_STR);
+    			$query = $this->con->prepare('UPDATE patients SET first_name = ?, last_name = ?, birthdate = ?, created_at = ?, email = ?, cellphone = ? WHERE id = ?');
+                $query->bindParam(1, $this->firstName, PDO::PARAM_STR);
                 $query->bindParam(2, $this->lastName, PDO::PARAM_STR);
-                $query->bindParam(3, $this->cellphone, PDO::PARAM_STR);
-                $query->bindParam(4, $this->email, PDO::PARAM_STR);
-                $query->bindParam(5, $this->birthdate, PDO::PARAM_STR);
-                $query->bindParam(6, $this->startDate, PDO::PARAM_STR);
-                $query->bindParam(7, $this->status, PDO::PARAM_STR);
-                $query->bindParam(8, $this->id, PDO::PARAM_INT);
+                $query->bindParam(3, $this->birthdate, PDO::PARAM_STR);
+                $query->bindParam(4, $this->createdAt, PDO::PARAM_STR);
+                $query->bindParam(5, $this->email, PDO::PARAM_STR);
+                $query->bindParam(6, $this->cellphone, PDO::PARAM_STR);
+                $query->bindParam(7, $this->id, PDO::PARAM_INT);
     			$query->execute();
     			$this->con->close();
     		}
@@ -87,12 +80,12 @@
     	    }
     	}
 
-    	//obtenemos dentistas de una tabla con postgreSql
+    	//obtenemos pacientes de una tabla con postgreSql
     	public function get(){
     		try{
                 if(is_int($this->id)){
                     
-                    $query = $this->con->prepare('SELECT * FROM dentists WHERE id = ?');
+                    $query = $this->con->prepare('SELECT * FROM patients WHERE id = ?');
                     $query->bindParam(1, $this->id, PDO::PARAM_INT);
                     $query->execute();
         			$this->con->close();
@@ -100,7 +93,7 @@
                 }
                 else{
                     
-                    $query = $this->con->prepare('SELECT * FROM dentists');
+                    $query = $this->con->prepare('SELECT * FROM patients');
         			$query->execute();
         			$this->con->close();
                     
@@ -114,7 +107,7 @@
 
         public function delete(){
             try{
-                $query = $this->con->prepare('DELETE FROM dentists WHERE id = ?');
+                $query = $this->con->prepare('DELETE FROM patients WHERE id = ?');
                 $query->bindParam(1, $this->id, PDO::PARAM_INT);
                 $query->execute();
                 $this->con->close();
@@ -129,9 +122,9 @@
              return stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'] . "/crudpgsql/";
         }
 
-        public function checkDentist($dentist) {
-            if( ! $dentist ) {
-                header("Location:" . Dentist::baseurl() . "index.php");
+        public function checkPatient($patient) {
+            if( ! $patient ) {
+                header("Location:" . Patient::baseurl() . "index.php");
             }
         }
     }

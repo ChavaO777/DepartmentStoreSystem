@@ -1,6 +1,6 @@
 <?php
-    require_once("../db/Database.php");
-    require_once("../interfaces/IUser.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/db/Database.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/interfaces/IUser.php");
 
     class User implements IUser {
     	private $con;
@@ -96,7 +96,7 @@
 
         public function checkUser($user) {
             if( ! $user ) {
-                header("Location:" . User::baseurl() . "app/list.php");
+                header("Location:" . User::baseurl() . "index.php");
             }
         }
     }
