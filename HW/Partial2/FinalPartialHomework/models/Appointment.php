@@ -112,10 +112,42 @@
     	    }
         }
         
-        //obtenemos appointments de hoy de una tabla con postgreSql
     	public function getTodaysAppointments(){
     		try{
                 $query = $this->con->prepare("SELECT a.id, a.must_be_rescheduled, a.date_time, p.first_name AS patient_first_name, p.last_name AS patient_last_name, at.description, d.first_name AS dentist_first_name, d.last_name AS dentist_last_name FROM appointments a JOIN patients p ON p.id = a.patient_id JOIN appointment_types at ON a.appointment_type_id = at.id JOIN dentists d ON d.id = a.dentist_id WHERE date_time::date = current_date");
+                $query->execute();
+                $this->con->close();
+                
+                return $query->fetchAll(PDO::FETCH_OBJ);
+    		}
+            catch(PDOException $e){
+    	        echo  $e->getMessage();
+    	    }
+        }
+        
+        /**
+         * Function to get the appointments in a given range of dates
+         * 
+         * @param $prevDateStr a string corresponding to the earliest date in the range
+         * @param $nextDateStr a string corresponding to the latest date in the range
+         * @return a result set with the appointments in that range
+         */
+    	public function getAppointmentsInDateRange($prevDateStr, $nextDateStr){
+    		try{    
+                
+                $prevDateTime = new DateTime();
+                $prevDate = $prevDateTime->createFromFormat('d/m/Y', $prevDateStr);
+
+                $nextDateTime = new DateTime();
+                $nextDate = $nextDateTime->createFromFormat('d/m/Y', $nextDateStr);
+
+                // $prevDate = date_create($prevDateStr);
+                // $nextDate = date_create($nextDateStr);
+
+                $sql_query = "SELECT a.id, a.must_be_rescheduled, a.date_time, p.first_name AS patient_first_name, p.last_name AS patient_last_name, at.description, d.first_name AS dentist_first_name, d.last_name AS dentist_last_name FROM appointments a JOIN patients p ON p.id = a.patient_id JOIN appointment_types at ON a.appointment_type_id = at.id JOIN dentists d ON d.id = a.dentist_id WHERE date_time::date >= $prevDate AND date_time::date <= $nextDate";
+                // $sql_query = "SELECT a.id, a.must_be_rescheduled, a.date_time, p.first_name AS patient_first_name, p.last_name AS patient_last_name, at.description, d.first_name AS dentist_first_name, d.last_name AS dentist_last_name FROM appointments a JOIN patients p ON p.id = a.patient_id JOIN appointment_types at ON a.appointment_type_id = at.id JOIN dentists d ON d.id = a.dentist_id";
+
+                $query = $this->con->prepare($sql_query);
                 $query->execute();
                 $this->con->close();
                 
