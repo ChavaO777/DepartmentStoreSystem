@@ -180,8 +180,7 @@
         <table class="table text-center">
           <tr>
             <!-- <th>Id</th> -->
-            <th>First name</th>
-            <th>Last name</th>
+            <th>Name</th>
             <th>Cellphone</th>
             <th>Email</th>
             <th>Birthdate</th>
@@ -195,8 +194,8 @@
           ?>
           <tr>
           <!-- <td><?php //echo $dentist->id ?></td> -->
-            <td><?php echo $dentist->first_name ?></td>
-            <td><?php echo $dentist->last_name ?></td>
+            <td><?php echo $dentist->first_name ?> <?php echo $dentist->last_name ?></td>
+            
             <td><?php echo $dentist->cellphone ?></td>
             <td><?php echo $dentist->email ?></td>
             <td><?php echo $dentist->birthdate ?></td>
