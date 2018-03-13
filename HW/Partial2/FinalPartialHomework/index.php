@@ -310,8 +310,9 @@
         require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Appointment.php";
         $db = new Database;
         $appointment = new Appointment($db);
-        $todaysAppointments = $appointment->getTodaysAppointments();  
-        $appointments = $appointment->getTodaysAppointments();    
+        $todaysAppointments = $appointment->getAppointmentsInDateRange('1990-01-01' , '2030-01-01'); // current_date, current_date);  
+        // $todaysAppointments = $appointment->get();
+        $appointments = $appointment->get();    
       ?>
 
       <div class="container">
