@@ -203,7 +203,7 @@
           <?php
           if( ! empty( $patients ) ) {
           ?>
-          <table class="table table-striped">
+          <table class="table text-center">
             <tr>
               <!-- <th>Id</th> -->
               <th>First name</th>
@@ -250,8 +250,10 @@
         </div>
       </div>
 
-      <div class="col-lg-1 pull-right" style="margin-bottom: 10px">
+      <div>
+        <center>
           <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="<?php echo Patient::baseurl() ?>/app/addPatient.php">Add patient</a>
+        </center>
       </div>
 
     </section>
