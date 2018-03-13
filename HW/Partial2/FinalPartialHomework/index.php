@@ -95,8 +95,8 @@
             <tr>
               <!-- <th>Id</th> -->
               <th>Description</th>
-              <th>Time (m)</th>
-              <th>Price ($)</th>
+              <th>Time</th>
+              <th>Price</th>
             </tr>
             <?php foreach( $appointmentTypes as $appointmentType )
             {
@@ -104,8 +104,8 @@
             <tr>
             <!-- <td><?php //echo $appointmentType->id ?></td> -->
               <td><?php echo $appointmentType->description ?></td>
-              <td><?php echo $appointmentType->minutes ?></td>
-              <td><?php echo $appointmentType->price ?></td>
+              <td><?php echo $appointmentType->minutes ?> minutes</td>
+              <td>$ <?php echo $appointmentType->price ?></td>
                         
               <!-- <td>
               <a class="btn btn-info" href="<?php //echo AppointmentType::baseurl() ?>app/editAppointment.php?dentist=<?php //echo $appointmentType->id ?>">Edit</a> 
