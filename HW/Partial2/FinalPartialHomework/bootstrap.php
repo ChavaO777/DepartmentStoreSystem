@@ -84,6 +84,60 @@
           </div>
         </div>
       </div>
+      <?php
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/models/AppointmentType.php";
+        $db = new Database;
+        $appointmentType = new AppointmentType($db);
+        $appointmentTypes = $appointmentType->get();        
+      ?>
+
+      <div class="container">
+        <div class="col-lg-12">
+          <h2 class="text-center text-primary">Appointment Types</h2>
+          <!-- <div class="col-lg-1 pull-right" style="margin-bottom: 10px">
+          <a class="btn btn-info" href="<?php //echo AppointmentType::baseurl() ?>/app/addAppointmentType.php">Add appointment type</a>
+          </div> -->
+          <?php
+          if( ! empty( $appointmentTypes ) ) {
+          ?>
+          <table class="table text-centerd">
+            <tr>
+              <!-- <th>Id</th> -->
+              <th>Description</th>
+              <th>Time (m)</th>
+              <th>Price ($)</th>
+            </tr>
+            <?php foreach( $appointmentTypes as $appointmentType )
+            {
+            ?>
+            <tr>
+            <!-- <td><?php //echo $appointmentType->id ?></td> -->
+              <td><?php echo $appointmentType->description ?></td>
+              <td><?php echo $appointmentType->minutes ?></td>
+              <td><?php echo $appointmentType->price ?></td>
+                        
+              <!-- <td>
+              <a class="btn btn-info" href="<?php //echo AppointmentType::baseurl() ?>app/editAppointment.php?dentist=<?php //echo $appointmentType->id ?>">Edit</a> 
+              </td>
+              <td>
+              <a class="btn btn-info" href="<?php //echo AppointmentType::baseurl() ?>app/deleteAppointment.php?dentist=<?php //echo $appointmentType->id ?>">Delete</a>
+              </td> -->
+            </tr>
+            <?php
+            }
+            ?>
+          </table>
+          <?php
+          }
+          else
+          {
+          ?>
+          <div class="alert alert-danger" style="margin-top: 100px">There are 0 registered appointments types</div>
+          <?php
+          }
+          ?>
+        </div>
+      </div>
     </section>
 
     <!-- dentists Grid -->
