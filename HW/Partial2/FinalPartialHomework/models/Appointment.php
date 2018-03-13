@@ -110,6 +110,20 @@
             catch(PDOException $e){
     	        echo  $e->getMessage();
     	    }
+        }
+        
+        //obtenemos appointments de hoy de una tabla con postgreSql
+    	public function getTodaysAppointments(){
+    		try{
+                $query = $this->con->prepare("SELECT a.id, a.must_be_rescheduled, a.date_time, p.first_name AS patient_first_name, p.last_name AS patient_last_name, at.description, d.first_name AS dentist_first_name, d.last_name AS dentist_last_name FROM appointments a JOIN patients p ON p.id = a.patient_id JOIN appointment_types at ON a.appointment_type_id = at.id JOIN dentists d ON d.id = a.dentist_id WHERE date_time::date = current_date");
+                $query->execute();
+                $this->con->close();
+                
+                return $query->fetchAll(PDO::FETCH_OBJ);
+    		}
+            catch(PDOException $e){
+    	        echo  $e->getMessage();
+    	    }
     	}
 
         public function delete(){
