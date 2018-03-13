@@ -74,15 +74,6 @@
             <h3 class="section-subheading text-muted">Orthodontics Office is a state-of-the-art, technologically advanced dental office, in a warm, spa-like setting.</h3>
           </div>
         </div>
-        <div class="row text-center">
-          <div class="col-md-4">
-          </div>
-          <div class="col-md-4">
-            <h4 class="service-heading" style="color: #ffc107">Appointment types</h4>
-          </div>
-          <div class="col-md-4">
-          </div>
-        </div>
       </div>
       <?php
         require_once $_SERVER['DOCUMENT_ROOT'] . "/models/AppointmentType.php";
@@ -282,10 +273,10 @@
               <td><?php echo $patient->cellphone ?></td>
               
               <td>
-              <a class="btn btn-info" href="<?php echo Patient::baseurl() ?>app/editPatient.php?dentist=<?php echo $patient->id ?>">Edit</a> 
+              <a class="btn btn-primary" style="width: 30px"> href="<?php echo Patient::baseurl() ?>app/editPatient.php?dentist=<?php echo $patient->id ?>">Edit</a> 
               </td>
               <td>
-                <a class="btn btn-info" href="<?php echo Patient::baseurl() ?>app/deletePatient.php?dentist=<?php echo $patient->id ?>">Delete</a>
+                <a class="btn btn-primary" href="<?php echo Patient::baseurl() ?>app/deletePatient.php?dentist=<?php echo $patient->id ?>">Delete</a>
               </td>
             </tr>
             <?php
