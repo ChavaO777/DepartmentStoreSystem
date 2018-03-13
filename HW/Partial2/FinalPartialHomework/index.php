@@ -250,8 +250,7 @@
           <table class="table text-center">
             <tr>
               <!-- <th>Id</th> -->
-              <th>First name</th>
-              <th>Last name</th>
+              <th>Name</th>
               <th>Birthdate</th>
               <th>Created at</th>
               <th>Email</th>
@@ -264,18 +263,17 @@
             ?>
             <tr>
             <!-- <td><?php //echo $patient->id ?></td> -->
-              <td><?php echo $patient->first_name ?></td>
-              <td><?php echo $patient->last_name ?></td>
+              <td><?php echo $patient->first_name ?> <?php echo $patient->last_name ?></td>
               <td><?php echo $patient->birthdate ?></td>
               <td><?php echo $patient->created_at ?></td>
               <td><?php echo $patient->email ?></td>
               <td><?php echo $patient->cellphone ?></td>
               
               <td>
-              <a class="btn btn-primary" href="<?php echo Patient::baseurl() ?>app/patient/edit_patient.php?patient=<?php echo $patient->id ?>">Edit</a> 
+              <a class="btn btn-primary" href="<?php echo Patient::baseurl() ?>/app/patient/edit_patient.php?patient=<?php echo $patient->id ?>">Edit</a> 
               </td>
               <td>
-                <a class="btn btn-primary" href="<?php echo Patient::baseurl() ?>app/deletePatient.php?dentist=<?php echo $patient->id ?>">Delete</a>
+                <a class="btn btn-primary" href="<?php echo Patient::baseurl() ?>/app/deletePatient.php?dentist=<?php echo $patient->id ?>">Delete</a>
               </td>
             </tr>
             <?php
