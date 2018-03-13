@@ -88,6 +88,14 @@
 
     <!-- dentists Grid -->
     <section class="bg-light" id="dentists">
+
+      <?php
+      require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Dentist.php";
+      $db = new Database;
+      $dentist = new Dentist($db);
+      $dentists = $dentist->get();        
+      ?>
+
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
@@ -167,13 +175,9 @@
         {
         ?>
         <div class="alert alert-danger" style="margin-top: 100px">There are 0 registered dentists</div>
-          <?php
-          }
-          ?>
-      </div>
-
-      <div class="intro-text">
-        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Add dentist</a>
+        <?php
+        }
+        ?>
       </div>
     </section>
 
