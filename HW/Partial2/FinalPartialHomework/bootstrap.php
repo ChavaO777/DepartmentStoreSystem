@@ -132,7 +132,7 @@
         <?php
         if( ! empty( $dentists ) ) {
         ?>
-        <table class="table table-striped">
+        <table class="table text-center">
           <tr>
             <!-- <th>Id</th> -->
             <th>First name</th>
@@ -183,6 +183,14 @@
 
     <!-- patients -->
     <section id="patients">
+
+      <?php
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Patient.php";
+        $db = new Database;
+        $patient = new Patient($db);
+        $patients = $patient->get();        
+      ?>
+
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
@@ -190,6 +198,62 @@
           </div>
         </div>
       </div>
+      <div class="container">
+        <div class="col-lg-12">
+          <?php
+          if( ! empty( $patients ) ) {
+          ?>
+          <table class="table table-striped">
+            <tr>
+              <!-- <th>Id</th> -->
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Birthdate</th>
+              <th>Created at</th>
+              <th>Email</th>
+              <th>Cellphone</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+            <?php foreach( $patients as $patient )
+            {
+            ?>
+            <tr>
+            <!-- <td><?php //echo $patient->id ?></td> -->
+              <td><?php echo $patient->first_name ?></td>
+              <td><?php echo $patient->last_name ?></td>
+              <td><?php echo $patient->birthdate ?></td>
+              <td><?php echo $patient->created_at ?></td>
+              <td><?php echo $patient->email ?></td>
+              <td><?php echo $patient->cellphone ?></td>
+              
+              <td>
+              <a class="btn btn-info" href="<?php echo Patient::baseurl() ?>app/editPatient.php?dentist=<?php echo $patient->id ?>">Edit</a> 
+              </td>
+              <td>
+                <a class="btn btn-info" href="<?php echo Patient::baseurl() ?>app/deletePatient.php?dentist=<?php echo $patient->id ?>">Delete</a>
+              </td>
+            </tr>
+            <?php
+            }
+            ?>
+          </table>
+          <?php
+          }
+          else
+          {
+          ?>
+          <div class="alert alert-danger" style="margin-top: 100px">There are 0 registered patients</div>
+          <?php
+          }
+          ?>
+        </div>
+      </div>
+
+      <div class="col-lg-1 pull-right" style="margin-bottom: 10px">
+          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="<?php echo Patient::baseurl() ?>/app/addPatient.php">Add patient</a>
+      </div>
+
     </section>
 
     <!-- appointments -->
