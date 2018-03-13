@@ -273,7 +273,7 @@
               <td><?php echo $patient->cellphone ?></td>
               
               <td>
-              <a class="btn btn-primary" style="width: 30px"> href="<?php echo Patient::baseurl() ?>app/editPatient.php?dentist=<?php echo $patient->id ?>">Edit</a> 
+              <a class="btn btn-primary" href="<?php echo Patient::baseurl() ?>app/editPatient.php?dentist=<?php echo $patient->id ?>">Edit</a> 
               </td>
               <td>
                 <a class="btn btn-primary" href="<?php echo Patient::baseurl() ?>app/deletePatient.php?dentist=<?php echo $patient->id ?>">Delete</a>
