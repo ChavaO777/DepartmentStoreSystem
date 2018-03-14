@@ -273,7 +273,7 @@
               <a class="btn btn-primary" href="<?php echo Patient::baseurl() ?>/app/patient/edit_patient.php?patient=<?php echo $patient->id ?>">Edit</a> 
               </td>
               <td>
-                <a class="btn btn-primary" href="<?php echo Patient::baseurl() ?>/app/deletePatient.php?dentist=<?php echo $patient->id ?>">Delete</a>
+                <a class="btn btn-primary" href="<?php echo Patient::baseurl() ?>/app/patient/delete_patient.php?patient=<?php echo $patient->id ?>">Delete</a>
               </td>
             </tr>
             <?php
@@ -294,7 +294,7 @@
 
       <div>
         <center>
-          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="<?php echo Patient::baseurl() ?>/app/addPatient.php">Add patient</a>
+          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="<?php echo Patient::baseurl() ?>/app/patient/add_patient.php">Add patient</a>
         </center>
       </div>
 

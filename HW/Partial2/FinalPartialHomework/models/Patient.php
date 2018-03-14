@@ -105,8 +105,39 @@
     	    }
     	}
 
+        public function deleteProductAppointment(){
+
+            try{
+
+                $query = $this->con->prepare('DELETE FROM product_appointment p WHERE p.appointment_id = (SELECT id FROM appointments WHERE patient_id = ?)');
+                $query->bindParam(1, $this->id, PDO::PARAM_INT);
+                $query->execute();
+                $this->con->close();
+                return true;
+            }
+            catch(PDOException $e){
+                echo  $e->getMessage();
+            }
+        }
+
+        public function deleteAppointment(){
+
+            try{
+
+                $query = $this->con->prepare('DELETE FROM appointments app WHERE app.patient_id = ?');
+                $query->bindParam(1, $this->id, PDO::PARAM_INT);
+                $query->execute();
+                $this->con->close();
+                return true;
+            }
+            catch(PDOException $e){
+                echo  $e->getMessage();
+            }
+        }
+
         public function delete(){
             try{
+
                 $query = $this->con->prepare('DELETE FROM patients WHERE id = ?');
                 $query->bindParam(1, $this->id, PDO::PARAM_INT);
                 $query->execute();
@@ -124,7 +155,7 @@
 
         public function checkPatient($patient) {
             if( ! $patient ) {
-                header("Location:" . Patient::baseurl() . "index.php");
+                header("Location:" . Patient::baseurl() . "/index.php");
             }
         }
     }

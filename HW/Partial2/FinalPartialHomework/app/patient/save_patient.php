@@ -4,6 +4,7 @@
 	      header("Location:" . Patient::baseurl() . "/index.php");
 	      exit;
 	}
+
 	$args = array(
 	    'id'        => FILTER_VALIDATE_INT,
 	    'firstname'  => FILTER_SANITIZE_STRING,
@@ -11,15 +12,11 @@
 	    'birthdate'  => FILTER_SANITIZE_STRING,
 	    'email'  => FILTER_SANITIZE_STRING,
 	    'cellphone'  => FILTER_VALIDATE_INT,
-	    'createdAt' => FILTER_SANITIZE_STRING,
 	);
 
 	$post = (object)filter_input_array(INPUT_POST, $args);
 
-	var_dump($post->id);
-	if( $post->id === false ){
-	    header("Location:" . Patient::baseurl() . "index.php");
-	}
+	$dt = new DateTime();
 
 	$db = new Database;
 	$patient = new Patient($db);
@@ -29,10 +26,9 @@
 	$patient->setBirthdate($post->birthdate);
 	$patient->setEmail($post->email);
 	$patient->setCellphone($post->cellphone);
-	$patient->setCreatedAt($post->createdAt);
+	$patient->setCreatedAt($dt->format('Y-m-d H:i:s'));
 	$patient->update();
-	// header("Location:" . Patient::baseurl() . "/index.php");
+	$patient->save();
+	header("Location:" . Patient::baseurl() . "/index.php");
+
 ?>
-<script type="text/javascript">
-	window.location="../../index.php";
-</script>

@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Edit patient</title>
+    <title>Add patient</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,55 +26,40 @@
     <header class="masthead">
       <div class="container">
         <div class="intro-text">
-          <div class="intro-heading text-uppercase" style="color: #ffc107">Edit patient</div>
+          <div class="intro-heading text-uppercase" style="color: #ffc107">Add patient</div>
         </div>
       </div>
     </header>
 
-    <?php
-        require_once "../../models/Patient.php";
-        $id = filter_input(INPUT_GET, 'patient', FILTER_VALIDATE_INT);
-        if( ! $id ){
-            header("Location:" . Patient::baseurl() . "/index.php");
-        }
-        $db = new Database;
-        $newPatient = new Patient($db);
-        $newPatient->setId($id);
-        $patient = $newPatient->get();
-        $newPatient->checkPatient($patient);
-    ?>
-
     <section>
+        <?php
+        require_once "../../models/Patient.php";
+        ?>
         <div class="container">
             <div class="col-lg-12">
-                <form action="<?php echo Patient::baseurl() ?>/app/patient/update_patient.php" method="POST">
+                <form action="<?php echo Patient::baseurl() ?>/app/patient/save_patient.php" method="POST">
                     <center>
                     <div class="form-group">
                         <h2 class="section-heading text-uppercase" for="firstname">First name</h2>
-                        <input type="text" style="width: 500px" name="firstname" value="<?php echo $patient->first_name ?>" class="form-control text-center" id="firstname" placeholder="Firstname">
+                        <input type="text" style="width: 500px" name="firstname" value="" class="form-control text-center" id="firstname" placeholder="Firstname">
                     </div>
                     <div class="form-group">
                         <h2 class="section-heading text-uppercase" for="lastname">Last name</h2>
-                        <input type="text" style="width: 500px" name="lastname" value="<?php echo $patient->last_name ?>" class="form-control text-center" id="lastname" placeholder="Lastname">
+                        <input type="text" style="width: 500px" name="lastname" value="" class="form-control text-center" id="lastname" placeholder="Lastname">
                     </div>
                     <div class="form-group">
                         <h2 class="section-heading text-uppercase" for="birthdate">Birthdate</h2>
-                        <input type="text" style="width: 500px" name="birthdate" value="<?php echo $patient->birthdate ?>" class="form-control text-center" id="birthdate" placeholder="Birthdate">
+                        <input type="text" style="width: 500px" name="birthdate" value="" class="form-control text-center" id="birthdate" placeholder="YYYY-MM-DD">
                     </div>
                     <div class="form-group">
                         <h2 class="section-heading text-uppercase" for="email">email</h2>
-                        <input type="text" style="width: 500px" name="email" value="<?php echo $patient->email ?>" class="form-control text-center" id="email" placeholder="Email">
+                        <input type="text" style="width: 500px" name="email" value="" class="form-control text-center" id="email" placeholder="Email">
                     </div>
                     <div class="form-group">
                         <h2 class="section-heading text-uppercase" for="cellphone">Cellphone</h2>
-                        <input type="text" style="width: 500px" name="cellphone" value="<?php echo $patient->cellphone ?>" class="form-control text-center" id="cellphone" placeholder="Cellphone">
+                        <input type="text" style="width: 500px" name="cellphone" value="" class="form-control text-center" id="cellphone" placeholder="Cellphone">
                     </div>
-                    <div class="form-group">
-                        <h2 class="section-heading text-uppercase" for="createdAt">Created at</h2>
-                        <input type="text" style="width: 500px" name="createdAt" value="<?php echo $patient->created_at ?>" class="form-control text-center" id="createdAt" placeholder="createdAt">
-                    </div>
-                    <input type="hidden" name="id" value="<?php echo $patient->id ?>" />
-                    <input type="submit" name="submit" class="btn btn-primary" value="UPDATE USER" />
+                    <input type="submit" name="submit" class="btn btn-primary" value="Save user" />
                     </center>
                 </form>
             </div>
