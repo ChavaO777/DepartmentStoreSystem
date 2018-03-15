@@ -87,12 +87,40 @@
     	    }
     	}
 
+        public function getPatientNames(){
+
+            try{
+                $query = $this->con->prepare('SELECT id AS p_id, first_name AS p_firstname, last_name AS p_lastname FROM patients');
+                $query->execute();
+                $this->con->close();
+                
+                return $query->fetchAll(PDO::FETCH_OBJ);
+            }
+            catch(PDOException $e){
+                echo  $e->getMessage();
+            }
+        }
+
+        public function getAppointmentNames(){
+
+            try{
+                $query = $this->con->prepare('SELECT id AS app_id, description AS app_name FROM appointment_types');
+                $query->execute();
+                $this->con->close();
+                
+                return $query->fetchAll(PDO::FETCH_OBJ);
+            }
+            catch(PDOException $e){
+                echo  $e->getMessage();
+            }
+        }
+
     	//obtenemos appointments de una tabla con postgreSql
     	public function get(){
     		try{
                 if(is_int($this->id)){
                     
-                    $query = $this->con->prepare('SELECT * FROM appointments WHERE id = ?');
+                    $query = $this->con->prepare('SELECT app.id, app.date_time AS date_time, p.first_name, p.last_name, appt.description, d.first_name, d.last_name, app.must_be_rescheduled FROM appointments app, patients p, appointment_types appt, dentists d WHERE app.patient_id = ? AND app.appointment_type_id = appt.id AND app.dentist_id = d.id');
                     $query->bindParam(1, $this->id, PDO::PARAM_INT);
                     $query->execute();
         			$this->con->close();
@@ -100,7 +128,7 @@
                 }
                 else{
                     
-                    $query = $this->con->prepare('SELECT * FROM appointments');
+                    $query = $this->con->prepare('SELECT app.id, app.date_time AS date_time, p.first_name AS pfirst_name, p.last_name AS plast_name, appt.description, d.first_name AS dfirst_name, d.last_name AS dlast_name, app.must_be_rescheduled FROM appointments app, patients p, appointment_types appt, dentists d WHERE app.patient_id = p.id AND app.appointment_type_id = appt.id AND app.dentist_id = d.id');
         			$query->execute();
         			$this->con->close();
                     
@@ -158,6 +186,20 @@
     	    }
     	}
 
+        public function deleteProductAppointment(){
+
+            try{
+                $query = $this->con->prepare('DELETE FROM product_appointment WHERE appointment_id = ?');
+                $query->bindParam(1, $this->id, PDO::PARAM_INT);
+                $query->execute();
+                $this->con->close();
+                return true;
+            }
+            catch(PDOException $e){
+                echo  $e->getMessage();
+            }            
+        }
+
         public function delete(){
             try{
                 $query = $this->con->prepare('DELETE FROM appointments WHERE id = ?');
@@ -172,12 +214,12 @@
         }
 
         public static function baseurl() {
-             return stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'] . "/crudpgsql/";
+             return stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'];
         }
 
         public function checkAppointment($appointment) {
             if( ! $appointment ) {
-                header("Location:" . Appointment::baseurl() . "index.php");
+                header("Location:" . Appointment::baseurl() . "/index.php");
             }
         }
     }

@@ -255,8 +255,8 @@
               <th>Created at</th>
               <th>Email</th>
               <th>Cellphone</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th></th>
+              <th></th>
             </tr>
             <?php foreach( $patients as $patient )
             {
@@ -270,7 +270,7 @@
               <td><?php echo $patient->cellphone ?></td>
               
               <td>
-              <a class="btn btn-primary" href="<?php echo Patient::baseurl() ?>/app/patient/edit_patient.php?patient=<?php echo $patient->id ?>">Edit</a> 
+                <a class="btn btn-primary" href="<?php echo Patient::baseurl() ?>/app/patient/edit_patient.php?patient=<?php echo $patient->id ?>">Edit</a> 
               </td>
               <td>
                 <a class="btn btn-primary" href="<?php echo Patient::baseurl() ?>/app/patient/delete_patient.php?patient=<?php echo $patient->id ?>">Delete</a>
@@ -303,20 +303,33 @@
     <!-- appointments -->
     <section class="bg-light" id="appointments">
 
-      <?php
+      <div class="col-lg-12 text-center">
+
+        <h2 class="section-heading text-uppercase">Appointments</h2>
+
+        <div class="container">
+          <div class="col-lg-12">
+          </div>
+        </div>
+
+        <h3 class="section-subheading text-muted">Everyone should see a general dentist for routine oral health examinations, twice-yearly cleanings, and treatment of routine oral health complications, such as minor tooth decay.</h3>
+      </div>
+
+      <div class="container">
+
+        <?php
         require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Appointment.php";
         $db = new Database;
         $appointment = new Appointment($db);
         $todaysAppointments = $appointment->getAppointmentsInDateRange('1990-01-01' , '2030-01-01'); // current_date, current_date);  
         // $todaysAppointments = $appointment->get();
         $appointments = $appointment->get();    
-      ?>
+        ?>
 
-      <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
 
-            <h2 class="section-heading text-uppercase">Today's appointments</h2>
+            <h4 style="color: #ffc107">Today's appointments</h4>
 
             <div class="container">
               <div class="col-lg-12">
@@ -364,21 +377,77 @@
       </div>
       
       <div class="container">
+
+        <?php
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Appointment.php";
+        $db = new Database;
+        $appointment = new Appointment($db);
+        $appointments = $appointment->get();    
+        ?>
+
         <div class="row">
           <div class="col-lg-12 text-center">
 
-            <h2 class="section-heading text-uppercase">Future appointments</h2>
+            <h4 style="color: #ffc107">Future appointments</h4>
 
             <div class="container">
               <div class="col-lg-12">
+                <?php
+                if( ! empty( $appointments ) ) {
+                ?>
+                <table class="table text-center">
+                  <tr>
+                    <!-- <th>Id</th> -->
+                    <th>Date & Time</th>
+                    <th>Patient</th>
+                    <th>Appointment Type</th>
+                    <th>Dentist</th>
+                    <th>Must be rescheduled</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                  <?php foreach( $appointments as $appointment )
+                  {
+                  ?>
+                  <tr>
+                    <td><?php echo $appointment->date_time ?></td>
+                    <td><?php echo $appointment->pfirst_name . " " . $appointment->plast_name ?></td>
+                    <td><?php echo $appointment->description ?></td>
+                    <td><?php echo $appointment->dfirst_name . " " . $appointment->dlast_name ?></td>
+                    <td><?php echo $appointment->must_be_rescheduled==1 ? "<font color='red'>Yes</font>" : "<font color='green'>No</font>" ?></td>
+                    <td>
+                      <a class="btn btn-primary" href="<?php echo Appointment::baseurl()?>/app/appointment/edit_appointment.php?appointment=<?php echo $appointment->id ?>">Edit</a>
+                    </td>
+                    <td>
+                      <a class="btn btn-primary" href="<?php echo Appointment::baseurl()?>/app/appointment/delete_appointment.php?appointment=<?php echo $appointment->id ?>">Delete</a>
+                    </td>
+
+                  </tr>
+                  <?php
+                  }
+                  ?>
+                </table>
+                <?php
+                }
+                else
+                {
+                ?>
+                <div class="alert alert-danger" style="margin-top: 100px">There are 0 registered appointments for today</div>
+                <?php
+                }
+                ?>
               </div>
             </div>
 
-            <h3 class="section-subheading text-muted">Everyone should see a general dentist for routine oral health examinations, twice-yearly cleanings, and treatment of routine oral health complications, such as minor tooth decay.</h3>
+
           </div>
         </div>
       </div>
-
+      <div>
+        <center>
+          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="<?php echo Appointment::baseurl() ?>/app/appointment/add_appointment.php">Add Appointment</a>
+        </center>
+      </div>
     </section>
 
     <!-- Footer -->
