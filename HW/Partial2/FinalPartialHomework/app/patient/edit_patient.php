@@ -74,7 +74,7 @@
                         <input type="text" style="width: 500px" name="createdAt" value="<?php echo $patient->created_at ?>" class="form-control text-center" id="createdAt" placeholder="createdAt">
                     </div>
                     <input type="hidden" name="id" value="<?php echo $patient->id ?>" />
-                    <input type="submit" name="submit" class="btn btn-primary" value="UPDATE USER" />
+                    <input type="submit" name="submit" class="btn btn-primary" value="UPDATE PATIENT" />
                     </center>
                 </form>
             </div>

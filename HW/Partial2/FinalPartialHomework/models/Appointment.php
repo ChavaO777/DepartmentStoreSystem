@@ -52,7 +52,9 @@
     	//insertamos usuarios en una tabla con postgreSql
     	public function save() {
     		try{
-    			$query = $this->con->prepare('INSERT INTO appointments (patient_id, must_be_rescheduled, date_time, created_at, updated_at, appointment_type_id, dentist_id) values (?,?,?,?,?,?,?)');
+
+                $query = $this->con->prepare('INSERT INTO appointments VALUES(DEFAULT, ?,?,?,?,?,?,?)');
+
                 $query->bindParam(1, $this->patientId, PDO::PARAM_STR);
                 $query->bindParam(2, $this->mustBeRescheduled, PDO::PARAM_STR);
                 $query->bindParam(3, $this->dateTime, PDO::PARAM_STR);
@@ -60,6 +62,7 @@
                 $query->bindParam(5, $this->updatedAt, PDO::PARAM_STR);
                 $query->bindParam(6, $this->appointmentTypeId, PDO::PARAM_STR);
                 $query->bindParam(7, $this->dentistId, PDO::PARAM_STR);
+
     			$query->execute();
     			$this->con->close();
     		}
@@ -115,12 +118,26 @@
             }
         }
 
+        public function getDentistNames(){
+
+            try{
+                $query = $this->con->prepare('SELECT id AS d_id, first_name AS d_firstname, last_name AS d_lastname FROM dentists');
+                $query->execute();
+                $this->con->close();
+                
+                return $query->fetchAll(PDO::FETCH_OBJ);
+            }
+            catch(PDOException $e){
+                echo  $e->getMessage();
+            }
+        }
+
     	//obtenemos appointments de una tabla con postgreSql
     	public function get(){
     		try{
                 if(is_int($this->id)){
                     
-                    $query = $this->con->prepare('SELECT app.id, app.date_time AS date_time, p.first_name, p.last_name, appt.description, d.first_name, d.last_name, app.must_be_rescheduled FROM appointments app, patients p, appointment_types appt, dentists d WHERE app.patient_id = ? AND app.appointment_type_id = appt.id AND app.dentist_id = d.id');
+                    $query = $this->con->prepare('SELECT app.id AS id, app.date_time AS date_time, p.id AS p_id, p.first_name AS p_firstname, p.last_name AS p_lastname, appt.id AS appt_id, appt.description AS description, d.first_name AS d_firstname, d.id AS d_id, d.last_name AS d_lastname, app.must_be_rescheduled AS must_be_rescheduled FROM appointments app, patients p, appointment_types appt, dentists d WHERE app.patient_id = p.id AND app.appointment_type_id = appt.id AND app.dentist_id = d.id AND app.id = ?');
                     $query->bindParam(1, $this->id, PDO::PARAM_INT);
                     $query->execute();
         			$this->con->close();
@@ -128,7 +145,7 @@
                 }
                 else{
                     
-                    $query = $this->con->prepare('SELECT app.id, app.date_time AS date_time, p.first_name AS pfirst_name, p.last_name AS plast_name, appt.description, d.first_name AS dfirst_name, d.last_name AS dlast_name, app.must_be_rescheduled FROM appointments app, patients p, appointment_types appt, dentists d WHERE app.patient_id = p.id AND app.appointment_type_id = appt.id AND app.dentist_id = d.id');
+                    $query = $this->con->prepare('SELECT p.id AS p_id, app.id AS id, p.first_name AS p_firstname, appt.id AS appt_id, p.last_name AS p_lastname, app.date_time AS date_time, appt.description AS description, d.first_name AS d_firstname, d.id AS d_id, d.last_name AS d_lastname, app.must_be_rescheduled AS must_be_rescheduled from patients p, appointments app, appointment_types appt, dentists d WHERE p.id = app.patient_id AND appt.id = app.appointment_type_id AND d.id = app.dentist_id');
         			$query->execute();
         			$this->con->close();
                     

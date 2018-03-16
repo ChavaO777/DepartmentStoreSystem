@@ -411,9 +411,9 @@
                   ?>
                   <tr>
                     <td><?php echo $appointment->date_time ?></td>
-                    <td><?php echo $appointment->pfirst_name . " " . $appointment->plast_name ?></td>
+                    <td><?php echo $appointment->p_firstname . " " . $appointment->p_lastname ?></td>
                     <td><?php echo $appointment->description ?></td>
-                    <td><?php echo $appointment->dfirst_name . " " . $appointment->dlast_name ?></td>
+                    <td><?php echo $appointment->d_firstname . " " . $appointment->d_lastname ?></td>
                     <td><?php echo $appointment->must_be_rescheduled==1 ? "<font color='red'>Yes</font>" : "<font color='green'>No</font>" ?></td>
                     <td>
                       <a class="btn btn-primary" href="<?php echo Appointment::baseurl()?>/app/appointment/edit_appointment.php?appointment=<?php echo $appointment->id ?>">Edit</a>
