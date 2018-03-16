@@ -20,6 +20,7 @@
 
 	$db = new Database;
 	$appointment = new Appointment($db);
+
 	$appointment->setPatientId($post->patient_id);
 	$appointment->setMustBeRescheduled($post->must_be_rescheduled);
 	$appointment->setDateTime($post->date_time);
@@ -28,7 +29,11 @@
 	$appointment->setAppointmentTypeId($post->appointment_id);
 	$appointment->setDentistId($post->dentist_id);
 
-	$appointment->save();
-	header("Location:" . Appointment::baseurl() . "/index.php");
-
+	if($appointment->validatePatient() AND $appointment->validateAppointmentType() AND $appointment->validateDentist() AND $appointment->validateDentistDateTime() AND $appointment->validatePatientDateTime() AND $appointment->validateAppointmentTime()){
+		$appointment->save();
+		header("Location:" . Appointment::baseurl() . "/index.php");
+	}
+	else{
+		header("Location:" . Appointment::baseurl() . "/error.php");
+	}
 ?>

@@ -230,6 +230,152 @@
             }
         }
 
+        public function validatePatient(){
+
+            try{
+
+                $query = $this->con->prepare('SELECT id FROM patients WHERE id = ?');
+                $query->bindParam(1, $this->patientId, PDO::PARAM_INT);
+                $query->execute();
+                $count = $query->rowCount();
+
+                $this->con->close();
+
+                if($count == 0){
+                    return false;
+                }
+                else {
+                    return true;
+                }
+
+
+            }
+            catch(PDOException $e){
+                echo  $e->getMessage();
+            }
+        }
+
+        public function validateAppointmentType(){
+
+            try{
+
+                $query = $this->con->prepare('SELECT id FROM appointment_types WHERE id = ?');
+                $query->bindParam(1, $this->appointmentTypeId, PDO::PARAM_INT);
+                $query->execute();
+                $count = $query->rowCount();
+
+                $this->con->close();
+
+                if($count == 0){
+                    return false;
+                }
+                else {
+                    return true;
+                }                
+            }
+            catch(PDOException $e){
+                echo  $e->getMessage();
+            }
+        }
+
+        public function validateDentist(){
+
+            try{
+
+                $query = $this->con->prepare('SELECT id FROM dentists WHERE id = ?');
+                $query->bindParam(1, $this->dentistId, PDO::PARAM_INT);
+                $query->execute();
+                $count = $query->rowCount();
+
+                $this->con->close();
+
+                if($count == 0){
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
+            catch(PDOException $e){
+                echo  $e->getMessage();
+            }
+        }
+
+        public function validatePatientDateTime(){
+
+            try{
+
+                $query = $this->con->prepare('SELECT date_time FROM appointments, patients WHERE appointments.date_time = ? AND patients.id = ?');
+                $query->bindParam(1, $this->dateTime, PDO::PARAM_INT);
+                $query->bindParam(1, $this->patientId, PDO::PARAM_INT);
+                $query->execute();
+                $count = $query->rowCount();
+
+                $this->con->close();
+
+                if($count >= 0){
+                    return false;
+                }
+                else {
+                    return true;
+                }
+
+            }
+            catch(PDOException $e){
+                echo  $e->getMessage();
+            }
+        }
+
+        public function validateAppointmentTime(){
+
+            $query = $this->con->prepare('SELECT minutes FROM appointment_types appt, appointments app WHERE app.appointment_type_id = appt.id AND appt.id = ?');
+            $query->bindParam(1, $this->appointmentTypeId, PDO::PARAM_INT);
+            $query->execute();
+            $minutes = $query->fetch(PDO::FETCH_OBJ);
+
+            $totalTime = $dateTime::time + $minutes;
+
+            $queryTime = $this->con->prepare('SELECT id FROM appointments WHERE date_time >= ?');
+            $queryTime->bindParam(1, $totalTime, PDO::PARAM_INT);
+            $queryTime->execute();
+            $count = $queryTime->rowCount();
+
+            $this->con->close();
+
+            if($count == 0){
+                return true;
+            }
+            else {
+                return false;
+            }
+
+        }
+
+        public function validateDentistDateTime(){
+
+            try{
+
+                $query = $this->con->prepare('SELECT date_time FROM appointments, dentists WHERE appointments.date_time = ? AND dentists.id = ?');
+                $query->bindParam(1, $this->dateTime, PDO::PARAM_INT);
+                $query->bindParam(1, $this->dentistId, PDO::PARAM_INT);
+                $query->execute();
+                $count = $query->rowCount();
+
+                $this->con->close();
+
+                if($count >= 0){
+                    return false;
+                }
+                else {
+                    return true;
+                }
+
+            }
+            catch(PDOException $e){
+                echo  $e->getMessage();
+            }
+        }
+
         public static function baseurl() {
              return stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'];
         }
