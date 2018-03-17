@@ -29,7 +29,7 @@
 	$appointment->setAppointmentTypeId($post->appointment_id);
 	$appointment->setDentistId($post->dentist_id);
 
-	if($appointment->validatePatient() AND $appointment->validateAppointmentType() AND $appointment->validateDentist() AND $appointment->validateDentistDateTime() AND $appointment->validatePatientDateTime() AND $appointment->computeAppointmentsOfSubjectInTimeInterval(false)){
+	if($appointment->validatePatient() AND $appointment->validateAppointmentType() AND $appointment->validateDentist() AND $appointment->validateDentistDateTime() AND $appointment->validatePatientDateTime() AND $appointment->computeAppointmentsOfSubjectInTimeInterval(false) AND $appointment->computeAppointmentsOfSubjectInTimeInterval(true)){
 
 		$appointment->save();
 		header("Location:" . Appointment::baseurl() . "/index.php");
