@@ -31,9 +31,16 @@
 	$appointment->setUpdatedAt($dt->format('Y-m-d H:i:s'));
 	$appointment->setAppointmentTypeId($post->appointment_id);
 
-	$appointment->update();
+	if($appointment->validatePatient() AND $appointment->validateAppointmentType() AND $appointment->validateDentist() AND $appointment->validateDentistDateTime() AND $appointment->validatePatientDateTime() AND $appointment->computeAppointmentsOfSubjectInTimeInterval(false)){
+
+		$appointment->update();
+		header("Location:" . Appointment::baseurl() . "/index.php");
+	}
+	else{
+		header("Location:" . Appointment::baseurl() . "/error.php");
+	}
 	// header("Location:" . Patient::baseurl() . "/index.php");
 ?>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	window.location="../../index.php";
-</script>
+</script> -->

@@ -305,19 +305,19 @@
 
             try{
 
-                $query = $this->con->prepare('SELECT date_time FROM appointments, patients WHERE appointments.date_time = ? AND patients.id = ?');
-                $query->bindParam(1, $this->dateTime, PDO::PARAM_INT);
-                $query->bindParam(1, $this->patientId, PDO::PARAM_INT);
+                $query = $this->con->prepare('SELECT date_time FROM appointments WHERE appointments.date_time = ? AND appointments.patient_id = ?');
+                $query->bindParam(1, $this->dateTime, PDO::PARAM_STR);
+                $query->bindParam(2, $this->patientId, PDO::PARAM_INT);
                 $query->execute();
                 $count = $query->rowCount();
 
                 $this->con->close();
 
-                if($count >= 0){
-                    return false;
+                if($count == 0){
+                    return true;
                 }
                 else {
-                    return true;
+                    return false;
                 }
 
             }
@@ -326,23 +326,57 @@
             }
         }
 
-        public function validateAppointmentTime(){
+        public function computeAppointmentsOfSubjectInTimeInterval($isPatient){
 
-            $query = $this->con->prepare('SELECT minutes FROM appointment_types appt, appointments app WHERE app.appointment_type_id = appt.id AND appt.id = ?');
-            $query->bindParam(1, $this->appointmentTypeId, PDO::PARAM_INT);
-            $query->execute();
-            $minutes = $query->fetch(PDO::FETCH_OBJ);
+            
+                /*Cuántas citas del dentista comienzan antes de que esta cita termine
+                Cuántas citas del dentista terminan después de que esta cita empiece
 
-            $totalTime = $dateTime::time + $minutes;
+                HACER LO MISMO CON EL PACIENTE*/  
+            
 
-            $queryTime = $this->con->prepare('SELECT id FROM appointments WHERE date_time >= ?');
-            $queryTime->bindParam(1, $totalTime, PDO::PARAM_INT);
-            $queryTime->execute();
-            $count = $queryTime->rowCount();
+            $totalAppointmentsInCurrentAppointmentTimeInterval;
 
-            $this->con->close();
+            if($isPatient){
 
-            if($count == 0){
+            }
+            else{ 
+
+                //Query for the dentist
+                $query = $this->con->prepare('SELECT minutes FROM appointment_types appt, appointments app, dentists d WHERE app.appointment_type_id = appt.id AND appt.id = ? AND app.dentist_id = ?');
+                $query->bindParam(1, $this->appointmentTypeId, PDO::PARAM_INT);
+                $query->bindParam(2, $this->dentistId, PDO::PARAM_INT);
+                $query->execute();
+                $minutes = $query->fetch(PDO::FETCH_OBJ);
+
+                $currentAppointmentEndingTime = $this->dateTime + $minutes;
+
+                $currentAppintmentStartingTime = $this->dateTime;
+
+                // Query to count the following dentist's appointments:
+                // 
+                // 1. queries that end after the current appointment's starting time and start before the current appointment's starting time
+                // 
+                // 2. queries that start before the current appointment's ending time
+
+
+
+
+                $queryTime = $this->con->prepare('SELECT id FROM appointments app WHERE app.dentist_id = ? AND app.date_time >= ?');
+                $queryTime->bindParam(1, $totalTime, PDO::PARAM_INT);
+                $queryTime->execute();
+                $totalAppointmentsInCurrentAppointmentTimeInterval = $queryTime->rowCount();
+
+                $queryToGetAppointmentsThatEndAfterThisAppointment = $this->con->prepare('SELECT id FROM appointments apps WHERE apps.date_time <= ? AND apps.date_time >= ?');
+                $queryToGetAppointmentsThatEndAfterThisAppointment->bindParam(1, $currentAppointmentEndingTime, PDO::PARAM_STR);
+                $queryToGetAppointmentsThatEndAfterThisAppointment->bindParam(2, $currentAppintmentStartingTime, PDO::PARAM_STR);
+                $queryToGetAppointmentsThatEndAfterThisAppointment->execute();
+                $totalAppointmentsInCurrentAppointmentTimeInterval = $queryToGetAppointmentsThatEndAfterThisAppointment->rowCount();
+
+                $this->con->close();
+            }
+
+            if($totalAppointmentsInCurrentAppointmentTimeInterval == 0){
                 return true;
             }
             else {
@@ -355,19 +389,19 @@
 
             try{
 
-                $query = $this->con->prepare('SELECT date_time FROM appointments, dentists WHERE appointments.date_time = ? AND dentists.id = ?');
-                $query->bindParam(1, $this->dateTime, PDO::PARAM_INT);
-                $query->bindParam(1, $this->dentistId, PDO::PARAM_INT);
+                $query = $this->con->prepare('SELECT date_time FROM appointments WHERE appointments.date_time = ? AND appointments.dentist_id = ?');
+                $query->bindParam(1, $this->dateTime, PDO::PARAM_STR);
+                $query->bindParam(2, $this->dentistId, PDO::PARAM_INT);
                 $query->execute();
                 $count = $query->rowCount();
 
                 $this->con->close();
 
-                if($count >= 0){
-                    return false;
+                if($count == 0){
+                    return true;
                 }
                 else {
-                    return true;
+                    return false;
                 }
 
             }
