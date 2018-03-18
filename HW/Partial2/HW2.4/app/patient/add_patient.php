@@ -41,15 +41,15 @@
                     <center>
                     <div class="form-group">
                         <h2 class="section-heading text-uppercase" for="firstname">First name</h2>
-                        <input type="text" style="width: 500px" name="firstname" value="" class="form-control text-center" id="firstname" placeholder="Firstname">
+                        <input type="text" style="width: 500px" name="firstname" value="" class="form-control text-center" id="firstname" placeholder="First Name">
                     </div>
                     <div class="form-group">
                         <h2 class="section-heading text-uppercase" for="lastname">Last name</h2>
-                        <input type="text" style="width: 500px" name="lastname" value="" class="form-control text-center" id="lastname" placeholder="Lastname">
+                        <input type="text" style="width: 500px" name="lastname" value="" class="form-control text-center" id="lastname" placeholder="Last Name">
                     </div>
                     <div class="form-group">
                         <h2 class="section-heading text-uppercase" for="birthdate">Birthdate</h2>
-                        <input type="text" style="width: 500px" name="birthdate" value="" class="form-control text-center" id="birthdate" placeholder="YYYY-MM-DD">
+                        <input type="date" style="width: 500px" name="birthdate" value="" class="form-control text-center" id="birthdate" placeholder="YYYY-MM-DD">
                     </div>
                     <div class="form-group">
                         <h2 class="section-heading text-uppercase" for="email">email</h2>

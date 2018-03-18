@@ -30,7 +30,7 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 --
--- Name: get_end_time(timestamp without time zone, integer); Type: FUNCTION; Schema: public; Owner: arabascal
+-- Name: get_end_time(timestamp without time zone, integer); Type: FUNCTION; Schema: public; Owner: salvador
 --
 
 CREATE FUNCTION public.get_end_time(starting_time timestamp without time zone, appt_param integer) RETURNS TABLE(end_time timestamp without time zone)
@@ -43,10 +43,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.get_end_time(starting_time timestamp without time zone, appt_param integer) OWNER TO arabascal;
+ALTER FUNCTION public.get_end_time(starting_time timestamp without time zone, appt_param integer) OWNER TO salvador;
 
 --
--- Name: get_end_time_dentist(timestamp without time zone, integer); Type: FUNCTION; Schema: public; Owner: arabascal
+-- Name: get_end_time_dentist(timestamp without time zone, integer); Type: FUNCTION; Schema: public; Owner: salvador
 --
 
 CREATE FUNCTION public.get_end_time_dentist(starting_time timestamp without time zone, dentist_param integer) RETURNS TABLE(end_time timestamp without time zone)
@@ -60,10 +60,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.get_end_time_dentist(starting_time timestamp without time zone, dentist_param integer) OWNER TO arabascal;
+ALTER FUNCTION public.get_end_time_dentist(starting_time timestamp without time zone, dentist_param integer) OWNER TO salvador;
 
 --
--- Name: get_end_time_patients(timestamp without time zone, integer); Type: FUNCTION; Schema: public; Owner: arabascal
+-- Name: get_end_time_patients(timestamp without time zone, integer); Type: FUNCTION; Schema: public; Owner: salvador
 --
 
 CREATE FUNCTION public.get_end_time_patients(starting_time timestamp without time zone, patient_param integer) RETURNS TABLE(end_time timestamp without time zone)
@@ -77,10 +77,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.get_end_time_patients(starting_time timestamp without time zone, patient_param integer) OWNER TO arabascal;
+ALTER FUNCTION public.get_end_time_patients(starting_time timestamp without time zone, patient_param integer) OWNER TO salvador;
 
 --
--- Name: get_future_appointments(); Type: FUNCTION; Schema: public; Owner: arabascal
+-- Name: get_future_appointments(); Type: FUNCTION; Schema: public; Owner: salvador
 --
 
 CREATE FUNCTION public.get_future_appointments() RETURNS TABLE(date_time timestamp without time zone, p_firstname character varying, p_lastname character varying, appt_description character varying, d_firstname character varying, d_lastname character varying, app_rescheduled boolean)
@@ -95,10 +95,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.get_future_appointments() OWNER TO arabascal;
+ALTER FUNCTION public.get_future_appointments() OWNER TO salvador;
 
 --
--- Name: get_past_appointments(); Type: FUNCTION; Schema: public; Owner: arabascal
+-- Name: get_past_appointments(); Type: FUNCTION; Schema: public; Owner: salvador
 --
 
 CREATE FUNCTION public.get_past_appointments() RETURNS TABLE(date_time timestamp without time zone, p_firstname character varying, p_lastname character varying, appt_description character varying, d_firstname character varying, d_lastname character varying, app_rescheduled boolean)
@@ -113,10 +113,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.get_past_appointments() OWNER TO arabascal;
+ALTER FUNCTION public.get_past_appointments() OWNER TO salvador;
 
 --
--- Name: get_start_time(timestamp without time zone); Type: FUNCTION; Schema: public; Owner: arabascal
+-- Name: get_start_time(timestamp without time zone); Type: FUNCTION; Schema: public; Owner: salvador
 --
 
 CREATE FUNCTION public.get_start_time(datetime_param timestamp without time zone) RETURNS TABLE(start_time timestamp without time zone)
@@ -129,10 +129,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.get_start_time(datetime_param timestamp without time zone) OWNER TO arabascal;
+ALTER FUNCTION public.get_start_time(datetime_param timestamp without time zone) OWNER TO salvador;
 
 --
--- Name: get_start_time_dentist(timestamp without time zone, integer); Type: FUNCTION; Schema: public; Owner: arabascal
+-- Name: get_start_time_dentist(timestamp without time zone, integer); Type: FUNCTION; Schema: public; Owner: salvador
 --
 
 CREATE FUNCTION public.get_start_time_dentist(datetime_param timestamp without time zone, dentist_param integer) RETURNS TABLE(start_time timestamp without time zone)
@@ -145,10 +145,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.get_start_time_dentist(datetime_param timestamp without time zone, dentist_param integer) OWNER TO arabascal;
+ALTER FUNCTION public.get_start_time_dentist(datetime_param timestamp without time zone, dentist_param integer) OWNER TO salvador;
 
 --
--- Name: get_start_time_patient(timestamp without time zone, integer); Type: FUNCTION; Schema: public; Owner: arabascal
+-- Name: get_start_time_patient(timestamp without time zone, integer); Type: FUNCTION; Schema: public; Owner: salvador
 --
 
 CREATE FUNCTION public.get_start_time_patient(datetime_param timestamp without time zone, patient_param integer) RETURNS TABLE(start_time timestamp without time zone)
@@ -161,10 +161,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.get_start_time_patient(datetime_param timestamp without time zone, patient_param integer) OWNER TO arabascal;
+ALTER FUNCTION public.get_start_time_patient(datetime_param timestamp without time zone, patient_param integer) OWNER TO salvador;
 
 --
--- Name: get_todays_appointments(); Type: FUNCTION; Schema: public; Owner: arabascal
+-- Name: get_todays_appointments(); Type: FUNCTION; Schema: public; Owner: salvador
 --
 
 CREATE FUNCTION public.get_todays_appointments() RETURNS TABLE(date_time timestamp without time zone, p_firstname character varying, p_lastname character varying, appt_description character varying, d_firstname character varying, d_lastname character varying, app_rescheduled boolean)
@@ -179,14 +179,14 @@ END;
 $$;
 
 
-ALTER FUNCTION public.get_todays_appointments() OWNER TO arabascal;
+ALTER FUNCTION public.get_todays_appointments() OWNER TO salvador;
 
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: appointment_types; Type: TABLE; Schema: public; Owner: arabascal
+-- Name: appointment_types; Type: TABLE; Schema: public; Owner: salvador
 --
 
 CREATE TABLE public.appointment_types (
@@ -197,10 +197,10 @@ CREATE TABLE public.appointment_types (
 );
 
 
-ALTER TABLE public.appointment_types OWNER TO arabascal;
+ALTER TABLE public.appointment_types OWNER TO salvador;
 
 --
--- Name: appointment_types_id_seq; Type: SEQUENCE; Schema: public; Owner: arabascal
+-- Name: appointment_types_id_seq; Type: SEQUENCE; Schema: public; Owner: salvador
 --
 
 CREATE SEQUENCE public.appointment_types_id_seq
@@ -211,17 +211,17 @@ CREATE SEQUENCE public.appointment_types_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.appointment_types_id_seq OWNER TO arabascal;
+ALTER TABLE public.appointment_types_id_seq OWNER TO salvador;
 
 --
--- Name: appointment_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arabascal
+-- Name: appointment_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: salvador
 --
 
 ALTER SEQUENCE public.appointment_types_id_seq OWNED BY public.appointment_types.id;
 
 
 --
--- Name: appointments; Type: TABLE; Schema: public; Owner: arabascal
+-- Name: appointments; Type: TABLE; Schema: public; Owner: salvador
 --
 
 CREATE TABLE public.appointments (
@@ -236,10 +236,10 @@ CREATE TABLE public.appointments (
 );
 
 
-ALTER TABLE public.appointments OWNER TO arabascal;
+ALTER TABLE public.appointments OWNER TO salvador;
 
 --
--- Name: appointments_id_seq; Type: SEQUENCE; Schema: public; Owner: arabascal
+-- Name: appointments_id_seq; Type: SEQUENCE; Schema: public; Owner: salvador
 --
 
 CREATE SEQUENCE public.appointments_id_seq
@@ -250,17 +250,17 @@ CREATE SEQUENCE public.appointments_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.appointments_id_seq OWNER TO arabascal;
+ALTER TABLE public.appointments_id_seq OWNER TO salvador;
 
 --
--- Name: appointments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arabascal
+-- Name: appointments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: salvador
 --
 
 ALTER SEQUENCE public.appointments_id_seq OWNED BY public.appointments.id;
 
 
 --
--- Name: dentists; Type: TABLE; Schema: public; Owner: arabascal
+-- Name: dentists; Type: TABLE; Schema: public; Owner: salvador
 --
 
 CREATE TABLE public.dentists (
@@ -275,10 +275,10 @@ CREATE TABLE public.dentists (
 );
 
 
-ALTER TABLE public.dentists OWNER TO arabascal;
+ALTER TABLE public.dentists OWNER TO salvador;
 
 --
--- Name: dentists_id_seq; Type: SEQUENCE; Schema: public; Owner: arabascal
+-- Name: dentists_id_seq; Type: SEQUENCE; Schema: public; Owner: salvador
 --
 
 CREATE SEQUENCE public.dentists_id_seq
@@ -289,17 +289,17 @@ CREATE SEQUENCE public.dentists_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.dentists_id_seq OWNER TO arabascal;
+ALTER TABLE public.dentists_id_seq OWNER TO salvador;
 
 --
--- Name: dentists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arabascal
+-- Name: dentists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: salvador
 --
 
 ALTER SEQUENCE public.dentists_id_seq OWNED BY public.dentists.id;
 
 
 --
--- Name: patients; Type: TABLE; Schema: public; Owner: arabascal
+-- Name: patients; Type: TABLE; Schema: public; Owner: salvador
 --
 
 CREATE TABLE public.patients (
@@ -313,10 +313,10 @@ CREATE TABLE public.patients (
 );
 
 
-ALTER TABLE public.patients OWNER TO arabascal;
+ALTER TABLE public.patients OWNER TO salvador;
 
 --
--- Name: patients_id_seq; Type: SEQUENCE; Schema: public; Owner: arabascal
+-- Name: patients_id_seq; Type: SEQUENCE; Schema: public; Owner: salvador
 --
 
 CREATE SEQUENCE public.patients_id_seq
@@ -327,17 +327,17 @@ CREATE SEQUENCE public.patients_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.patients_id_seq OWNER TO arabascal;
+ALTER TABLE public.patients_id_seq OWNER TO salvador;
 
 --
--- Name: patients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arabascal
+-- Name: patients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: salvador
 --
 
 ALTER SEQUENCE public.patients_id_seq OWNED BY public.patients.id;
 
 
 --
--- Name: product_appointment; Type: TABLE; Schema: public; Owner: arabascal
+-- Name: product_appointment; Type: TABLE; Schema: public; Owner: salvador
 --
 
 CREATE TABLE public.product_appointment (
@@ -348,10 +348,10 @@ CREATE TABLE public.product_appointment (
 );
 
 
-ALTER TABLE public.product_appointment OWNER TO arabascal;
+ALTER TABLE public.product_appointment OWNER TO salvador;
 
 --
--- Name: product_appointment_id_seq; Type: SEQUENCE; Schema: public; Owner: arabascal
+-- Name: product_appointment_id_seq; Type: SEQUENCE; Schema: public; Owner: salvador
 --
 
 CREATE SEQUENCE public.product_appointment_id_seq
@@ -362,17 +362,17 @@ CREATE SEQUENCE public.product_appointment_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.product_appointment_id_seq OWNER TO arabascal;
+ALTER TABLE public.product_appointment_id_seq OWNER TO salvador;
 
 --
--- Name: product_appointment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arabascal
+-- Name: product_appointment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: salvador
 --
 
 ALTER SEQUENCE public.product_appointment_id_seq OWNED BY public.product_appointment.id;
 
 
 --
--- Name: products; Type: TABLE; Schema: public; Owner: arabascal
+-- Name: products; Type: TABLE; Schema: public; Owner: salvador
 --
 
 CREATE TABLE public.products (
@@ -386,10 +386,10 @@ CREATE TABLE public.products (
 );
 
 
-ALTER TABLE public.products OWNER TO arabascal;
+ALTER TABLE public.products OWNER TO salvador;
 
 --
--- Name: products_id_seq; Type: SEQUENCE; Schema: public; Owner: arabascal
+-- Name: products_id_seq; Type: SEQUENCE; Schema: public; Owner: salvador
 --
 
 CREATE SEQUENCE public.products_id_seq
@@ -400,17 +400,17 @@ CREATE SEQUENCE public.products_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.products_id_seq OWNER TO arabascal;
+ALTER TABLE public.products_id_seq OWNER TO salvador;
 
 --
--- Name: products_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arabascal
+-- Name: products_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: salvador
 --
 
 ALTER SEQUENCE public.products_id_seq OWNED BY public.products.id;
 
 
 --
--- Name: purchase_orders; Type: TABLE; Schema: public; Owner: arabascal
+-- Name: purchase_orders; Type: TABLE; Schema: public; Owner: salvador
 --
 
 CREATE TABLE public.purchase_orders (
@@ -421,10 +421,10 @@ CREATE TABLE public.purchase_orders (
 );
 
 
-ALTER TABLE public.purchase_orders OWNER TO arabascal;
+ALTER TABLE public.purchase_orders OWNER TO salvador;
 
 --
--- Name: purchase_orders_id_seq; Type: SEQUENCE; Schema: public; Owner: arabascal
+-- Name: purchase_orders_id_seq; Type: SEQUENCE; Schema: public; Owner: salvador
 --
 
 CREATE SEQUENCE public.purchase_orders_id_seq
@@ -435,66 +435,66 @@ CREATE SEQUENCE public.purchase_orders_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.purchase_orders_id_seq OWNER TO arabascal;
+ALTER TABLE public.purchase_orders_id_seq OWNER TO salvador;
 
 --
--- Name: purchase_orders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arabascal
+-- Name: purchase_orders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: salvador
 --
 
 ALTER SEQUENCE public.purchase_orders_id_seq OWNED BY public.purchase_orders.id;
 
 
 --
--- Name: appointment_types id; Type: DEFAULT; Schema: public; Owner: arabascal
+-- Name: appointment_types id; Type: DEFAULT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.appointment_types ALTER COLUMN id SET DEFAULT nextval('public.appointment_types_id_seq'::regclass);
 
 
 --
--- Name: appointments id; Type: DEFAULT; Schema: public; Owner: arabascal
+-- Name: appointments id; Type: DEFAULT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.appointments ALTER COLUMN id SET DEFAULT nextval('public.appointments_id_seq'::regclass);
 
 
 --
--- Name: dentists id; Type: DEFAULT; Schema: public; Owner: arabascal
+-- Name: dentists id; Type: DEFAULT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.dentists ALTER COLUMN id SET DEFAULT nextval('public.dentists_id_seq'::regclass);
 
 
 --
--- Name: patients id; Type: DEFAULT; Schema: public; Owner: arabascal
+-- Name: patients id; Type: DEFAULT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.patients ALTER COLUMN id SET DEFAULT nextval('public.patients_id_seq'::regclass);
 
 
 --
--- Name: product_appointment id; Type: DEFAULT; Schema: public; Owner: arabascal
+-- Name: product_appointment id; Type: DEFAULT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.product_appointment ALTER COLUMN id SET DEFAULT nextval('public.product_appointment_id_seq'::regclass);
 
 
 --
--- Name: products id; Type: DEFAULT; Schema: public; Owner: arabascal
+-- Name: products id; Type: DEFAULT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.products ALTER COLUMN id SET DEFAULT nextval('public.products_id_seq'::regclass);
 
 
 --
--- Name: purchase_orders id; Type: DEFAULT; Schema: public; Owner: arabascal
+-- Name: purchase_orders id; Type: DEFAULT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.purchase_orders ALTER COLUMN id SET DEFAULT nextval('public.purchase_orders_id_seq'::regclass);
 
 
 --
--- Data for Name: appointment_types; Type: TABLE DATA; Schema: public; Owner: arabascal
+-- Data for Name: appointment_types; Type: TABLE DATA; Schema: public; Owner: salvador
 --
 
 COPY public.appointment_types (id, description, minutes, price) FROM stdin;
@@ -504,7 +504,7 @@ COPY public.appointment_types (id, description, minutes, price) FROM stdin;
 
 
 --
--- Data for Name: appointments; Type: TABLE DATA; Schema: public; Owner: arabascal
+-- Data for Name: appointments; Type: TABLE DATA; Schema: public; Owner: salvador
 --
 
 COPY public.appointments (id, patient_id, must_be_rescheduled, date_time, created_at, updated_at, appointment_type_id, dentist_id) FROM stdin;
@@ -515,7 +515,7 @@ COPY public.appointments (id, patient_id, must_be_rescheduled, date_time, create
 
 
 --
--- Data for Name: dentists; Type: TABLE DATA; Schema: public; Owner: arabascal
+-- Data for Name: dentists; Type: TABLE DATA; Schema: public; Owner: salvador
 --
 
 COPY public.dentists (id, first_name, last_name, cellphone, email, birthdate, start_date, status) FROM stdin;
@@ -526,17 +526,17 @@ COPY public.dentists (id, first_name, last_name, cellphone, email, birthdate, st
 
 
 --
--- Data for Name: patients; Type: TABLE DATA; Schema: public; Owner: arabascal
+-- Data for Name: patients; Type: TABLE DATA; Schema: public; Owner: salvador
 --
 
 COPY public.patients (id, first_name, last_name, birthdate, created_at, email, cellphone) FROM stdin;
 6	Salvador	Orozco	1994-10-07	2018-03-14 17:45:42	savador@orozco.in	2229104839
-5	Aranzza	Abascal	1996-10-12	2018-03-14 17:45:01	arabascal@gmail.com	2225618742
+5	Aranzza	Abascal	1996-10-12	2018-03-14 17:45:01	salvador@gmail.com	2225618742
 \.
 
 
 --
--- Data for Name: product_appointment; Type: TABLE DATA; Schema: public; Owner: arabascal
+-- Data for Name: product_appointment; Type: TABLE DATA; Schema: public; Owner: salvador
 --
 
 COPY public.product_appointment (id, product_id, appointment_id, quantity) FROM stdin;
@@ -544,7 +544,7 @@ COPY public.product_appointment (id, product_id, appointment_id, quantity) FROM 
 
 
 --
--- Data for Name: products; Type: TABLE DATA; Schema: public; Owner: arabascal
+-- Data for Name: products; Type: TABLE DATA; Schema: public; Owner: salvador
 --
 
 COPY public.products (id, name, brand, description, min_req_sku, sku, price) FROM stdin;
@@ -554,7 +554,7 @@ COPY public.products (id, name, brand, description, min_req_sku, sku, price) FRO
 
 
 --
--- Data for Name: purchase_orders; Type: TABLE DATA; Schema: public; Owner: arabascal
+-- Data for Name: purchase_orders; Type: TABLE DATA; Schema: public; Owner: salvador
 --
 
 COPY public.purchase_orders (id, product_id, date_time, quantity) FROM stdin;
@@ -564,56 +564,56 @@ COPY public.purchase_orders (id, product_id, date_time, quantity) FROM stdin;
 
 
 --
--- Name: appointment_types_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arabascal
+-- Name: appointment_types_id_seq; Type: SEQUENCE SET; Schema: public; Owner: salvador
 --
 
 SELECT pg_catalog.setval('public.appointment_types_id_seq', 2, true);
 
 
 --
--- Name: appointments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arabascal
+-- Name: appointments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: salvador
 --
 
 SELECT pg_catalog.setval('public.appointments_id_seq', 82, true);
 
 
 --
--- Name: dentists_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arabascal
+-- Name: dentists_id_seq; Type: SEQUENCE SET; Schema: public; Owner: salvador
 --
 
 SELECT pg_catalog.setval('public.dentists_id_seq', 1, true);
 
 
 --
--- Name: patients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arabascal
+-- Name: patients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: salvador
 --
 
 SELECT pg_catalog.setval('public.patients_id_seq', 6, true);
 
 
 --
--- Name: product_appointment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arabascal
+-- Name: product_appointment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: salvador
 --
 
 SELECT pg_catalog.setval('public.product_appointment_id_seq', 3, true);
 
 
 --
--- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arabascal
+-- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: salvador
 --
 
 SELECT pg_catalog.setval('public.products_id_seq', 2, true);
 
 
 --
--- Name: purchase_orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arabascal
+-- Name: purchase_orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: salvador
 --
 
 SELECT pg_catalog.setval('public.purchase_orders_id_seq', 2, true);
 
 
 --
--- Name: appointment_types appointment_types_pkey; Type: CONSTRAINT; Schema: public; Owner: arabascal
+-- Name: appointment_types appointment_types_pkey; Type: CONSTRAINT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.appointment_types
@@ -621,7 +621,7 @@ ALTER TABLE ONLY public.appointment_types
 
 
 --
--- Name: appointments appointments_pkey; Type: CONSTRAINT; Schema: public; Owner: arabascal
+-- Name: appointments appointments_pkey; Type: CONSTRAINT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.appointments
@@ -629,7 +629,7 @@ ALTER TABLE ONLY public.appointments
 
 
 --
--- Name: dentists dentists_pkey; Type: CONSTRAINT; Schema: public; Owner: arabascal
+-- Name: dentists dentists_pkey; Type: CONSTRAINT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.dentists
@@ -637,7 +637,7 @@ ALTER TABLE ONLY public.dentists
 
 
 --
--- Name: patients patients_pkey; Type: CONSTRAINT; Schema: public; Owner: arabascal
+-- Name: patients patients_pkey; Type: CONSTRAINT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.patients
@@ -645,7 +645,7 @@ ALTER TABLE ONLY public.patients
 
 
 --
--- Name: product_appointment product_appointment_pkey; Type: CONSTRAINT; Schema: public; Owner: arabascal
+-- Name: product_appointment product_appointment_pkey; Type: CONSTRAINT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.product_appointment
@@ -653,7 +653,7 @@ ALTER TABLE ONLY public.product_appointment
 
 
 --
--- Name: products products_pkey; Type: CONSTRAINT; Schema: public; Owner: arabascal
+-- Name: products products_pkey; Type: CONSTRAINT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.products
@@ -661,7 +661,7 @@ ALTER TABLE ONLY public.products
 
 
 --
--- Name: purchase_orders purchase_orders_pkey; Type: CONSTRAINT; Schema: public; Owner: arabascal
+-- Name: purchase_orders purchase_orders_pkey; Type: CONSTRAINT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.purchase_orders
@@ -669,7 +669,7 @@ ALTER TABLE ONLY public.purchase_orders
 
 
 --
--- Name: appointments appointments_appointment_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: arabascal
+-- Name: appointments appointments_appointment_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.appointments
@@ -677,7 +677,7 @@ ALTER TABLE ONLY public.appointments
 
 
 --
--- Name: appointments appointments_dentist_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: arabascal
+-- Name: appointments appointments_dentist_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.appointments
@@ -685,7 +685,7 @@ ALTER TABLE ONLY public.appointments
 
 
 --
--- Name: appointments appointments_patient_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: arabascal
+-- Name: appointments appointments_patient_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.appointments
@@ -693,7 +693,7 @@ ALTER TABLE ONLY public.appointments
 
 
 --
--- Name: product_appointment product_appointment_appointment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: arabascal
+-- Name: product_appointment product_appointment_appointment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.product_appointment
@@ -701,7 +701,7 @@ ALTER TABLE ONLY public.product_appointment
 
 
 --
--- Name: product_appointment product_appointment_product_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: arabascal
+-- Name: product_appointment product_appointment_product_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.product_appointment
@@ -709,7 +709,7 @@ ALTER TABLE ONLY public.product_appointment
 
 
 --
--- Name: purchase_orders purchase_orders_product_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: arabascal
+-- Name: purchase_orders purchase_orders_product_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: salvador
 --
 
 ALTER TABLE ONLY public.purchase_orders

@@ -51,15 +51,15 @@
                     <center>
                     <div class="form-group">
                         <h2 class="section-heading text-uppercase" for="firstname">First name</h2>
-                        <input type="text" style="width: 500px" name="firstname" value="<?php echo $patient->first_name ?>" class="form-control text-center" id="firstname" placeholder="Firstname">
+                        <input type="text" style="width: 500px" name="firstname" value="<?php echo $patient->first_name ?>" class="form-control text-center" id="firstname" placeholder="First Name">
                     </div>
                     <div class="form-group">
                         <h2 class="section-heading text-uppercase" for="lastname">Last name</h2>
-                        <input type="text" style="width: 500px" name="lastname" value="<?php echo $patient->last_name ?>" class="form-control text-center" id="lastname" placeholder="Lastname">
+                        <input type="text" style="width: 500px" name="lastname" value="<?php echo $patient->last_name ?>" class="form-control text-center" id="lastname" placeholder="Last Name">
                     </div>
                     <div class="form-group">
                         <h2 class="section-heading text-uppercase" for="birthdate">Birthdate</h2>
-                        <input type="text" style="width: 500px" name="birthdate" value="<?php echo $patient->birthdate ?>" class="form-control text-center" id="birthdate" placeholder="Birthdate">
+                        <input type="date" style="width: 500px" name="birthdate" value="<?php echo $patient->birthdate ?>" class="form-control text-center" id="birthdate" placeholder="Birthdate">
                     </div>
                     <div class="form-group">
                         <h2 class="section-heading text-uppercase" for="email">email</h2>
