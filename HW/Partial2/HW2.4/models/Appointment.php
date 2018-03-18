@@ -169,6 +169,32 @@
     	        echo  $e->getMessage();
     	    }
         }
+
+        public function getPastAppointments(){
+            try{
+                $query = $this->con->prepare('SELECT * FROM get_past_appointments()');
+                $query->execute();
+                $this->con->close();
+                
+                return $query->fetchAll(PDO::FETCH_OBJ);
+            }
+            catch(PDOException $e){
+                echo  $e->getMessage();
+            }
+        }
+
+        public function getFutureAppointments(){
+            try{
+                $query = $this->con->prepare('SELECT * FROM get_future_appointments()');
+                $query->execute();
+                $this->con->close();
+                
+                return $query->fetchAll(PDO::FETCH_OBJ);
+            }
+            catch(PDOException $e){
+                echo  $e->getMessage();
+            }
+        }
         
         /**
          * Function to get the appointments in a given range of dates
@@ -326,33 +352,56 @@
             }
         }
 
-        public function computeAppointmentsThatStartBefore(){
+        public function computeAppointmentsThatStartBefore($isPatient){
 
-            $queryToCallFunction = $this->con->prepare('SELECT * FROM get_end_time(?, ?) WHERE end_time::date <= ?::date');
-            $queryToCallFunction->bindParam(1, $this->dateTime, PDO::PARAM_STR);
-            $queryToCallFunction->bindParam(2, $this->appointmentTypeId, PDO::PARAM_INT);
-            $queryToCallFunction->bindParam(3, $this->dateTime, PDO::PARAM_STR);
+            if($isPatient){
 
-            $queryToCallFunction->execute();
-            $counterAppointmentsThatEndAfter = $queryToCallFunction->rowCount();
-            
-            $this->con->close();
+                $queryToCallFunction = $this->con->prepare('SELECT * FROM get_end_time_patients(?, ?) WHERE end_time::date <= ?::date');
+                $queryToCallFunction->bindParam(1, $this->dateTime, PDO::PARAM_STR);
+                $queryToCallFunction->bindParam(2, $this->patientId, PDO::PARAM_INT);
+                $queryToCallFunction->bindParam(3, $this->dateTime, PDO::PARAM_STR);
 
-            if($counterAppointmentsThatEndAfter == 0){
-                return true;
+                $queryToCallFunction->execute();
+                $counterAppointmentsThatEndAfter = $queryToCallFunction->rowCount();
+                
+                $this->con->close();
+
+                if($counterAppointmentsThatEndAfter == 0){
+                    return true;
+                }
+                else{
+                    return false;
+                }
             }
-            else{
-                return false;
+
+            else {
+
+                $queryToCallFunction = $this->con->prepare('SELECT * FROM get_end_time_dentist(?, ?) WHERE end_time::date <= ?::date');
+                $queryToCallFunction->bindParam(1, $this->dateTime, PDO::PARAM_STR);
+                $queryToCallFunction->bindParam(2, $this->dentistId, PDO::PARAM_INT);
+                $queryToCallFunction->bindParam(3, $this->dateTime, PDO::PARAM_STR);
+
+                $queryToCallFunction->execute();
+                $counterAppointmentsThatEndAfter = $queryToCallFunction->rowCount();
+                
+                $this->con->close();
+
+                if($counterAppointmentsThatEndAfter == 0){
+                    return true;
+                }
+                else{
+                    return false;
+                }
             }
         }
 
         public function computeAppointmentsOfSubjectInTimeInterval($isPatient){
 
             
-                /*Cuántas citas del dentista comienzan antes de que esta cita termine
-                Cuántas citas del dentista terminan después de que esta cita empiece
+            /*Cuántas citas del dentista comienzan antes de que esta cita termine
+            Cuántas citas del dentista terminan después de que esta cita empiece
 
-                HACER LO MISMO CON EL PACIENTE*/ 
+            HACER LO MISMO CON EL PACIENTE*/ 
 
             if($isPatient){
 

@@ -80,6 +80,42 @@ $$;
 ALTER FUNCTION public.get_end_time_patients(starting_time timestamp without time zone, patient_param integer) OWNER TO arabascal;
 
 --
+-- Name: get_future_appointments(); Type: FUNCTION; Schema: public; Owner: arabascal
+--
+
+CREATE FUNCTION public.get_future_appointments() RETURNS TABLE(date_time timestamp without time zone, p_firstname character varying, p_lastname character varying, appt_description character varying, d_firstname character varying, d_lastname character varying, app_rescheduled boolean)
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+RETURN query
+SELECT app.date_time, p.first_name, p.last_name, appt.description, d.first_name, d.last_name, app.must_be_rescheduled
+FROM appointments app, patients p, appointment_types appt, dentists d
+WHERE app.date_time::date > NOW()::date AND app.patient_id = p.id AND app.dentist_id = d.id AND app.appointment_type_id = appt.id;
+END;
+$$;
+
+
+ALTER FUNCTION public.get_future_appointments() OWNER TO arabascal;
+
+--
+-- Name: get_past_appointments(); Type: FUNCTION; Schema: public; Owner: arabascal
+--
+
+CREATE FUNCTION public.get_past_appointments() RETURNS TABLE(date_time timestamp without time zone, p_firstname character varying, p_lastname character varying, appt_description character varying, d_firstname character varying, d_lastname character varying, app_rescheduled boolean)
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+RETURN query
+SELECT app.date_time, p.first_name, p.last_name, appt.description, d.first_name, d.last_name, app.must_be_rescheduled
+FROM appointments app, patients p, appointment_types appt, dentists d
+WHERE app.date_time::date < NOW()::date AND app.patient_id = p.id AND app.dentist_id = d.id AND app.appointment_type_id = appt.id;
+END;
+$$;
+
+
+ALTER FUNCTION public.get_past_appointments() OWNER TO arabascal;
+
+--
 -- Name: get_start_time(timestamp without time zone); Type: FUNCTION; Schema: public; Owner: arabascal
 --
 
@@ -94,6 +130,38 @@ $$;
 
 
 ALTER FUNCTION public.get_start_time(datetime_param timestamp without time zone) OWNER TO arabascal;
+
+--
+-- Name: get_start_time_dentist(timestamp without time zone, integer); Type: FUNCTION; Schema: public; Owner: arabascal
+--
+
+CREATE FUNCTION public.get_start_time_dentist(datetime_param timestamp without time zone, dentist_param integer) RETURNS TABLE(start_time timestamp without time zone)
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+RETURN query
+SELECT app.date_time FROM appointments app WHERE app.date_time::date = datetime_param::date AND app.dentist_id = dentist_param;
+END;
+$$;
+
+
+ALTER FUNCTION public.get_start_time_dentist(datetime_param timestamp without time zone, dentist_param integer) OWNER TO arabascal;
+
+--
+-- Name: get_start_time_patient(timestamp without time zone, integer); Type: FUNCTION; Schema: public; Owner: arabascal
+--
+
+CREATE FUNCTION public.get_start_time_patient(datetime_param timestamp without time zone, patient_param integer) RETURNS TABLE(start_time timestamp without time zone)
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+RETURN query
+SELECT app.date_time FROM appointments app WHERE app.date_time::date = datetime_param::date AND app.patient_id = patient_param;
+END;
+$$;
+
+
+ALTER FUNCTION public.get_start_time_patient(datetime_param timestamp without time zone, patient_param integer) OWNER TO arabascal;
 
 --
 -- Name: get_todays_appointments(); Type: FUNCTION; Schema: public; Owner: arabascal
@@ -442,6 +510,7 @@ COPY public.appointment_types (id, description, minutes, price) FROM stdin;
 COPY public.appointments (id, patient_id, must_be_rescheduled, date_time, created_at, updated_at, appointment_type_id, dentist_id) FROM stdin;
 55	6	t	2018-03-17 12:30:00	2018-03-17 00:20:36	2018-03-17 00:20:36	1	1
 54	5	t	2018-04-02 13:00:00	\N	2018-03-17 00:29:51	2	0
+82	6	f	2018-04-02 12:40:00	2018-03-18 17:34:30	2018-03-18 17:34:30	2	2
 \.
 
 
@@ -505,7 +574,7 @@ SELECT pg_catalog.setval('public.appointment_types_id_seq', 2, true);
 -- Name: appointments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arabascal
 --
 
-SELECT pg_catalog.setval('public.appointments_id_seq', 81, true);
+SELECT pg_catalog.setval('public.appointments_id_seq', 82, true);
 
 
 --

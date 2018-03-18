@@ -36,16 +36,32 @@ $$ LANGUAGE plpgsql;
 ########################################################
 
 
-// Query to return the start time of the appointments in a given date
+// Query to return the start time of the appointments in a given date and a patient id
 
-CREATE FUNCTION get_start_time(datetime_param TIMESTAMP)
+CREATE FUNCTION get_start_time_patient(datetime_param TIMESTAMP, patient_param INTEGER)
 RETURNS table(start_time TIMESTAMP)
 AS $$
 BEGIN
 RETURN query
-SELECT app.date_time FROM appointments app WHERE app.date_time::date = datetime_param::date;
+SELECT app.date_time FROM appointments app WHERE app.date_time::date = datetime_param::date AND app.patient_id = patient_param;
 END;
 $$ LANGUAGE plpgsql;
+
+
+########################################################
+
+
+// Query to return the start time of the appointments in a given date and a dentist id
+
+CREATE FUNCTION get_start_time_dentist(datetime_param TIMESTAMP, dentist_param INTEGER)
+RETURNS table(start_time TIMESTAMP)
+AS $$
+BEGIN
+RETURN query
+SELECT app.date_time FROM appointments app WHERE app.date_time::date = datetime_param::date AND app.dentist_id = dentist_param;
+END;
+$$ LANGUAGE plpgsql;
+
 
 ########################################################
 
@@ -77,5 +93,51 @@ RETURN query
 	SELECT starting_time + (appt.minutes * INTERVAL '1 min')
 	FROM appointment_types appt, appointments app
 	WHERE appt.id = app.appointment_type_id AND app.patient_id = patient_param;
+END;
+$$ LANGUAGE plpgsql;
+
+
+########################################################
+
+
+// Query to get past appointments
+
+CREATE FUNCTION get_past_appointments()
+RETURNS table(date_time TIMESTAMP,
+			  p_firstname VARCHAR(30),
+			  p_lastname VARCHAR(30),
+			  appt_description VARCHAR(30),
+			  d_firstname VARCHAR(30),
+			  d_lastname VARCHAR(30),
+			  app_rescheduled BOOLEAN)
+AS $$
+BEGIN
+RETURN query
+SELECT app.date_time, p.first_name, p.last_name, appt.description, d.first_name, d.last_name, app.must_be_rescheduled
+FROM appointments app, patients p, appointment_types appt, dentists d
+WHERE app.date_time::date < NOW()::date AND app.patient_id = p.id AND app.dentist_id = d.id AND app.appointment_type_id = appt.id;
+END;
+$$ LANGUAGE plpgsql;
+
+
+########################################################
+
+
+// Query to get future appointments
+
+CREATE FUNCTION get_future_appointments()
+RETURNS table(date_time TIMESTAMP,
+			  p_firstname VARCHAR(30),
+			  p_lastname VARCHAR(30),
+			  appt_description VARCHAR(30),
+			  d_firstname VARCHAR(30),
+			  d_lastname VARCHAR(30),
+			  app_rescheduled BOOLEAN)
+AS $$
+BEGIN
+RETURN query
+SELECT app.date_time, p.first_name, p.last_name, appt.description, d.first_name, d.last_name, app.must_be_rescheduled
+FROM appointments app, patients p, appointment_types appt, dentists d
+WHERE app.date_time::date > NOW()::date AND app.patient_id = p.id AND app.dentist_id = d.id AND app.appointment_type_id = appt.id;
 END;
 $$ LANGUAGE plpgsql;

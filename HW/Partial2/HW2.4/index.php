@@ -321,6 +321,67 @@
         require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Appointment.php";
         $db = new Database;
         $appointment = new Appointment($db);
+        $pastAppointments = $appointment->getPastAppointments(); // current_date, current_date);  
+        // $todaysAppointments = $appointment->get();
+        //$appointments = $appointment->get();    
+        ?>
+
+        <div class="row">
+          <div class="col-lg-12 text-center">
+
+            <h4 style="color: #ffc107">Past appointments</h4>
+
+            <div class="container">
+              <div class="col-lg-12">
+                <?php
+                if( ! empty( $pastAppointments ) ) {
+                ?>
+                <table class="table text-center">
+                  <tr>
+                    <!-- <th>Id</th> -->
+                    <th>Date & Time</th>
+                    <th>Patient</th>
+                    <th>Appointment Type</th>
+                    <th>Dentist</th>
+                    <th>Must be rescheduled</th>
+                  </tr>
+                  <?php foreach( $pastAppointments as $pastAppointment )
+                  {
+                  ?>
+                  <tr>
+                  <!-- <td><?php //echo $patient->id ?></td> -->
+                    <td><?php echo $pastAppointment->date_time ?></td>
+                    <td><?php echo $pastAppointment->p_firstname . " " . $pastAppointment->p_lastname ?></td>
+                    <td><?php echo $pastAppointment->appt_description ?></td>
+                    <td><?php echo $pastAppointment->d_firstname . " " . $pastAppointment->d_lastname ?></td>
+                    <td><?php echo $pastAppointment->app_rescheduled==1 ? "<font color='red'>Yes</font>" : "<font color='green'>No</font>" ?></td>
+                  </tr>
+                  <?php
+                  }
+                  ?>
+                </table>
+                <?php
+                }
+                else
+                {
+                ?>
+                <div class="alert alert-danger" style="margin-top: 100px">There are 0 registered appointments for today</div>
+                <?php
+                }
+                ?>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+
+        <?php
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Appointment.php";
+        $db = new Database;
+        $appointment = new Appointment($db);
         $todaysAppointments = $appointment->getTodaysAppointments(); // current_date, current_date);  
         // $todaysAppointments = $appointment->get();
         //$appointments = $appointment->get();    
@@ -382,7 +443,7 @@
         require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Appointment.php";
         $db = new Database;
         $appointment = new Appointment($db);
-        $appointments = $appointment->get();    
+        $appointments = $appointment->getFutureAppointments();    
         ?>
 
         <div class="row">
@@ -412,9 +473,9 @@
                   <tr>
                     <td><?php echo $appointment->date_time ?></td>
                     <td><?php echo $appointment->p_firstname . " " . $appointment->p_lastname ?></td>
-                    <td><?php echo $appointment->description ?></td>
+                    <td><?php echo $appointment->appt_description ?></td>
                     <td><?php echo $appointment->d_firstname . " " . $appointment->d_lastname ?></td>
-                    <td><?php echo $appointment->must_be_rescheduled==1 ? "<font color='red'>Yes</font>" : "<font color='green'>No</font>" ?></td>
+                    <td><?php echo $appointment->app_rescheduled==1 ? "<font color='red'>Yes</font>" : "<font color='green'>No</font>" ?></td>
                     <td>
                       <a class="btn btn-primary" href="<?php echo Appointment::baseurl()?>/app/appointment/edit_appointment.php?appointment=<?php echo $appointment->id ?>">Edit</a>
                     </td>
