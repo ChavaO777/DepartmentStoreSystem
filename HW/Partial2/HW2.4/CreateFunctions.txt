@@ -1,0 +1,81 @@
+// Query to create function that returns all information of today's appointments
+
+CREATE FUNCTION get_todays_appointments()
+RETURNS table(date_time TIMESTAMP,
+			  p_firstname VARCHAR(30),
+			  p_lastname VARCHAR(30),
+			  appt_description VARCHAR(30),
+			  d_firstname VARCHAR(30),
+			  d_lastname VARCHAR(30),
+			  app_rescheduled BOOLEAN)
+AS $$
+BEGIN
+RETURN query
+SELECT app.date_time, p.first_name, p.last_name, appt.description, d.first_name, d.last_name, app.must_be_rescheduled
+FROM appointments app, patients p, appointment_types appt, dentists d
+WHERE app.date_time::date = NOW()::date AND app.patient_id = p.id AND app.dentist_id = d.id AND app.appointment_type_id = appt.id;
+END;
+$$ LANGUAGE plpgsql;
+
+
+########################################################
+
+
+// Query to get the end time of an appointment
+
+CREATE FUNCTION get_end_time(starting_time TIMESTAMP, appt_param INTEGER)
+RETURNS table(end_time TIMESTAMP)
+AS $$
+BEGIN
+RETURN query
+SELECT starting_time + (minutes * INTERVAL '1 min') FROM appointment_types WHERE appointment_types.id = appt_param;
+END;
+$$ LANGUAGE plpgsql;
+
+
+########################################################
+
+
+// Query to return the start time of the appointments in a given date
+
+CREATE FUNCTION get_start_time(datetime_param TIMESTAMP)
+RETURNS table(start_time TIMESTAMP)
+AS $$
+BEGIN
+RETURN query
+SELECT app.date_time FROM appointments app WHERE app.date_time::date = datetime_param::date;
+END;
+$$ LANGUAGE plpgsql;
+
+########################################################
+
+
+// Query to get the end time of the appointments of a given dentist
+
+CREATE FUNCTION get_end_time_dentist(starting_time TIMESTAMP, dentist_param INTEGER)
+RETURNS table(end_time TIMESTAMP)
+AS $$
+BEGIN
+RETURN query
+	SELECT starting_time + (appt.minutes * INTERVAL '1 min')
+	FROM appointment_types appt, appointments app
+	WHERE appt.id = app.appointment_type_id AND app.dentist_id = dentist_param;
+END;
+$$ LANGUAGE plpgsql;
+
+
+########################################################
+
+
+// Query to get the end time of the appointments of a given patient
+
+CREATE FUNCTION get_end_time_patients(starting_time TIMESTAMP, patient_param INTEGER)
+RETURNS table(end_time TIMESTAMP)
+AS $$
+BEGIN
+RETURN query
+	SELECT starting_time + (appt.minutes * INTERVAL '1 min')
+	FROM appointment_types appt, appointments app
+	WHERE appt.id = app.appointment_type_id AND app.patient_id = patient_param;
+END;
+$$ LANGUAGE plpgsql;
