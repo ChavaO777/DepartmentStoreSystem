@@ -343,7 +343,7 @@
                     <th>Patient</th>
                     <th>Appointment Type</th>
                     <th>Dentist</th>
-                    <th>Must be rescheduled</th>
+                    <!-- <th>Must be rescheduled</th> -->
                   </tr>
                   <?php foreach( $pastAppointments as $pastAppointment )
                   {
@@ -354,7 +354,7 @@
                     <td><?php echo $pastAppointment->p_firstname . " " . $pastAppointment->p_lastname ?></td>
                     <td><?php echo $pastAppointment->appt_description ?></td>
                     <td><?php echo $pastAppointment->d_firstname . " " . $pastAppointment->d_lastname ?></td>
-                    <td><?php echo $pastAppointment->app_rescheduled==1 ? "<font color='red'>Yes</font>" : "<font color='green'>No</font>" ?></td>
+                    <!-- <td><?php //echo $pastAppointment->app_rescheduled==1 ? "<font color='red'>Yes</font>" : "<font color='green'>No</font>" ?></td> -->
                   </tr>
                   <?php
                   }
@@ -404,7 +404,7 @@
                     <th>Patient</th>
                     <th>Appointment Type</th>
                     <th>Dentist</th>
-                    <th>Must be rescheduled</th>
+                    <!-- <th>Must be rescheduled</th> -->
                   </tr>
                   <?php foreach( $todaysAppointments as $todaysAppointment )
                   {
@@ -415,7 +415,7 @@
                     <td><?php echo $todaysAppointment->p_firstname . " " . $todaysAppointment->p_lastname ?></td>
                     <td><?php echo $todaysAppointment->appt_description ?></td>
                     <td><?php echo $todaysAppointment->d_firstname . " " . $todaysAppointment->d_lastname ?></td>
-                    <td><?php echo $todaysAppointment->app_rescheduled==1 ? "<font color='red'>Yes</font>" : "<font color='green'>No</font>" ?></td>
+                    <!-- <td><?php //echo $todaysAppointment->app_rescheduled==1 ? "<font color='red'>Yes</font>" : "<font color='green'>No</font>" ?></td> -->
                   </tr>
                   <?php
                   }
@@ -493,7 +493,7 @@
                 else
                 {
                 ?>
-                <div class="alert alert-danger" style="margin-top: 100px">There are 0 registered appointments for today</div>
+                <div class="alert alert-danger" style="margin-top: 100px">There are 0 registered appointments in the future</div>
                 <?php
                 }
                 ?>

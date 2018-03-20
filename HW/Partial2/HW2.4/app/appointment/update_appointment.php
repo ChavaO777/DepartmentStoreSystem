@@ -13,6 +13,8 @@
 	    'must_be_rescheduled' => FILTER_SANITIZE_STRING,
 	);
 
+	// echo $post->dentist_id;
+
 	$post = (object)filter_input_array(INPUT_POST, $args);
 
 	if( $post->id === false ){

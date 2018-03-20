@@ -101,12 +101,12 @@
 
                         <select id="dentist_id" name="dentist_id">
                         
-                        <?php
-                           foreach( $dentists as $dentist )
-                            {
-                                echo "<option value='" . $dentist->id . "'>Dr(a). " . $dentist->first_name . " " . $dentist->last_name . "</option>";
-                            }
-                        ?>
+                            <?php
+                                foreach( $dentists as $dentist )
+                                {
+                                    echo "<option value='" . $dentist->id . "'>Dr(a). " . $dentist->first_name . " " . $dentist->last_name . "</option>";
+                                }
+                            ?>
                         </select>
                     </div>
 
