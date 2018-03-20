@@ -33,7 +33,10 @@
 
     <section><center>
         <?php
-        require_once "../../models/Appointment.php";
+            require_once "../../models/Appointment.php";
+            require_once "../../models/AppointmentType.php";
+            require_once "../../models/Patient.php";
+            require_once "../../models/Dentist.php";
         ?>
 
         <div class="container">
@@ -41,29 +44,22 @@
                 <form action="<?php echo Appointment::baseurl() ?>/app/appointment/save_appointment.php" method="POST">
                     <div class="form-group">
                         <h2 class="section-heading text-uppercase" for="date_time">Patient</h2>
-                        <input type="number" style="width: 500px" name="patient_id" value="" class="form-control text-center" id="patient_id" placeholder="patient id">
+                        
+                        <select id="patient_id" name="patient_id">
 
-                            <?php
+                        <?php
                             $db = new Database;
-                            $newAppointmentToPatient = new Appointment($db);
-                            $appointmentToPatient = $newAppointmentToPatient->getPatientNames();
-                            ?>
-                            <table class="table text-center" style="width: 500px">
-                                <tr>
-                                    <th style="color: #ffc107">ID</th>
-                                    <th style="color: #ffc107">Name</th>
-                                </tr>
-                                <tbody>
-                                    <?php foreach( $appointmentToPatient as $app )
-                                      {
-                                      ?>
-                                    <td><?php echo $app->p_id ?></td>
-                                    <td><?php echo $app->p_firstname ?> <?php echo $app->p_lastname ?></td>
-                                </tbody>
-                                <?php
-                                }
-                                ?>
-                            </table>
+                            $patient = new Patient($db);
+                            $patients = $patient->get();    
+                        ?>    
+
+                        <?php 
+                            foreach( $patients as $p )
+                            {
+                                echo "<option value='" . $p->id . "'>" . $p->first_name . " " . $p->last_name . "</option>";
+                            }
+                        ?>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -75,68 +71,45 @@
                     <div class="form-group">
 
                         <h2 class="section-heading text-uppercase" for="appointment_type">Appointment type</h2>
-                        <input type="number" style="width: 500px" name="appointment_id" value="" class="form-control text-center" id="appointment_id" placeholder="appointment_id">
 
                         <?php
-                        $db = new Database;
-                        $newAppointmentToType = new Appointment($db);
-                        $appointmentToType = $newAppointmentToPatient->getAppointmentNames();
+                            $db = new Database;
+                            $appointmentType = new AppointmentType($db);
+                            $appointmentTypes = $appointmentType->get();  
                         ?>
-                        <table class="table text-center" style="width: 500px">
-                            <tr>
-                                <th style="color: #ffc107">ID</th>
-                                <th style="color: #ffc107">Name</th>
-                            </tr>
-                            <tbody>
-                                <?php foreach( $appointmentToType as $appType )
-                                  {
-                                  ?>
-                                <td><?php echo $appType->app_id ?></td>
-                                <td><?php echo $appType->app_name ?></td>
-                            </tbody>
-                            <?php
-                            }
-                            ?>
-                        </table>
+
+                        <select id="appointment_id" name="appointment_id">
+
+                        <?php
+                           foreach( $appointmentTypes as $appointmentType )
+                            {
+                               echo "<option value='" . $appointmentType->id . "'>" . $appointmentType->description . " ($" . $appointmentType->price . ") </option>";
+                            } 
+                        ?>
+                        </select>
                     </div>
 
                     <div class="form-group">
 
                         <h2 class="section-heading text-uppercase" for="dentist">Dentist</h2>
-                        <input type="number" style="width: 500px" name="dentist_id" value="<?php echo $appointment->d_id ?>" class="form-control text-center" id="dentist_id" placeholder="dentist_id">
 
                         <?php
-                        $db = new Database;
-                        $newAppointmentToDentist = new Appointment($db);
-                        $appointmentToDentist = $newAppointmentToDentist->getDentistNames();
+                            $db = new Database;
+                            $dentist = new Dentist($db);
+                            $dentists = $dentist->get();    
                         ?>
-                        <table class="table text-center" style="width: 500px">
-                            <tr>
-                                <th style="color: #ffc107">ID</th>
-                                <th style="color: #ffc107">Name</th>
-                            </tr>
-                            <tbody>
-                                <?php foreach( $appointmentToDentist as $appDentist )
-                                  {
-                                  ?>
-                                <td><?php echo $appDentist->d_id ?></td>
-                                <td><?php echo $appDentist->d_firstname ?> <?php echo $appDentist->d_lastname ?></td>
-                            </tbody>
-                            <?php
+
+                        <select id="dentist_id" name="dentist_id">
+                        
+                        <?php
+                           foreach( $dentists as $dentist )
+                            {
+                                echo "<option value='" . $dentist->id . "'>Dr(a). " . $dentist->first_name . " " . $dentist->last_name . "</option>";
                             }
-                            ?>
-                        </table>
-                    </div>
-
-                    <div class="form-group">
-
-                        <h2 class="section-heading text-uppercase"  for="date_time">Must be rescheduled</h2>
-                        <select style="width: 500px" class="text-center btn btn-primary" name = "must_be_rescheduled">
-                            <option value="null" disabled selected>Option</option>
-                            <option id="must_be_rescheduled" value="true">Yes</option>
-                            <option id="must_be_rescheduled" value="false">No</option>
+                        ?>
                         </select>
                     </div>
+
                     <div>
                         <input type="submit" name="submit" class="btn btn-primary" value="Save appointment" />
                     </div>

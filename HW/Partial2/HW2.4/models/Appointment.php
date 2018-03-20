@@ -273,8 +273,6 @@
                 else {
                     return true;
                 }
-
-
             }
             catch(PDOException $e){
                 echo  $e->getMessage();
@@ -440,7 +438,6 @@
                 else{
                     return false;
                 }
-                
 
                 //Query for the dentist
                 /*$query = $this->con->prepare('SELECT minutes FROM appointment_types appt, appointments app, dentists d WHERE app.appointment_type_id = appt.id AND appt.id = ? AND app.dentist_id = ?');
@@ -482,10 +479,6 @@
             else {
                 return false;
             }*/
-
-
-
-
         }
     }
 
@@ -515,7 +508,8 @@
         }
 
         public static function baseurl() {
-             return stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'];
+            
+            return stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'];
         }
 
         public function checkAppointment($appointment) {
