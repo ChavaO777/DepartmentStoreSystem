@@ -31,6 +31,7 @@
       </div>
     </header>
 
+
     <section>
 
         <?php
@@ -56,7 +57,12 @@
                     <center>
 
                         <div class="form-group">
-                            <h2 class="section-heading text-uppercase" for="date_time">Date and time</h2>
+                            <h1 style="color: #ffc107" class="text-uppercase"><?php echo $appointment->p_firstname . " " .  $appointment->p_lastname?></h1>
+                            <input type="hidden" name="patient_id" id="patient_id" value="<?php echo $appointment->p_id ?>" />
+                        </div>
+
+                        <div class="form-group">
+                            <h4 class="section-heading text-uppercase" for="date_time">Date and time</h4>
 
                             <?php
                                 $datetime = new DateTime($appointment->date_time);
@@ -65,14 +71,9 @@
                             <!-- TODO: make the default value of the date to be the past date of the appointment -->
                             <input type="datetime-local" style="width: 500px" class="text-center btn btn-primary" name="date_time" id="date_time" value="<?php echo $datetime->format('Y-m-d H:i:s'); ?>">
                         </div>
-                        
-                        <div class="form-group">
-                            <h1>Patient: <?php echo $appointment->p_firstname . " " .  $appointment->p_lastname?></h1>
-                            <input type="hidden" name="patient_id" id="patient_id" value="<?php echo $appointment->p_id ?>" />
-                        </div>
 
                         <div class="form-group">
-                            <h2 class="section-heading text-uppercase" for="appointment_id">Appointment Type</h2>
+                            <h4 class="section-heading text-uppercase" for="appointment_id">Appointment Type</h4>
                             
                             <?php
                                 $db = new Database;
@@ -80,7 +81,7 @@
                                 $appointmentTypes = $appointmentType->get();  
                             ?>
 
-                            <select id="appointment_id" name="appointment_id">
+                            <select style="width: 500px" class="text-center btn btn-primary" id="appointment_id" name="appointment_id">
 
                                 <?php
                                     foreach( $appointmentTypes as $appointmentType )
@@ -93,7 +94,7 @@
                         
                         <div class="form-group">
 
-                            <h2 class="section-heading text-uppercase" for="dentist">Dentist</h2>
+                            <h4 class="section-heading text-uppercase" for="dentist">Dentist</h4>
 
                             <?php
                                 $db = new Database;
@@ -101,7 +102,7 @@
                                 $dentists = $dentist->get();    
                             ?>
 
-                            <select id="dentist_id" name="dentist_id">
+                            <select style="width: 500px" class="text-center btn btn-primary" id="dentist_id" name="dentist_id">
                             
                                 <?php
                                     foreach( $dentists as $dentist )
@@ -114,7 +115,7 @@
                        
                         <div class="form-group">
 
-                        <h2 class="section-heading text-uppercase"  for="date_time">Must be rescheduled</h2>
+                        <h4 class="section-heading text-uppercase"  for="date_time">Must be rescheduled</h4>
                         <select style="width: 500px" class="text-center btn btn-primary" id="must_be_rescheduled" name="must_be_rescheduled">
                             <option value="true">Yes</option>
                             <option selected value="false">No</option>
