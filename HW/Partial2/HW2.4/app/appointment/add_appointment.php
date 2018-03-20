@@ -40,12 +40,14 @@
         ?>
 
         <div class="container">
-            <div class="col-lg-12">
+            <div class="col-lg-12 text-center">
                 <form action="<?php echo Appointment::baseurl() ?>/app/appointment/save_appointment.php" method="POST">
-                    <div class="form-group">
+                    <div class="form-group text-center">
                         <h2 class="section-heading text-uppercase" for="date_time">Patient</h2>
                         
-                        <select id="patient_id" name="patient_id">
+                        <select style="width: 500px" class="text-center btn btn-primary" id="patient_id" name="patient_id">
+
+                        <option value="" selected disabled hidden>Choose a patient</option>
 
                         <?php
                             $db = new Database;
@@ -78,7 +80,9 @@
                             $appointmentTypes = $appointmentType->get();  
                         ?>
 
-                        <select id="appointment_id" name="appointment_id">
+                        <select style="width: 500px" class="text-center btn btn-primary" id="appointment_id" name="appointment_id">
+
+                        <option value="" selected disabled hidden>Choose an appointment type</option>
 
                         <?php
                            foreach( $appointmentTypes as $appointmentType )
@@ -99,7 +103,8 @@
                             $dentists = $dentist->get();    
                         ?>
 
-                        <select id="dentist_id" name="dentist_id">
+                        <select style="width: 500px" class="text-center btn btn-primary" id="dentist_id" name="dentist_id">
+                        <option value="" selected disabled hidden>Choose a dentist</option>
                         
                             <?php
                                 foreach( $dentists as $dentist )
