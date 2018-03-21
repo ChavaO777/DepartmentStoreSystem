@@ -76,8 +76,8 @@
         </div>
       </div>
       <?php
-        // require_once $_SERVER['DOCUMENT_ROOT'] . "/models/AppointmentType.php";
-        require_once "./models/AppointmentType.php";
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/models/AppointmentType.php";
+        // require_once "./models/AppointmentType.php";
         $db = new Database;
         $appointmentType = new AppointmentType($db);
         $appointmentTypes = $appointmentType->get();        
