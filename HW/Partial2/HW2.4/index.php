@@ -76,7 +76,8 @@
         </div>
       </div>
       <?php
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/models/AppointmentType.php";
+        // require_once $_SERVER['DOCUMENT_ROOT'] . "/models/AppointmentType.php";
+        require_once "./models/AppointmentType.php";
         $db = new Database;
         $appointmentType = new AppointmentType($db);
         $appointmentTypes = $appointmentType->get();        
@@ -135,7 +136,8 @@
     <section class="bg-light" id="dentists">
 
       <?php
-      require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Dentist.php";
+      // require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Dentist.php";
+      require_once "./models/Dentist.php";
       $db = new Database;
       $dentist = new Dentist($db);
       $dentists = $dentist->get();        
@@ -229,7 +231,8 @@
     <section id="patients">
 
       <?php
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Patient.php";
+        // require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Patient.php";
+        require_once "./models/Patient.php";
         $db = new Database;
         $patient = new Patient($db);
         $patients = $patient->get();        
@@ -318,7 +321,8 @@
       <div class="container">
 
         <?php
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Appointment.php";
+        // require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Appointment.php";
+        require_once "./models/Appointment.php";
         $db = new Database;
         $appointment = new Appointment($db);
         $pastAppointments = $appointment->getPastAppointments(); // current_date, current_date);  
@@ -379,7 +383,8 @@
       <div class="container">
 
         <?php
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Appointment.php";
+        // require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Appointment.php";
+        require_once "./models/Appointment.php";
         $db = new Database;
         $appointment = new Appointment($db);
         $todaysAppointments = $appointment->getTodaysAppointments(); // current_date, current_date);  
@@ -440,7 +445,8 @@
       <div class="container">
 
         <?php
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Appointment.php";
+        // require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Appointment.php";
+        require_once "./models/Appointment.php";
         $db = new Database;
         $appointment = new Appointment($db);
         $appointments = $appointment->getFutureAppointments();    
